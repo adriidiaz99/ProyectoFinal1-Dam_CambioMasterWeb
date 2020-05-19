@@ -25,10 +25,11 @@ public class Alimentacion extends Producto {
 	private double peso;
 	
 	public Alimentacion(@NotEmpty String nombre, double precioCompra, LocalDate fechaCompra, String descripcion,
-			String productor, LocalDate fechaCaducidad, double peso) {
-		super(nombre, precioCompra, fechaCompra, descripcion, productor);
+			String productor, String categoria, LocalDate fechaCaducidad, double peso) {
+		super(nombre, precioCompra, fechaCompra, descripcion, productor, categoria);
 		this.fechaCaducidad = fechaCaducidad;
 		this.peso = peso;
 	}
-
+	
+	
 }

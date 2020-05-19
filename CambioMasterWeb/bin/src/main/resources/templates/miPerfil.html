@@ -157,7 +157,7 @@
                     <h3 class="float-left">UserExample</h3>
                 </div>
 
-                <div id="miPerfil" class="col-10 float-left ml-5 pl-3 border p-0 mt-5">
+                <div id="miPerfil" th:object="${usuario}" class="col-10 float-left ml-5 pl-3 border p-0 mt-5">
 
                     <div id="contenedor-miPerfil" class="w-100 float-left pl-2 pb-5">
                         <div id="fotoPerfil" class="border col-3 mt-5 p-0 pb-1 pt-1 float-left ml-4">
@@ -165,14 +165,14 @@
                             <p id="perfilValoracion">Valoración: <span id="valorValoracion">4.3</span></p>
 
                         </div>
-                        <div id="informacionBasica" class="border col-8 mt-5 pl-5 p-0 pb-1 pt-1 float-left ml-4">
-                            <p id="perfilNick">UserExample</p>
-                            <p id="perfilName">Nombre de ejemplo</p>
-                            <p id="perfilApellido">Apellido de ejemplo</p>
-                            <p id="perfilFechaNacimiento">Nació el 12/02/1999</p>
-                            <p id="perfilLocalidad">Reside en Salteras, Sevilla</p>
-                            <p id="perfilEmail">Email: example@example.com</p>
-                            <p id="perfilTelefono">Teléfono de contacto: +34611111111</p>
+                        <div id="informacionBasica" th:object="${usuario}" class="border col-8 mt-5 pl-5 p-0 pb-1 pt-1 float-left ml-4">
+                            <p id="perfilNick" th:text="${usuario.username}">UserExample</p>
+                            <p id="perfilName" th:text="${usuario.nombre}">Nombre de ejemplo</p>
+                            <p id="perfilApellido" th:text="${usuario.apellido1} + ${usuario.apellido2}">Apellido de ejemplo</p>
+                            <p id="perfilFechaNacimiento">Nació el <span th:text="${usuario.fechaNacimiento}">12/02/1999</span></p>
+                            <p id="perfilLocalidad">Reside en <span th:text="${usuario.direccion}">Salteras, Sevilla</span></p>
+                            <p id="perfilEmail">Email: <span th:text="${usuario.email}">example@example.com</span></p>
+                            <p id="perfilTelefono">Teléfono de contacto: <span th:text="${usuario.telefono}">+34611111111</span></p>
                         </div>
                         <div id="botonEditarPerfil" class="float-right mt-5 mr-4">
                             <button id="editarPerfil" class="bg-secondary text-white border-0">Editar perfil</button>

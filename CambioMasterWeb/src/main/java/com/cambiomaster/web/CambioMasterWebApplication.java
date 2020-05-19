@@ -14,6 +14,7 @@ import com.cambiomaster.web.modelo.Producto;
 import com.cambiomaster.web.modelo.Usuario;
 import com.cambiomaster.web.modelo.UsuarioGeneral;
 import com.cambiomaster.web.repositorios.ProductoRepository;
+import com.cambiomaster.web.servicio.BuzonService;
 import com.cambiomaster.web.servicio.UsuarioService;
 
 @SpringBootApplication
@@ -24,7 +25,7 @@ public class CambioMasterWebApplication {
 	}
 
 	@Bean
-	CommandLineRunner initData(UsuarioService usuarioService, ProductoRepository listaProductos) {
+	CommandLineRunner initData(UsuarioService usuarioService, ProductoRepository listaProductos, BuzonService servicioBuzon) {
 
 		return new CommandLineRunner() {
 
@@ -37,10 +38,12 @@ public class CambioMasterWebApplication {
 				Usuario ug2 = new UsuarioGeneral("Usuario", "b", "a", "a", "a", encoder.encode("1234"),"a", LocalDate.parse("2019-11-01"),
 						"a", "a", false);
 				
-				Producto e1 = new Electronica("b", 4.2, LocalDate.now(), "Hola", "lolo", false, 0.0, "Camión");
-				Producto e2 = new Electronica("e", 4.2, LocalDate.now(), "o", "o", false, 0.0, "o");
+				Producto e1 = new Electronica("b", 4.2, LocalDate.now(), "Hola", "lolo", "Electrónica", false, 0.0, "Camión");
+				Producto e2 = new Electronica("e", 4.2, LocalDate.now(), "o", "o", "Electrónica", false, 0.0, "o");
 				
 				Buzon b1 = new Buzon();
+				
+				servicioBuzon.save(b1);
 				
 				ug2.addBuzon(b1);
 				

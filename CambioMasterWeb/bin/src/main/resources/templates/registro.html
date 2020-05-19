@@ -21,41 +21,41 @@
                 <img src="../img/cambioMasterWeb.png">
                 <div id="formulario-registro" class="col-8 text-center pb-4">
                     <h3 class="mb-5">Registrarme en Cambio Master</h3>
-                    <form name="formulario-registro">
+                    <form name="formulario-registro" th:action="@{/registro/submit}" th:object="${usuario}" method="POST">
                         <label for="nombre"
                             class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Nombre</label>
-                        <input name="nombre" id="nombre" class="float-left col-5 p-0 m-0 float-left" type="text"
+                        <input name="nombre" th:field="*{nombre}" id="nombre" class="float-left col-5 p-0 m-0 float-left" type="text"
                             placeholder="Introduzca aquí su nombre">
                         </br></br>
                         <label for="apellido1"
                             class="float-left col-3 pb-1 pr-0 pl-0 m-0 float-left bg-secondary text-white text-center">Primer apellido</label>
-                        <input name="apellido1" id="apellido1" class="float-left col-5 p-0 m-0 float-left" type="text"
+                        <input name="apellido1" th:field="*{apellido1}" id="apellido1" class="float-left col-5 p-0 m-0 float-left" type="text"
                             placeholder="Introduzca aquí su primer apellido">
                         </br></br>
                         <label for="apellido2"
                             class="float-left col-3 pb-1 pr-0 pl-0 m-0 float-left bg-secondary text-white text-center">Segundo apellido</label>
-                        <input name="apellido2" id="apellido2" class="float-left col-5 p-0 m-0 float-left" type="text"
+                        <input name="apellido2" th:field="*{apellido2}" id="apellido2" class="float-left col-5 p-0 m-0 float-left" type="text"
                             placeholder="Introduzca aquí su segundo apellido">
                         </br></br>
                         <label for="fNacimiento"
                             class="float-left col-3 pb-1 pr-0 pl-0 m-0 float-left bg-secondary text-white text-center">Fecha nacimiento</label>
-                        <input name="fNacimiento" id="fNacimiento" class="float-left col-5 p-0 pb-0 m-0 float-left" type="date">
+                        <input name="fNacimiento" th:field="*{fechaNacimiento}" id="fNacimiento" class="float-left col-5 p-0 pb-0 m-0 float-left" type="date">
                         </br></br>
                         <label for="telefono"
                             class="float-left col-3 pb-1 pr-0 pl-0 m-0 float-left bg-secondary text-white text-center">Teléfono</label>
-                        <input name="telefono" id="telefono" class="float-left col-5 p-0 pb-0 m-0 float-left" type="text" maxlength="12" placeholder="Ej: +34666666666">
+                        <input name="telefono" th:field="*{telefono}" id="telefono" class="float-left col-5 p-0 pb-0 m-0 float-left" type="text" maxlength="12" placeholder="Ej: +34666666666">
                         </br></br>
                         <label for="direccion"
                             class="float-left col-3 pb-1 pr-0 pl-0 m-0 float-left bg-secondary text-white text-center">Dirección</label>
-                        <input name="direccion" id="direccion" class="float-left col-5 p-0 pb-0 m-0 float-left" type="text" placeholder="Ej: c/ejemplo 1">
+                        <input name="direccion" th:field="*{direccion}" id="direccion" class="float-left col-5 p-0 pb-0 m-0 float-left" type="text" placeholder="Ej: c/ejemplo 1">
                         </br></br>
                         <label for="email"
                             class="float-left col-3 pb-1 pr-0 pl-0 m-0 float-left bg-secondary text-white text-center">Email</label>
-                        <input name="email" id="email" class="float-left col-5 p-0 pb-0 m-0 float-left" type="email" placeholder="Ej: ejemplo@ejemplo.com">
+                        <input name="email" th:field="*{email}" id="email" class="float-left col-5 p-0 pb-0 m-0 float-left" type="email" placeholder="Ej: ejemplo@ejemplo.com">
                         </br></br>
                         <label for="username"
                             class="float-left col-3 pb-1 pr-0 pl-0 m-0 float-left bg-secondary text-white text-center">Username</label>
-                        <input name="username" id="username" class="float-left col-5 p-0 pb-0 m-0 float-left" type="text" placeholder="Tu nombre de usuario">
+                        <input name="username" th:field="*{username}" id="username" class="float-left col-5 p-0 pb-0 m-0 float-left" type="text" placeholder="Tu nombre de usuario">
                         </br></br>
                         <label for="passw"
                             class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Contraseña</label>
@@ -64,7 +64,7 @@
                         </br></br>
                         <label for="passw1"
                             class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Verificar contraseña</label>
-                        <input name="passw1" id="passw1" class="float-left col-5 p-0 m-0 float-left" type="password"
+                        <input name="passw1" th:field="*{password}" id="passw1" class="float-left col-5 p-0 m-0 float-left" type="password"
                             placeholder="Verifique su contraseña">
                         </br></br>
                         <button class="botonAzul col-3 p-1">Verificar registro</button>

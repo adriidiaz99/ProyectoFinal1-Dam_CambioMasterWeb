@@ -29,12 +29,6 @@ public class Buzon {
 	@OneToMany(mappedBy = "buzonEntrega")
 	private List<Solicitud> listaSolicitud;
 
-	@OneToOne
-	@JoinColumn(name = "Buzon_Entrega", updatable = false, nullable = false)
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
-	private Usuario usuarioPropietario;
-
 	public void addSolicitud(Solicitud s) {
 		this.listaSolicitud.add(s);
 		s.setBuzonEntrega(this);

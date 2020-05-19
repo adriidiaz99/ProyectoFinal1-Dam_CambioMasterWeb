@@ -126,37 +126,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Animal Crossing: New Leaf</td>
-                            <td>Electrónica</td>
-                            <td>UserExample</td>
-                            <td>11/06/1999</td>
-                            <td>60</td>
+                        <tr th:each="producto : ${listaProducto}">
+                            <th scope="row" th:text="${listaProducto.indexOf(producto) + 1}">1</th>
+                            <td th:text="${producto.nombre}">Animal Crossing: New Leaf</td>
+                            <td th:text="${producto.categoria}">Electrónica</td>
+                            <td th:text="${producto.usuario.username}">UserExample</td>
+                            <td th:text="${producto.fechaCompra}">11/06/1999</td>
+                            <td th:text="${producto.precioCompra}">60</td>
                             <td><button id class="editar float-left mr-1 ">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Animal Crossing: New Leaf</td>
-                            <td>Electrónica</td>
-                            <td>UserExample</td>
-                            <td>11/06/1999</td>
-                            <td>60</td>
-                            <td><button id class="editar float-left mr-1 ">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Animal Crossing: New Leaf</td>
-                            <td>Electrónica</td>
-                            <td>UserExample</td>
-                            <td>11/06/1999</td>
-                            <td>60</td>
-                            <td><button id class="editar float-left mr-1 ">Edit</button></td>
+                            <td><button id="Eliminar" class="float-left mr-1 botonRojo">Eliminar</button></td>
                         </tr>
                     </tbody>
                 </table>
                 <div id="botonesMisProductos" class="float-right mt-5 mb-2 pt-3 text-right">
-                    <button id="Eliminar" class="float-left mr-1 botonRojo">Eliminar</button>
+                    
                 </div>
 
             </div>

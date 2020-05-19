@@ -22,10 +22,12 @@ public class Libro extends Producto{
 	private String genero;
 	
 	public Libro(@NotEmpty String nombre, double precioCompra, LocalDate fechaCompra, String descripcion,
-			String productor, String autor, String genero) {
-		super(nombre, precioCompra, fechaCompra, descripcion, productor);
+			String productor, String categoria, String autor, String genero) {
+		super(nombre, precioCompra, fechaCompra, descripcion, productor, categoria);
 		this.autor = autor;
 		this.genero = genero;
-	}	
+	}
+	
+	
 	
 }

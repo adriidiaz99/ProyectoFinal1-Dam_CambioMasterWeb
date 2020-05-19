@@ -22,11 +22,10 @@ public class Moda extends Producto {
 	private String seccion;
 	
 	public Moda(@NotEmpty String nombre, double precioCompra, LocalDate fechaCompra, String descripcion,
-			String productor, String talla, String seccion) {
-		super(nombre, precioCompra, fechaCompra, descripcion, productor);
+			String productor, String categoria, String talla, String seccion) {
+		super(nombre, precioCompra, fechaCompra, descripcion, productor, categoria);
 		this.talla = talla;
 		this.seccion = seccion;
 	}
-
 	
 }

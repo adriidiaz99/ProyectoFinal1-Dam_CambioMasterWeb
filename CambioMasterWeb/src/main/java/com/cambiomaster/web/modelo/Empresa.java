@@ -7,6 +7,7 @@ import java.util.Collection;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -23,7 +24,7 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper=true)
 public class Empresa extends Usuario {
 	
-	@NotEmpty
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaFundada;
 
 	public Empresa(String username, @NotEmpty String nombre, String telefono, String email, @NotEmpty String direccion,

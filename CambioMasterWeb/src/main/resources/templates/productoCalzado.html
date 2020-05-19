@@ -145,10 +145,14 @@
                     </div>
                 </a>
 
-                <div id="usuarioTop" class="float-left col-2 opcionMenu border-left">
-                    <p class="float-left pt-1 pb-0 mb-0 ml-4">UserExample</p>
-                    <img src="../../img/usuario.png" alt="Icono de un usuario" class="float-left">
-                </div>
+                <a th:href="@{/usuario/miPerfil}">
+                    <div id="usuarioTop" th:object="${usuario}" class="float-left col-2 opcionMenu border-left">
+
+                        <p class="float-left pt-1 pb-0 mb-0 ml-4" th:text="${usuario.username}">UserExample</p>
+
+                        <img src="../img/usuario.png" alt="Icono de un usuario" class="float-left">
+                    </div>
+                </a>
             </div>
 
             <div id="wrapper-producto" class="w-100 float-left">
@@ -166,7 +170,7 @@
                         </div>
                         <div id="informacionBasica" class="border col-5 mt-5 pl-2 p-0 pb-1 pt-1 float-left ml-4">
                             <p id="perfilNick" th:text="${producto.nombre}">Animal crossing: New Leaf Nintendo switch</p>
-                            <p id="productoName" class="blockquote-footer">de <span th:text="${producto.usuario.nombre}">alejandromoreno12</span></p>
+                            <p id="productoName" class="blockquote-footer">de <span th:text="${producto.usuario.username}">alejandromoreno12</span></p>
                             <p id="productoCategoria">Calzado</p>
                             <p id="productoFechaCompra">Comprado el <span th:text="${producto.fechaCompra}">12/02/1999</span></p>
                             <p id="productoLocalidad">Reside en <span th:text="${producto.usuario.direccion}">Salteras, Sevilla</span></p>

@@ -28,8 +28,7 @@
                     <a href="/usuario/misProductos">
                         <li>
                             <div id="misProductos" class="pt-2 float-left w-100 opcionMenu p-0">
-                                <img src="../img/misProductos.png" alt="Icono de un Mis productos"
-                                    class="float-left">
+                                <img src="../img/misProductos.png" alt="Icono de un Mis productos" class="float-left">
                                 <p class="float-left p-0">Mis productos</p>
                             </div>
                         </li>
@@ -37,8 +36,7 @@
                     <a href="/usuario/misCambios">
                         <li>
                             <div id="misCambios" class="pb-2 float-left w-100 opcionMenu p-0">
-                                <img src="../img/misCambios.png" alt="Icono de un mis cambios"
-                                    class="float-left">
+                                <img src="../img/misCambios.png" alt="Icono de un mis cambios" class="float-left">
                                 <p class="float-left">Mis cambios</p>
                             </div>
                         </li>
@@ -51,8 +49,7 @@
                     <a href="/usuario/electronica">
                         <li>
                             <div id="electronica" class="pt-0 float-left w-100 opcionMenu p-0">
-                                <img src="../img/electronica.png" alt="Icono de electrónica"
-                                    class="float-left">
+                                <img src="../img/electronica.png" alt="Icono de electrónica" class="float-left">
                                 <p class="float-left p-0">Electrónica</p>
                             </div>
                         </li>
@@ -110,8 +107,7 @@
                     <a href="/usuario/ultimosCambios">
                         <li>
                             <div id="ultimosCambios" class="pt-2 float-left w-100 opcionMenu p-0">
-                                <img src="../img/ultimosCambios.png" alt="Icono de últimos cambios"
-                                    class="float-left">
+                                <img src="../img/ultimosCambios.png" alt="Icono de últimos cambios" class="float-left">
                                 <p class="float-left p-0">Últimos cambios</p>
                             </div>
                         </li>
@@ -136,8 +132,7 @@
                 </div>
                 <a href="/usuario/misProductos">
                     <div id="misProductosTop" class="float-left pt-1 col-2 opcionMenu p-0">
-                        <img src="../img/misProductos.png" alt="Icono de Mis productos"
-                            class="float-left pt-0">
+                        <img src="../img/misProductos.png" alt="Icono de Mis productos" class="float-left pt-0">
                         <p class="float-left">Mis Productos</p>
                     </div>
                 </a>
@@ -181,38 +176,21 @@
                     </form>
                 </div>
             </div>
-            <div id="contenedor-productos" class="w-100 float-left pl-5">
-                <h3 class="w-100 mt-3">Productos</h3>
-                <a href="./producto.html">
-                    <div class="producto col-3 border mt-5 pt-3 pb-3 float-left mr-5 ml-4">
-                        <img src="../img/ejemploImagenProducto.png" class="text-center w-100">
-                        <p class="text-center mt-3">Animal Crossing: new Horizons (Switch)</p>
-                        <p class="blockquote-footer">De alejandromoreno12</p>
-                        <div class="valorAprox w-100 border pl-3">
-                            <p class="m-0">Valor aproximado: 60</p>
-                        </div>
+            <div id="contenedor-productos" class="w-100 col-12 float-left pl-5">
+                <h3 class="w-100 mt-3">Libros</h3>
+                <div th:each="producto : ${productos}"
+                    class="producto col-3 border mt-5 pt-3 pb-3 float-left mr-5 ml-4">
+                    <a th:href="@{/usuario/producto/{id}(id = ${producto.id})}">
+                        <img src="../img/ejemploImagenProducto.png" class="text-center col-12">
+                    </a>
+                    <p th:text="${producto.nombre}" class="text-center mt-3">Animal Crossing: new Horizons
+                        (Switch)</p>
+                    <p class="blockquote-footer">Fecha de compra: <span
+                            th:text="${producto.fechaCompra}">20/03/2012</span></p>
+                    <div class="valorAprox w-100 border pl-3">
+                        <p class="m-0">Valor aproximado: <span th:text="${producto.precioCompra}">60</span></p>
                     </div>
-                </a>
-                <a href="./producto.html">
-                    <div class="producto col-3 border mt-5 pt-3 pb-3 float-left mr-5 ml-4">
-                        <img src="../img/ejemploImagenProducto.png" class="text-center w-100">
-                        <p class="text-center mt-3">Animal Crossing: new Horizons (Switch)</p>
-                        <p class="blockquote-footer">De alejandromoreno12</p>
-                        <div class="valorAprox w-100 border pl-3">
-                            <p class="m-0">Valor aproximado: 60</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="./producto.html">
-                    <div class="producto col-3 border mt-5 pt-3 pb-3 float-left mr-5 ml-4">
-                        <img src="../img/ejemploImagenProducto.png" class="text-center w-100">
-                        <p class="text-center mt-3">Animal Crossing: new Horizons (Switch)</p>
-                        <p class="blockquote-footer">De alejandromoreno12</p>
-                        <div class="valorAprox w-100 border pl-3">
-                            <p class="m-0">Valor aproximado: 60</p>
-                        </div>
-                    </div>
-                </a>
+                </div>
 
             </div>
 

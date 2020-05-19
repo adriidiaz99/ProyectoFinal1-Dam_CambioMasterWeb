@@ -62,7 +62,7 @@ public abstract class Usuario implements UserDetails{
 	@OneToMany(mappedBy = "usuarioManda")
 	private List<Cambio> listaCambiosManda = new ArrayList<Cambio>();
 
-	@OneToOne(mappedBy = "usuarioPropietario")
+	@OneToOne
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	private Buzon buzon;
@@ -114,13 +114,10 @@ public abstract class Usuario implements UserDetails{
 
 	public void addBuzon(Buzon b) {
 		this.setBuzon(b);
-		;
-		b.setUsuarioPropietario(this);
 	}
 
 	public void removeBuzon(Buzon b) {
 		this.setBuzon(null);
-		b.setUsuarioPropietario(null);
 	}
 
 	@Override

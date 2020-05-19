@@ -19,15 +19,19 @@ import lombok.ToString;
 public class Electronica extends Producto {
 	
 	private boolean seguro;
-	private Double prima;
+	private double prima;
 	private String tipo;
 	
 	public Electronica(@NotEmpty String nombre, double precioCompra, LocalDate fechaCompra, String descripcion,
-			String productor, boolean seguro, Double prima, String tipo) {
-		super(nombre, precioCompra, fechaCompra, descripcion, productor);
+			String productor, String categoria, boolean seguro, double prima, String tipo) {
+		super(nombre, precioCompra, fechaCompra, descripcion, productor, categoria);
 		this.seguro = seguro;
 		this.prima = prima;
 		this.tipo = tipo;
 	}
+	
+	
+	
+	
 	
 }

@@ -63,7 +63,7 @@ public class UsuarioGeneral extends Usuario {
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 }

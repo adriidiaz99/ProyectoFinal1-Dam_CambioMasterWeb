@@ -34,22 +34,22 @@ public class Producto {
 	private LocalDate fechaCompra;
 	private String descripcion;
 	private String productor;
+	private String categoria;
 	
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	@ManyToOne
 	private Usuario usuario;
-	
 
 	public Producto(@NotEmpty String nombre, double precioCompra, LocalDate fechaCompra, String descripcion,
-			String productor) {
+			String productor, String categoria) {
 		super();
 		this.nombre = nombre;
 		this.precioCompra = precioCompra;
 		this.fechaCompra = fechaCompra;
 		this.descripcion = descripcion;
 		this.productor = productor;
+		this.categoria = categoria;
 	}
-
 
 }

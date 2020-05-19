@@ -5,7 +5,7 @@ body{
 }
 
 #index-content{
-    background-image: url("../resources/img/fondoIndex.jpg");
+    background-image: url("../img/fondoIndex.jpg");
     background-repeat: no-repeat;
     background-size: 120%;
     border-right: 1px solid rgb(0, 0, 0);
@@ -323,4 +323,8 @@ footer a:hover img{
   .contenedor-modal button {
     position: relative;
     top: 40%;
+  }
+
+  #contenedor-configuracionCategorias a button{
+      margin-left: 22%;
   }

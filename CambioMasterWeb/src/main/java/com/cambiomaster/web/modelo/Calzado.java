@@ -22,10 +22,12 @@ public class Calzado extends Producto {
 	private String seccion;
 	
 	public Calzado(@NotEmpty String nombre, double precioCompra, LocalDate fechaCompra, String descripcion,
-			String productor, Double talla, String seccion) {
-		super(nombre, precioCompra, fechaCompra, descripcion, productor);
+			String productor, String categoria, Double talla, String seccion) {
+		super(nombre, precioCompra, fechaCompra, descripcion, productor, categoria);
 		this.talla = talla;
 		this.seccion = seccion;
 	}
+	
+	
 	
 }
