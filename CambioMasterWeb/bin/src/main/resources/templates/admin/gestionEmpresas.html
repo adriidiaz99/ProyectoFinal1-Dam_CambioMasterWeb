@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambio Master Web - Administrador - Empresas</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <div id="cambioMaster-wrapper" class="container-fluid col-12 border p-0 float-left">
+        <nav id="menu" class="float-left col-2 p-0 sticky-top d-block m-0">
+            <a href="#">
+                <div id="cambioMasterPrincipal" class="float-left border border-left-0 border-top-0 w-100">
+                    <img src="./resources/img/cambioMasterWeb.png" alt="Icono de cambioMaster" class="w-100">
+                </div>
+            </a>
+            <div id="seccionMis" class="float-left w-100 border border-top-0 d-block">
+                <ul id="seccionMis-container" class="p-0 pl-3 w-100">
+                    <a href="#">
+                        <li>
+                            <div id="usuarios" class="pt-2 float-left w-100 opcionMenu p-0">
+                                <img src="./resources/img/gestionUsuarios.png" alt="Icono de un Mis productos"
+                                    class="float-left">
+                                <p class="float-left p-0">Usuarios</p>
+                            </div>
+                        </li>
+                    </a>
+                    <a href="#">
+                        <li>
+                            <div id="historialCambios" class="pb-2 float-left w-100 opcionMenu p-0">
+                                <img src="./resources/img/historialCambios.png" alt="Icono de un mis cambios"
+                                    class="float-left">
+                                <p class="float-left">Historial de cambios</p>
+                            </div>
+                        </li>
+                    </a>
+                    <a href="#">
+                        <li>
+                            <div id="gestionEmpresas" class="pb-2 float-left w-100 opcionMenu p-0">
+                                <img src="./resources/img/gestionEmpresas.png" alt="Icono de un mis cambios"
+                                    class="float-left">
+                                <p class="float-left categoriaActiva">Empresas</p>
+                            </div>
+                        </li>
+                    </a>
+                    <a href="#">
+                        <li>
+                            <div id="gestionEnvios" class="pb-2 float-left w-100 opcionMenu p-0">
+                                <img src="./resources/img/gestionEnvios.png" alt="Icono de un mis cambios"
+                                    class="float-left">
+                                <p class="float-left">Gestión de envios</p>
+                            </div>
+                        </li>
+                    </a>
+                    <a href="#">
+                        <li>
+                            <div id="gestionProductos" class="pb-2 float-left w-100 opcionMenu p-0">
+                                <img src="./resources/img/gestionProductos.png" alt="Icono de un mis cambios"
+                                    class="float-left">
+                                <p class="float-left">Productos</p>
+                            </div>
+                        </li>
+                    </a>
+                </ul>
+            </div>
+
+            <div id="menuOtros" class="float-left w-100 border border-top-0">
+                <ul id="menuOtros-container" class="p-0 pl-3 w-100">
+                    <a href="#">
+                        <li>
+                            <div id="ultimosCambios" class="pt-2 float-left w-100 opcionMenu p-0">
+                                <img src="./resources/img/ultimosCambios.png" alt="Icono de últimos cambios"
+                                    class="float-left">
+                                <p class="float-left p-0">Últimos cambios</p>
+                            </div>
+                        </li>
+                    </a>
+                    <a href="#">
+                        <li>
+                            <div id="ajustes" class="pb-2 float-left w-100 opcionMenu p-0">
+                                <img src="./resources/img/ajustes.png" alt="Icono de ajustes" class="float-left">
+                                <p class="float-left">Configuración</p>
+                            </div>
+                        </li>
+                    </a>
+                </ul>
+            </div>
+
+        </nav>
+        <section id="cambioMaster-container" class="float-left col-10">
+            <div id="menuArriba" class="float-left p-0 m-0 w-100 border">
+                <div id="buscador" class="col-4 float-left border">
+                    <button class="col-2"><img src="./resources/img/lupa.png"></button>
+                    <input type="text" placeholder="Realiza una búsqueda...">
+                </div>
+                <div id="administradorTop" class="float-left pt-1 col-4 mr-5 opcionMenu p-0">
+                    <p class="float-left m-0">Ha iniciado sesión como administrador</p>
+                </div>
+
+                <div id="usuarioTop" class="float-left col-2 opcionMenu border-left">
+                    <p class="float-left pt-1 pb-0 mb-0 ml-4">UserExample</p>
+                    <img src="./resources/img/usuario.png" alt="Icono de un usuario" class="float-left">
+                </div>
+            </div>
+            <div id="cabeceraConfiguracion" class="col-10 float-left mt-3 mb-0">
+                <img src="./resources/img/gestionEmpresas.png" class="float-left col-1">
+                <h3 class="float-left">Empresas</h3>
+            </div>
+            <div id="contenedor-usuarios" class=" float-left col-12 border mt-5 pl-3">
+
+                <table class="table col-12">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">UserName</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Dirección</th>
+                            <th scope="col">Fundada el ...</th>
+                            <th scope="col">Teléfono</th>
+                            <th scope="col">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>UserExample</td>
+                            <td>Empresa</td>
+                            <td>C/marquez12</td>
+                            <td>11/06/1999</td>
+                            <td>+34666666666</td>
+                            <td>ejemplo@ejemplo.com</td>
+                            <td><button id class="editar float-left mr-1 ">Edit</button></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>UserExample</td>
+                            <td>Empresa</td>
+                            <td>C/marquez12</td>
+                            <td>11/06/1999</td>
+                            <td>+34666666666</td>
+                            <td>ejemplo@ejemplo.com</td>
+                            <td><button id class="editar float-left mr-1 ">Edit</button></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>UserExample</td>
+                            <td>Empresa</td>
+                            <td>C/marquez12</td>
+                            <td>11/06/1999</td>
+                            <td>+34666666666</td>
+                            <td>ejemplo@ejemplo.com</td>
+                            <td><button id class="editar float-left mr-1 ">Edit</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="botonesMisProductos" class="float-right mt-5 mb-2 pt-3 text-right">
+                    <button id="Eliminar" class="float-left mr-1 botonRojo">Eliminar</button>
+                    <button id="Agregar" class="float-left botonAzul">Agregar</button>
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <footer class="float-left container-fluid">
+        <p class="float-left d-block">© 2016 Cambio Master SL todos los derechos reservados.</p>
+        <p class="float-left d-block"><a href="./politicaDeDatos.html">Política de datos</a></p>
+        <p class="float-left d-block"><a href="./avisoLegal.html">Aviso legal</a></p>
+        <div id="redes" class="text-center">
+            <a href="#"><img src="./resources/img/twitter.png" class=""></a>
+            <a href="#"><img src="./resources/img/facebook.png"></a>
+            <a href="#"><img src="./resources/img/instagram.png"></a>
+        </div>
+    </footer>
+
+</body>
+
+</html>

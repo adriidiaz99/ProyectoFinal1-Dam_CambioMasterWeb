@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambio Master Web - Registro</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <div id="registro-wrapper" class="container-fluid col-12 float-left">
+
+        <div id="registro-container" class="col-12 pb-7 float-left">
+
+            <div id="registro-cuerpo" class="col-11 float-left pb-4">
+                <img src="../img/cambioMasterWeb.png">
+                <div id="formulario-registro" class="col-8 text-center pb-4">
+                    <h3 class="mb-5">Registrarme en Cambio Master</h3>
+                    <form name="formulario-registro" th:action="@{/registro/submit}" th:object="${usuario}" method="POST">
+                        <label for="nombre"
+                            class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Nombre</label>
+                        <input name="nombre" th:field="*{nombre}" id="nombre" class="float-left col-5 p-0 m-0 float-left" type="text"
+                            placeholder="Introduzca aquí su nombre">
+                        </br></br>
+                        <label for="apellido1"
+                            class="float-left col-3 pb-1 pr-0 pl-0 m-0 float-left bg-secondary text-white text-center">Primer apellido</label>
+                        <input name="apellido1" th:field="*{apellido1}" id="apellido1" class="float-left col-5 p-0 m-0 float-left" type="text"
+                            placeholder="Introduzca aquí su primer apellido">
+                        </br></br>
+                        <label for="apellido2"
+                            class="float-left col-3 pb-1 pr-0 pl-0 m-0 float-left bg-secondary text-white text-center">Segundo apellido</label>
+                        <input name="apellido2" th:field="*{apellido2}" id="apellido2" class="float-left col-5 p-0 m-0 float-left" type="text"
+                            placeholder="Introduzca aquí su segundo apellido">
+                        </br></br>
+                        <label for="fNacimiento"
+                            class="float-left col-3 pb-1 pr-0 pl-0 m-0 float-left bg-secondary text-white text-center">Fecha nacimiento</label>
+                        <input name="fNacimiento" th:field="*{fechaNacimiento}" id="fNacimiento" class="float-left col-5 p-0 pb-0 m-0 float-left" type="date">
+                        </br></br>
+                        <label for="telefono"
+                            class="float-left col-3 pb-1 pr-0 pl-0 m-0 float-left bg-secondary text-white text-center">Teléfono</label>
+                        <input name="telefono" th:field="*{telefono}" id="telefono" class="float-left col-5 p-0 pb-0 m-0 float-left" type="text" maxlength="12" placeholder="Ej: +34666666666">
+                        </br></br>
+                        <label for="direccion"
+                            class="float-left col-3 pb-1 pr-0 pl-0 m-0 float-left bg-secondary text-white text-center">Dirección</label>
+                        <input name="direccion" th:field="*{direccion}" id="direccion" class="float-left col-5 p-0 pb-0 m-0 float-left" type="text" placeholder="Ej: c/ejemplo 1">
+                        </br></br>
+                        <label for="email"
+                            class="float-left col-3 pb-1 pr-0 pl-0 m-0 float-left bg-secondary text-white text-center">Email</label>
+                        <input name="email" th:field="*{email}" id="email" class="float-left col-5 p-0 pb-0 m-0 float-left" type="email" placeholder="Ej: ejemplo@ejemplo.com">
+                        </br></br>
+                        <label for="username"
+                            class="float-left col-3 pb-1 pr-0 pl-0 m-0 float-left bg-secondary text-white text-center">Username</label>
+                        <input name="username" th:field="*{username}" id="username" class="float-left col-5 p-0 pb-0 m-0 float-left" type="text" placeholder="Tu nombre de usuario">
+                        </br></br>
+                        <label for="passw"
+                            class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Contraseña</label>
+                        <input name="passw" id="passw" class="float-left col-5 p-0 m-0 float-left" type="password"
+                            placeholder="Introduzca aquí su contraseña">
+                        </br></br>
+                        <label for="passw1"
+                            class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Verificar contraseña</label>
+                        <input name="passw1" th:field="*{password}" id="passw1" class="float-left col-5 p-0 m-0 float-left" type="password"
+                            placeholder="Verifique su contraseña">
+                        </br></br>
+                        <button class="botonAzul col-3 p-1">Verificar registro</button>
+
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer class="float-left container-fluid">
+        <p class="float-left d-block">© 2016 Cambio Master SL todos los derechos reservados.</p>
+        <p class="float-left d-block"><a href="/politicaDeDatos">Política de datos</a></p>
+        <p class="float-left d-block"><a href="/avisoLegal">Aviso legal</a></p>
+        <div id="redes" class="text-center">
+            <a href="#"><img src="../img/twitter.png" class=""></a>
+            <a href="#"><img src="../img/facebook.png"></a>
+            <a href="#"><img src="../img/instagram.png"></a>
+        </div>
+    </footer>
+
+</body>
+
+</html>

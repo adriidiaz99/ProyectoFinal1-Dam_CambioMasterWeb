@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambio Master Web - Mi Perfil</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <div id="cambioMaster-wrapper" class="container-fluid col-12 border p-0 float-left">
+        <nav id="menu" class="float-left col-2 p-0 sticky-top d-block m-0">
+            <a href="/usuario/principal">
+                <div id="cambioMasterPrincipal" class="float-left border border-left-0 border-top-0 w-100">
+                    <img src="../img/cambioMasterWeb.png" alt="Icono de cambioMaster" class="w-100">
+                </div>
+            </a>
+            <div id="seccionMis" class="float-left w-100 border border-top-0 d-block border-bottom-0">
+                <ul id="seccionMis-container" class="p-0 pl-3 w-100">
+                    <a href="/usuario/misProductos">
+                        <li>
+                            <div id="misProductos" class="pt-2 float-left w-100 opcionMenu p-0">
+                                <img src="../img/misProductos.png" alt="Icono de un Mis productos"
+                                    class="float-left">
+                                <p class="float-left p-0">Mis productos</p>
+                            </div>
+                        </li>
+                    </a>
+                    <a href="/usuario/misCambios">
+                        <li>
+                            <div id="misCambios" class="pb-2 float-left w-100 opcionMenu p-0">
+                                <img src="../img/misCambios.png" alt="Icono de un mis cambios"
+                                    class="float-left">
+                                <p class="float-left">Mis cambios</p>
+                            </div>
+                        </li>
+                    </a>
+                </ul>
+            </div>
+            <div id="categoria" class="float-left w-100 d-block border">
+                <p class="font-weight-bold text-center">CATEGORÍAS</p>
+                <ul id="categoria-container" class="p-0 pl-3 w-100">
+                    <a href="/usuario/electronica">
+                        <li>
+                            <div id="electronica" class="pt-0 float-left w-100 opcionMenu p-0">
+                                <img src="../img/electronica.png" alt="Icono de electrónica"
+                                    class="float-left">
+                                <p class="float-left p-0">Electrónica</p>
+                            </div>
+                        </li>
+
+                    </a>
+                    <a href="/usuario/alimentacion">
+                        <li>
+                            <div id="alimentacion" class="pb-0 float-left w-100 opcionMenu p-0">
+                                <img src="../img/comida.png" alt="Icono de comida" class="float-left">
+                                <p class="float-left">Alimentación</p>
+                            </div>
+                        </li>
+
+                    </a>
+                    <a href="/usuario/musica">
+                        <li>
+                            <div id="musica" class="pb-0 float-left w-100 opcionMenu p-0">
+                                <img src="../img/musica.png" alt="Icono de música" class="float-left">
+                                <p class="float-left">Música</p>
+                            </div>
+                        </li>
+
+                    </a>
+                    <a href="/usuario/libros">
+                        <li>
+                            <div id="libros" class="pb-0 float-left w-100 opcionMenu p-0">
+                                <img src="../img/libro.png" alt="Icono de libros" class="float-left">
+                                <p class="float-left">Libros</p>
+                            </div>
+                        </li>
+
+                    </a>
+                    <a href="/usuario/calzado">
+                        <li>
+                            <div id="calzado" class="pb-0 float-left w-100 opcionMenu p-0">
+                                <img src="../img/calzado.png" alt="Icono calzado" class="float-left">
+                                <p class="float-left">Calzado</p>
+                            </div>
+                        </li>
+
+                    </a>
+                    <a href="/usuario/moda">
+                        <li>
+                            <div id="moda" class="pt-0 pb-2 float-left w-100 opcionMenu p-0">
+                                <img src="../img/ropa.png" alt="Icono ropa" class="float-left">
+                                <p class="float-left">Moda</p>
+                            </div>
+                        </li>
+
+                    </a>
+                </ul>
+            </div>
+            <div id="menuOtros" class="float-left w-100 border border-top-0">
+                <ul id="menuOtros-container" class="p-0 pl-3 w-100">
+                    <a href="/usuario/ultimosCambios">
+                        <li>
+                            <div id="ultimosCambios" class="pt-2 float-left w-100 opcionMenu p-0">
+                                <img src="../img/ultimosCambios.png" alt="Icono de últimos cambios"
+                                    class="float-left">
+                                <p class="float-left p-0">Últimos cambios</p>
+                            </div>
+                        </li>
+                    </a>
+                    <a href="/usuario/configuracion">
+                        <li>
+                            <div id="ajustes" class="pb-2 float-left w-100 opcionMenu p-0">
+                                <img src="../img/ajustes.png" alt="Icono de ajustes" class="float-left">
+                                <p class="float-left">Configuración</p>
+                            </div>
+                        </li>
+                    </a>
+                </ul>
+            </div>
+
+        </nav>
+        <section id="cambioMaster-container" class="float-left col-10">
+            <div id="menuArriba" class="float-left p-0 m-0 w-100 border">
+                <div id="buscador" class="col-4 float-left border">
+                    <button class="col-2"><img src="../img/lupa.png"></button>
+                    <input type="text" placeholder="Realiza una búsqueda...">
+                </div>
+                <a href="/usuario/misProductos">
+                    <div id="misProductosTop" class="float-left pt-1 col-2 opcionMenu p-0">
+                        <img src="../img/misProductos.png" alt="Icono de Mis productos"
+                            class="float-left pt-0">
+                        <p class="float-left">Mis Productos</p>
+                    </div>
+                </a>
+                <a href="/usuario/favoritos">
+                    <div id="favoritosTop" class="float-left ml-5 pt-1 col-2 opcionMenu p-0">
+                        <img src="../img/favoritos.png" alt="Icono sección favoritos" class="float-left">
+                        <p class="float-left">Mis favoritos</p>
+                    </div>
+                </a>
+
+                <div id="usuarioTop" class="float-left col-2 opcionMenu border-left">
+                    <p class="float-left pt-1 pb-0 mb-0 ml-4">UserExample</p>
+                    <img src="../img/usuario.png" alt="Icono de un usuario" class="float-left">
+                </div>
+            </div>
+           
+            <div id="wrapper-miPerfil" class="w-100 float-left pl-5">
+                <div id="cabeceraMiPerfil" class="col-10 float-left mt-3 mb-0">
+                    <img src="../img/usuario.png" class="float-left col-1">
+                    <h3 class="float-left">UserExample</h3>
+                </div>
+
+                <div id="miPerfil" class="col-10 float-left ml-5 pl-3 border p-0 mt-5">
+
+                    <div id="contenedor-miPerfil" class="w-100 float-left pl-2 pb-5">
+                        <div id="fotoPerfil" class="border col-3 mt-5 p-0 pb-1 pt-1 float-left ml-4">
+                            <img src="../img/usuario.png" class="w-100 float-left mb-2">
+                            <p id="perfilValoracion">Valoración: <span id="valorValoracion">4.3</span></p>
+
+                        </div>
+                        <div id="informacionBasica" class="border col-8 mt-5 pl-5 p-0 pb-1 pt-1 float-left ml-4">
+                            <p id="perfilNick">UserExample</p>
+                            <p id="perfilName">Nombre de ejemplo</p>
+                            <p id="perfilApellido">Apellido de ejemplo</p>
+                            <p id="perfilFechaNacimiento">Nació el 12/02/1999</p>
+                            <p id="perfilLocalidad">Reside en Salteras, Sevilla</p>
+                            <p id="perfilEmail">Email: example@example.com</p>
+                            <p id="perfilTelefono">Teléfono de contacto: +34611111111</p>
+                        </div>
+                        <div id="botonEditarPerfil" class="float-right mt-5 mr-4">
+                            <button id="editarPerfil" class="bg-secondary text-white border-0">Editar perfil</button>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <footer class="float-left container-fluid">
+        <p class="float-left d-block">© 2016 Cambio Master SL todos los derechos reservados.</p>
+        <p class="float-left d-block"><a href="/politicaDeDatos">Política de datos</a></p>
+        <p class="float-left d-block"><a href="/avisoLegal">Aviso legal</a></p>
+        <div id="redes" class="text-center">
+            <a href="#"><img src="../img/twitter.png" class=""></a>
+            <a href="#"><img src="../img/facebook.png"></a>
+            <a href="#"><img src="../img/instagram.png"></a>
+        </div>
+    </footer>
+
+</body>
+
+</html>

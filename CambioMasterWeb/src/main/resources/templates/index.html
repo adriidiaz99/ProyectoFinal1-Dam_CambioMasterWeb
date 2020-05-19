@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambio Master Web</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <div id="index-wrapper" class="container-fluid w-100">
+        <span id="slogan">
+            <p>No necesitas de dinero para cambiar el mundo</p>
+        </span>
+        <div id="index-content" class="col-8 pt-5 pb-3 float-left">
+            <div id="portada" class="col-10 p-0 pb-5">
+                <div id="subPortada1" class="w-100">
+                    <p id="portadaLetras1" class="d-block">CAMBIO</p>
+                    <div id="cambioMaster" class="w-100 text-center"><img src="./img/cambioMasterWeb.png">
+                    </div>
+                    <p id="portadaLetras2">MASTER</p>
+                </div>
+                <div class="linea mt-5"></div>
+                <div class="linea mb-3"></div>
+            </div>
+        </div>
+        <div id="login" class="col-4 float-left">
+            <div id="logoLogin" class="w-50 p-0">
+                <img src="./img/cambioMasterWeb.png" class="w-50">
+            </div>
+            <h1>Bienvenido a tu web de cambios</h1>
+            <span class="text-danger invisible">Usuario o contraseña invalidos</span>
+            <div id="formularioLogin">
+                <form name="CambioMasterWebLogin" method="post" th:action="@{/login}">
+                    <input type="text" id="username" name="username" placeholder="Usuario">
+                    <input type="password" id="password" name="password" placeholder="Contraseña">
+                    </br>
+                    <button id="enviar">Iniciar sesión</button>
+                </form>
+            </div>
+            <div id="accedeRegistro">
+                <p>¿No tienes cuenta aún?</p>
+                <form method="get" th:action="@{/registro}">
+                    <button type="submit">Regístrate ahora</button>
+                </form>
+                
+            </div>
+        </div>
+    
+    </div>
+
+    <footer class="float-left container-fluid">
+        <p class="float-left d-block">© 2016 Cambio Master SL todos los derechos reservados.</p>
+        <p class="float-left d-block"><a href="/politicaDeDatos">Política de datos</a></p>
+        <p class="float-left d-block"><a href="/avisoLegal">Aviso legal</a></p>
+        <div id="redes" class="text-center">
+            <a href="#"><img src="./img/twitter.png" class=""></a>
+            <a href="#"><img src="./img/facebook.png"></a>
+            <a href="#"><img src="./img/instagram.png"></a>
+        </div>
+    </footer>
+
+    <script>
+        $(function(){
+
+            
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>

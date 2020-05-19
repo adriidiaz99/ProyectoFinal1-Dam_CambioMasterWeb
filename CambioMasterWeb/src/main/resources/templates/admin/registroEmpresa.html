@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambio Master Web - Registro</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <div id="registro-wrapper" class="container-fluid col-12 float-left">
+
+        <div id="registro-container" class="col-12 pb-7 float-left">
+
+            <div id="registro-cuerpo" class="col-11 float-left pb-5">
+                <img src="../img/cambioMasterWeb.png">
+                <div id="formulario-registro" class="col-8 text-center pb-4">
+                    <h3 class="mb-5">Registra una empresa en Cambio Master</h3>
+                    <form name="formulario-registro">
+                        <label for="nombre"
+                            class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Nombre de empresa</label>
+                        <input name="nombre" id="nombre" class="float-left col-5 p-0 m-0 float-left" type="text"
+                            placeholder="Introduzca aquí el nombre">
+                        </br></br>
+                        <label for="fFundacion"
+                            class="float-left col-3 pb-1 pr-0 pl-0 m-0 float-left bg-secondary text-white text-center">Fecha fundación</label>
+                        <input name="fFundacion" id="fFundacion" class="float-left col-5 p-0 pb-0 m-0 float-left" type="date">
+                        </br></br>
+                        <label for="telefono"
+                            class="float-left col-3 pb-1 pr-0 pl-0 m-0 float-left bg-secondary text-white text-center">Teléfono</label>
+                        <input name="telefono" id="telefono" class="float-left col-5 p-0 pb-0 m-0 float-left" type="text" maxlength="12" placeholder="Ej: +34666666666">
+                        </br></br>
+                        <label for="direccion"
+                            class="float-left col-3 pb-1 pr-0 pl-0 m-0 float-left bg-secondary text-white text-center">Dirección</label>
+                        <input name="direccion" id="direccion" class="float-left col-5 p-0 pb-0 m-0 float-left" type="text" placeholder="Ej: c/ejemplo 1">
+                        </br></br>
+                        <label for="email"
+                            class="float-left col-3 pb-1 pr-0 pl-0 m-0 float-left bg-secondary text-white text-center">Email</label>
+                        <input name="email" id="email" class="float-left col-5 p-0 pb-0 m-0 float-left" type="email" placeholder="Ej: ejemplo@ejemplo.com">
+                        </br></br>
+                        <label for="username"
+                            class="float-left col-3 pb-1 pr-0 pl-0 m-0 float-left bg-secondary text-white text-center">Username</label>
+                        <input name="username" id="username" class="float-left col-5 p-0 pb-0 m-0 float-left" type="text" placeholder="El nombre de usuario">
+                        </br></br>
+                        <label for="passw"
+                            class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Contraseña</label>
+                        <input name="passw" id="passw" class="float-left col-5 p-0 m-0 float-left" type="password"
+                            placeholder="Introduzca aquí la contraseña">
+                        </br></br>
+                        <label for="passw1"
+                            class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Verificar contraseña</label>
+                        <input name="passw1" id="passw1" class="float-left col-5 p-0 m-0 float-left" type="password"
+                            placeholder="Verifique la contraseña">
+                        </br></br>
+                        <button class="botonAzul col-3 p-1">Verificar registro</button>
+
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer class="float-left container-fluid">
+        <p class="float-left d-block">© 2016 Cambio Master SL todos los derechos reservados.</p>
+        <p class="float-left d-block"><a href="/politicaDeDatos">Política de datos</a></p>
+        <p class="float-left d-block"><a href="/avisoLegal">Aviso legal</a></p>
+        <div id="redes" class="text-center">
+            <a href="#"><img src="../img/twitter.png" class=""></a>
+            <a href="#"><img src="../img/facebook.png"></a>
+            <a href="#"><img src="../img/instagram.png"></a>
+        </div>
+    </footer>
+
+</body>
+
+</html>
