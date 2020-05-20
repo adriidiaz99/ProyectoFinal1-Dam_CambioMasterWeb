@@ -32,7 +32,7 @@ public class UsuarioService extends BaseService<Usuario, Long, UsuarioRepository
 	public Usuario register(Usuario usuario) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		usuario.setPassword(encoder.encode(usuario.getPassword()));
-		return repositorio.save(usuario);
+		return edit(usuario);
 	}
 	
 	public List<Empresa> findAllEmpresas() {

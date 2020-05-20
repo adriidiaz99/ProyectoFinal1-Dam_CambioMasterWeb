@@ -56,7 +56,7 @@ public class AdminController {
 		return "/admin/ultimosCambiosAdministrador";
 	}
 	
-	@GetMapping("/registroEmpresa")
+	@GetMapping("/gestionEmpresa/registroEmpresa")
 	public String registroEmpresa(Model model) {
 		model.addAttribute("empresa", new Empresa());
 		return "/admin/registroEmpresa";
@@ -109,17 +109,25 @@ public class AdminController {
 	public String registrandoEmpresa(@ModelAttribute("empresa") Empresa empresa) {
 		Buzon b1 = new Buzon();
 		
+		System.out.println(empresa);
+		
 		servicioBuzon.edit(b1);
 		empresa.setBuzon(b1);
 		empresa.setValoracion("0.0");
 		
 		servicioUsuario.register(empresa);
-		return "redirect:/admin/registroEmpresa";
+		return "redirect:/admin/gestionEmpresas";
 	}
 	
 	@PostMapping("/editarEmpresa/submit")
 	public String editandoEmpresa(@ModelAttribute("empresa") Empresa empresa) {
+		if(empresa.getPassword() == null) {
+		empresa.setPassword(servicioUsuario.findById(empresa.getId()).getPassword());
 		servicioUsuario.edit(empresa);
+		}
+		else {
+			servicioUsuario.register(empresa);
+		}
 		return "redirect:/admin/gestionEmpresa";
 	}
 }

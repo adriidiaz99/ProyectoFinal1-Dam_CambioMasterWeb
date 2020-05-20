@@ -127,21 +127,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="empresa : ${listaEmpresa}">
-                            <th scope="row" th:text="${listaEmpresa.indexOf(empresa) + 1}">1</th>
+                        <tr th:each="empresa : ${listaEmpresas}">
+                            <th scope="row" th:text="${listaEmpresas.indexOf(empresa) + 1}">1</th>
                             <td th:text="${empresa.username}">UserExample</td>
                             <td th:text="${empresa.nombre}">Empresa</td>
                             <td th:text="${empresa.direccion}">C/marquez12</td>
-                            <td th:text="${empresa.fechaFundacion}">11/06/1999</td>
+                            <td th:text="${empresa.fechaFundada}">11/06/1999</td>
                             <td th:text="${empresa.telefono}">+34666666666</td>
                             <td th:text="${empresa.email}">ejemplo@ejemplo.com</td>
-                            <td><button id class="editar float-left mr-1 ">Edit</button></td>
+                            <td><a th:href="@{/admin/editarEmpresa/{id}(id = ${empresa.id})}"><button id class="editar float-left mr-1 ">Edit</button></a></td>
                             <td><button id="Eliminar" class="float-left mr-1 botonRojo">Eliminar</button></td>
                         </tr>
                     </tbody>
                 </table>
                 <div id="botonesMisProductos" class="float-right mt-5 mb-2 pt-3 text-right">
-                    <a th:href="@{/admin/registroEmpresa}"><button id="Agregar" class="float-left botonAzul">Agregar</button></a>
+                    <a th:href="@{/admin/gestionEmpresa/registroEmpresa}"><button id="Agregar" class="float-left botonAzul">Agregar</button></a>
                 </div>
 
             </div>

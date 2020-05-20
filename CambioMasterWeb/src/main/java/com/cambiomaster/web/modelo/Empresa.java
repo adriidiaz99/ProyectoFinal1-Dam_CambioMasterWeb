@@ -42,13 +42,13 @@ public class Empresa extends Usuario {
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return null;
+		return super.getPassword();
 	}
 
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	
 }
