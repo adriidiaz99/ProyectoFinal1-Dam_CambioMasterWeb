@@ -24,6 +24,7 @@ import com.cambiomaster.web.modelo.Moda;
 import com.cambiomaster.web.modelo.Musica;
 import com.cambiomaster.web.modelo.Producto;
 import com.cambiomaster.web.modelo.Solicitud;
+import com.cambiomaster.web.modelo.Usuario;
 import com.cambiomaster.web.modelo.UsuarioGeneral;
 import com.cambiomaster.web.servicio.CambioService;
 import com.cambiomaster.web.servicio.ProductoService;
@@ -45,10 +46,10 @@ public class UsuarioController {
 
 	@GetMapping("/alimentacion")
 	public String alimentacion(Model model) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("productos", servicioProducto.filtrarAlimentacion(usuario.getId()));
 		model.addAttribute("usuario", usuario);
@@ -62,10 +63,10 @@ public class UsuarioController {
 
 	@GetMapping("/calzado")
 	public String calzado(Model model) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 		model.addAttribute("usuario", usuario);
 
 		model.addAttribute("productos", servicioProducto.filtrarCalzado(usuario.getId()));
@@ -74,10 +75,10 @@ public class UsuarioController {
 
 	@GetMapping("/configuracion")
 	public String configuracion(Model model) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("usuario", usuario);
 
@@ -86,10 +87,10 @@ public class UsuarioController {
 
 	@GetMapping("/configuracion/cambiarContrasenya")
 	public String cambiarContrasena(Model model) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("usuario", usuario);
 
@@ -99,10 +100,10 @@ public class UsuarioController {
 	@GetMapping("/misSolicitudes/confirmarCambios")
 	public String confirmarCambios(Model model) {
 
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("usuario", usuario);
 
@@ -111,10 +112,10 @@ public class UsuarioController {
 
 	@GetMapping("/electronica")
 	public String electronica(Model model) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("productos", servicioProducto.filtrarElectronica(usuario.getId()));
 		model.addAttribute("usuario", usuario);
@@ -124,10 +125,10 @@ public class UsuarioController {
 
 	@GetMapping("/libros")
 	public String libros(Model model) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("productos", servicioProducto.filtrarLibros(usuario.getId()));
 		model.addAttribute("usuario", usuario);
@@ -137,10 +138,10 @@ public class UsuarioController {
 
 	@GetMapping("/misProductos")
 	public String misProductos(Model model) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("productos", servicioProducto.filtrarMisProductos(usuario));
 		model.addAttribute("usuario", usuario);
@@ -150,10 +151,10 @@ public class UsuarioController {
 
 	@GetMapping("/misProductos/agregarProducto")
 	public String agregarProductos(Model model) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("producto", new Producto());
@@ -163,10 +164,10 @@ public class UsuarioController {
 
 	@GetMapping("/misProductos/agregarElectronica")
 	public String agregarElectronica(Model model) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("producto", new Electronica());
@@ -176,10 +177,10 @@ public class UsuarioController {
 
 	@GetMapping("/misProductos/agregarLibro")
 	public String agregarLibro(Model model) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("producto", new Libro());
@@ -188,10 +189,10 @@ public class UsuarioController {
 
 	@GetMapping("/misProductos/agregarModa")
 	public String agregarModa(Model model) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("producto", new Moda());
@@ -200,10 +201,10 @@ public class UsuarioController {
 
 	@GetMapping("/misProductos/agregarCalzado")
 	public String agregarCalzado(Model model) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("producto", new Calzado());
@@ -212,10 +213,10 @@ public class UsuarioController {
 
 	@GetMapping("/misProductos/agregarAlimentacion")
 	public String agregarAlimentacion(Model model) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("producto", new Alimentacion());
@@ -224,10 +225,10 @@ public class UsuarioController {
 
 	@GetMapping("/misProductos/agregarMusica")
 	public String agregarMusica(Model model) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("producto", new Musica());
@@ -236,10 +237,10 @@ public class UsuarioController {
 
 	@GetMapping("/misProductos/seleccionarCategoria")
 	public String seleccionarCategoria(Model model) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("usuario", usuario);
 		return "seleccionarCategoria";
@@ -247,10 +248,10 @@ public class UsuarioController {
 
 	@PostMapping("/misProductos/agregarProducto/submit")
 	public String registroProductos(@ModelAttribute("producto") Producto producto) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		producto.setCategoria("Otros..");
 		usuario.addProducto(producto);
@@ -263,10 +264,10 @@ public class UsuarioController {
 
 	@PostMapping("/misProductos/agregarElectronica/submit")
 	public String registroElectronica(@ModelAttribute("producto") Electronica producto) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		servicioProducto.generarPrima(producto);
 
@@ -281,10 +282,10 @@ public class UsuarioController {
 
 	@PostMapping("/misProductos/agregarModa/submit")
 	public String registroModa(@ModelAttribute("producto") Moda producto) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		producto.setCategoria("Moda");
 		usuario.addProducto(producto);
@@ -297,10 +298,10 @@ public class UsuarioController {
 
 	@PostMapping("/misProductos/agregarCalzado/submit")
 	public String registroCalzado(@ModelAttribute("producto") Calzado producto) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		producto.setCategoria("Calzado");
 		usuario.addProducto(producto);
@@ -313,10 +314,10 @@ public class UsuarioController {
 
 	@PostMapping("/misProductos/agregarMusica/submit")
 	public String registroMusica(@ModelAttribute("producto") Musica producto) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		producto.setCategoria("Música");
 		usuario.addProducto(producto);
@@ -329,10 +330,10 @@ public class UsuarioController {
 
 	@PostMapping("/misProductos/agregarAlimentacion/submit")
 	public String registroAlimentacion(@ModelAttribute("producto") Alimentacion producto) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		producto.setCategoria("Alimentación");
 		usuario.addProducto(producto);
@@ -345,10 +346,10 @@ public class UsuarioController {
 
 	@PostMapping("/misProductos/agregarLibro/submit")
 	public String registroLibros(@ModelAttribute("producto") Libro producto) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		producto.setCategoria("Libros");
 		usuario.addProducto(producto);
@@ -361,10 +362,10 @@ public class UsuarioController {
 
 	@GetMapping("/moda")
 	public String moda(Model model) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("productos", servicioProducto.filtrarModa(usuario.getId()));
@@ -374,10 +375,10 @@ public class UsuarioController {
 
 	@GetMapping("/musica")
 	public String musica(Model model) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("productos", servicioProducto.filtrarMusica(usuario.getId()));
@@ -388,10 +389,10 @@ public class UsuarioController {
 	@GetMapping("/principal")
 	public String principal(Model model) {
 		List<Producto> listaPrincipal = new ArrayList<Producto>();
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("usuario", usuario);
 
@@ -411,10 +412,10 @@ public class UsuarioController {
 	public String producto(@PathVariable long id, Model model) {
 		Producto p = servicioProducto.findById(id);
 
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("usuario", usuario);
 
@@ -460,10 +461,10 @@ public class UsuarioController {
 	public String editarProducto(@PathVariable long id, Model model) {
 		Producto p = servicioProducto.findById(id);
 
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("usuario", usuario);
 		usuario.removeProducto(p);
@@ -508,10 +509,10 @@ public class UsuarioController {
 
 	@GetMapping("/miPerfil")
 	public String miPerfil(Model model) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("usuario", usuario);
 
@@ -520,22 +521,22 @@ public class UsuarioController {
 
 	@GetMapping("/ultimosCambios")
 	public String ultimosCambios(Model model) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("usuario", usuario);
-		model.addAttribute("listaCambios", servicioCambio.findAll());
+		model.addAttribute("cambios", servicioCambio.findAll());
 		return "ultimosCambios";
 	}
 
 	@GetMapping("/misProductos/eliminar/{id}")
 	public String eliminarProducto(@PathVariable long id) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 		Producto p = servicioProducto.findById(id);
 
 		usuario.removeProducto(p);
@@ -547,10 +548,10 @@ public class UsuarioController {
 
 	@PostMapping("/misProductos/editarElectronica/submit")
 	public String editarElectronica(@ModelAttribute("producto") Electronica producto) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		System.out.println(servicioProducto.findAll());
 
@@ -563,10 +564,10 @@ public class UsuarioController {
 
 	@PostMapping("/misProductos/editarModa/submit")
 	public String editarModa(@ModelAttribute("producto") Moda producto) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		System.out.println(servicioProducto.findAll());
 
@@ -579,10 +580,10 @@ public class UsuarioController {
 
 	@PostMapping("/misProductos/editarCalzado/submit")
 	public String editarCalzado(@ModelAttribute("producto") Calzado producto) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		System.out.println(servicioProducto.findAll());
 
@@ -595,10 +596,10 @@ public class UsuarioController {
 
 	@PostMapping("/misProductos/editarMusica/submit")
 	public String editarMusica(@ModelAttribute("producto") Musica producto) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		System.out.println(servicioProducto.findAll());
 
@@ -611,10 +612,10 @@ public class UsuarioController {
 
 	@PostMapping("/misProductos/editarProducto/submit")
 	public String editarProducto(@ModelAttribute("producto") Producto producto) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		System.out.println(servicioProducto.findAll());
 
@@ -627,10 +628,10 @@ public class UsuarioController {
 
 	@PostMapping("/misProductos/editarLibro/submit")
 	public String editarLibro(@ModelAttribute("producto") Libro producto) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		System.out.println(servicioProducto.findAll());
 
@@ -643,10 +644,10 @@ public class UsuarioController {
 
 	@PostMapping("/misProductos/editarAlimentacion/submit")
 	public String editarAlimentacion(@ModelAttribute("producto") Alimentacion producto) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		System.out.println(servicioProducto.findAll());
 
@@ -659,10 +660,10 @@ public class UsuarioController {
 
 	@GetMapping("/seleccionarProducto/{id}")
 	public String seleccionarProducto(@PathVariable long id, Model model) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		Solicitud s1 = new Solicitud(null, servicioProducto.findById(id), usuario,
 				servicioProducto.findById(id).getUsuario());
@@ -677,10 +678,10 @@ public class UsuarioController {
 
 	@GetMapping("/enviarSolicitud/{id}")
 	public String enviarSolicitud(@PathVariable long id) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		Solicitud solicitud = servicioSolicitud.solicitudPendiente();
 
@@ -712,10 +713,10 @@ public class UsuarioController {
 
 	@GetMapping("/misCambios")
 	public String misCambios(Model model) {
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("misSolicitudes", servicioSolicitud.encontrarSolicitudRecibidas(usuario.getId()));
 		model.addAttribute("misSolicitudesEnviadas", servicioSolicitud.encontrarSolicitudMandadas(usuario.getId()));
@@ -736,10 +737,10 @@ public class UsuarioController {
 	@GetMapping("/verificarCambio/{id}")
 	public String verificarCambio(@PathVariable long id, Model model){
 		
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 		
 		model.addAttribute("solicitud", servicioSolicitud.findById(id));
 		model.addAttribute("usuario", usuario);
@@ -751,10 +752,10 @@ public class UsuarioController {
 	@GetMapping("/cambiar/{id}")
 	public String cambiarProductos(@PathVariable long id, Model model) {
 		
-		UsuarioGeneral usuario;
+		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
-		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 		
 		model.addAttribute("usuario", usuario);
 		

@@ -36,7 +36,7 @@ public class Empresa extends Usuario {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return Arrays.asList(new SimpleGrantedAuthority("EMP"));
+		return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
 	}
 
 	@Override

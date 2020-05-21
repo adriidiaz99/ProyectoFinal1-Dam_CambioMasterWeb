@@ -135,7 +135,7 @@ public class AdminController {
 		} else {
 			servicioUsuario.register(empresa);
 		}
-		return "redirect:/admin/gestionEmpresa";
+		return "redirect:/admin/gestionEmpresas";
 	}
 
 	@PostMapping("/editarUsuario/submit")
