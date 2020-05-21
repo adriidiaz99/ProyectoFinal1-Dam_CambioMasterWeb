@@ -96,6 +96,16 @@ public abstract class Usuario implements UserDetails{
 		this.listaCambiosRecibe.remove(c);
 		c.setUsuarioRecibe(null);
 	}
+	
+	public void addCambioManda(Cambio c) {
+		this.listaCambiosManda.add(c);
+		c.setUsuarioManda(this);
+	}
+
+	public void removeCambioManda(Cambio c) {
+		this.listaCambiosManda.remove(c);
+		c.setUsuarioManda(null);
+	}
 
 	@Override
 	public boolean isAccountNonExpired() {

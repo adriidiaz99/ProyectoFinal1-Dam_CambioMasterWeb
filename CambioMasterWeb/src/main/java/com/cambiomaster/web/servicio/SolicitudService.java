@@ -1,5 +1,6 @@
 package com.cambiomaster.web.servicio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -21,11 +22,26 @@ public class SolicitudService extends BaseService<Solicitud, Long, SolicitudRepo
 	}
 	
 	public List<Solicitud> encontrarSolicitudRecibidas(long id) {
-		return repositorio.encontrarSolicitudesEnviaUsuario(id);
+		if(repositorio.encontrarSolicitudesEnviaUsuario(id).isEmpty()) {
+			return new ArrayList<>();
+		}
+		else {
+			return repositorio.encontrarSolicitudesEnviaUsuario(id);
+		}
 	}
 	
 	public List<Solicitud> encontrarSolicitudMandadas(long id) {
-		return repositorio.encontrarSolicitudesMandaUsuario(id);
+		
+		if(repositorio.encontrarSolicitudesMandaUsuario(id).isEmpty()) {
+			return new ArrayList<>();
+		}
+		else {
+			return repositorio.encontrarSolicitudesMandaUsuario(id);
+		}
+	}
+	
+	public List<Solicitud> encontrarSolicitudesRestantes(long id){
+		return repositorio.encontrarSolicitudesObjetoPendiente(id);
 	}
 
 }

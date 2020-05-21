@@ -36,4 +36,12 @@ public class Cambio {
     @JoinColumn(name = "Producto_Manda", updatable = false, nullable = false)
 	private Producto producto2;
 
+	public Cambio(Usuario usuarioRecibe, Usuario usuarioManda, Producto producto1, Producto producto2) {
+		super();
+		this.usuarioRecibe = usuarioRecibe;
+		this.usuarioManda = usuarioManda;
+		this.producto1 = producto1;
+		this.producto2 = producto2;
+	}
+
 }

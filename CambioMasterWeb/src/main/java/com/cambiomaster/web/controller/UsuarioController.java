@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cambiomaster.web.modelo.Alimentacion;
 import com.cambiomaster.web.modelo.Calzado;
+import com.cambiomaster.web.modelo.Cambio;
 import com.cambiomaster.web.modelo.Electronica;
 import com.cambiomaster.web.modelo.Libro;
 import com.cambiomaster.web.modelo.Moda;
@@ -24,6 +25,7 @@ import com.cambiomaster.web.modelo.Musica;
 import com.cambiomaster.web.modelo.Producto;
 import com.cambiomaster.web.modelo.Solicitud;
 import com.cambiomaster.web.modelo.UsuarioGeneral;
+import com.cambiomaster.web.servicio.CambioService;
 import com.cambiomaster.web.servicio.ProductoService;
 import com.cambiomaster.web.servicio.SolicitudService;
 import com.cambiomaster.web.servicio.UsuarioService;
@@ -38,6 +40,8 @@ public class UsuarioController {
 	private ProductoService servicioProducto;
 	@Autowired
 	private SolicitudService servicioSolicitud;
+	@Autowired
+	private CambioService servicioCambio;
 
 	@GetMapping("/alimentacion")
 	public String alimentacion(Model model) {
@@ -719,5 +723,77 @@ public class UsuarioController {
 		return "misCambios";
 
 	}
+	
+	@GetMapping("/cancelarCambio/{id}")
+	public String cancelarMisCambios(@PathVariable long id) {
+		
+		servicioSolicitud.deleteById(id);
+		
+		return "redirect:/usuario/misCambios";	
+	}
+	
+	@GetMapping("/verificarCambio/{id}")
+	public String verificarCambio(@PathVariable long id, Model model){
+		
+		UsuarioGeneral usuario;
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetail = (UserDetails) auth.getPrincipal();
+		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		
+		model.addAttribute("solicitud", servicioSolicitud.findById(id));
+		model.addAttribute("usuario", usuario);
+		
+		return "confirmarCambios";
+		
+	}
+	
+	@GetMapping("/cambiar/{id}")
+	public String cambiarProductos(@PathVariable long id, Model model) {
+		
+		UsuarioGeneral usuario;
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetail = (UserDetails) auth.getPrincipal();
+		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		
+		model.addAttribute("usuario", usuario);
+		
+		Solicitud s1 = servicioSolicitud.findById(id);
+		
+		Cambio c1 = new Cambio(s1.getUsuarioRecibe(), s1.getUsuarioSolicita(), s1.getProductoRecibe(), s1.getProductoManda());
+		
+		c1.getUsuarioRecibe().addCambioRecibe(c1);
+		
+		c1.getUsuarioManda().addCambioManda(c1);
+		
+		c1.getUsuarioRecibe().removeProducto(s1.getProductoRecibe());
+		
+		c1.getUsuarioManda().removeProducto(s1.getProductoManda());
+		
+		c1.getUsuarioRecibe().addProducto(s1.getProductoManda());
+		
+		c1.getUsuarioManda().addProducto(s1.getProductoRecibe());
+		
+		servicioUsuario.edit(c1.getUsuarioRecibe());
+		
+		servicioUsuario.edit(c1.getUsuarioManda());
+		
+		servicioCambio.edit(c1);
+		
+		for (Solicitud s2 : servicioSolicitud.encontrarSolicitudesRestantes(c1.getProducto1().getId())) {
+			
+			servicioSolicitud.delete(servicioSolicitud.findById(s2.getIdSolicitud()));
+			
+		}
+		
+		for (Solicitud s2 : servicioSolicitud.encontrarSolicitudesRestantes(c1.getProducto2().getId())) {
+			
+			servicioSolicitud.delete(servicioSolicitud.findById(s2.getIdSolicitud()));
+			
+		}
+		
+		return "redirect:/usuario/principal";
+		
+	}
+	
 
 }

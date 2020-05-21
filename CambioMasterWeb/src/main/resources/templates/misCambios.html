@@ -2,335 +2,389 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cambio Master Web - Mis cambios</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cambio Master Web - Mis cambios</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
-    <div id="cambioMaster-wrapper" class="container-fluid col-12 border p-0 float-left">
-        <nav id="menu" class="float-left col-2 p-0 sticky-top d-block m-0">
-            <a href="/usuario/principal">
-                <div id="cambioMasterPrincipal" class="float-left border border-left-0 border-top-0 w-100">
-                    <img src="../img/cambioMasterWeb.png" alt="Icono de cambioMaster" class="w-100">
-                </div>
-            </a>
-            <div id="seccionMis" class="float-left w-100 border border-top-0 d-block border-bottom-0">
-                <ul id="seccionMis-container" class="p-0 pl-3 w-100">
-                    <a href="/usuario/misProductos">
-                        <li>
-                            <div id="misProductos" class="pt-2 float-left w-100 opcionMenu p-0">
-                                <img src="../img/misProductos.png" alt="Icono de un Mis productos" class="float-left">
-                                <p class="float-left p-0">Mis productos</p>
-                            </div>
-                        </li>
-                    </a>
-                    <a href="/usuario/misCambios">
-                        <li>
-                            <div id="misCambios" class="pb-2 float-left w-100 opcionMenu p-0">
-                                <img src="../img/misCambios.png" alt="Icono de un mis cambios" class="float-left">
-                                <p class="float-left categoriaActiva">Mis cambios</p>
-                            </div>
-                        </li>
-                    </a>
-                </ul>
-            </div>
-            <div id="categoria" class="float-left w-100 d-block border">
-                <p class="font-weight-bold text-center">CATEGORÍAS</p>
-                <ul id="categoria-container" class="p-0 pl-3 w-100">
-                    <a href="/usuario/electronica">
-                        <li>
-                            <div id="electronica" class="pt-0 float-left w-100 opcionMenu p-0">
-                                <img src="../img/electronica.png" alt="Icono de electrónica" class="float-left">
-                                <p class="float-left p-0">Electrónica</p>
-                            </div>
-                        </li>
-
-                    </a>
-                    <a href="/usuario/alimentacion">
-                        <li>
-                            <div id="alimentacion" class="pb-0 float-left w-100 opcionMenu p-0">
-                                <img src="../img/comida.png" alt="Icono de comida" class="float-left">
-                                <p class="float-left">Alimentación</p>
-                            </div>
-                        </li>
-
-                    </a>
-                    <a href="/usuario/musica">
-                        <li>
-                            <div id="musica" class="pb-0 float-left w-100 opcionMenu p-0">
-                                <img src="../img/musica.png" alt="Icono de música" class="float-left">
-                                <p class="float-left">Música</p>
-                            </div>
-                        </li>
-
-                    </a>
-                    <a href="/usuario/libros">
-                        <li>
-                            <div id="libros" class="pb-0 float-left w-100 opcionMenu p-0">
-                                <img src="../img/libro.png" alt="Icono de libros" class="float-left">
-                                <p class="float-left">Libros</p>
-                            </div>
-                        </li>
-
-                    </a>
-                    <a href="/usuario/calzado">
-                        <li>
-                            <div id="calzado" class="pb-0 float-left w-100 opcionMenu p-0">
-                                <img src="../img/calzado.png" alt="Icono calzado" class="float-left">
-                                <p class="float-left">Calzado</p>
-                            </div>
-                        </li>
-
-                    </a>
-                    <a href="/usuario/moda">
-                        <li>
-                            <div id="moda" class="pt-0 pb-2 float-left w-100 opcionMenu p-0">
-                                <img src="../img/ropa.png" alt="Icono ropa" class="float-left">
-                                <p class="float-left">Moda</p>
-                            </div>
-                        </li>
-
-                    </a>
-                </ul>
-            </div>
-            <div id="menuOtros" class="float-left w-100 border border-top-0">
-                <ul id="menuOtros-container" class="p-0 pl-3 w-100">
-                    <a href="/usuario/ultimosCambios">
-                        <li>
-                            <div id="ultimosCambios" class="pt-2 float-left w-100 opcionMenu p-0">
-                                <img src="../img/ultimosCambios.png" alt="Icono de últimos cambios" class="float-left">
-                                <p class="float-left p-0">Últimos cambios</p>
-                            </div>
-                        </li>
-                    </a>
-                    <a href="/usuario/configuracion">
-                        <li>
-                            <div id="ajustes" class="pb-2 float-left w-100 opcionMenu p-0">
-                                <img src="../img/ajustes.png" alt="Icono de ajustes" class="float-left">
-                                <p class="float-left">Configuración</p>
-                            </div>
-                        </li>
-                    </a>
-                </ul>
-            </div>
-
-        </nav>
-        <section id="cambioMaster-container" class="float-left col-10">
-            <div id="menuArriba" class="float-left p-0 m-0 w-100 border">
-                <div id="buscador" class="col-4 float-left border">
-                    <button class="col-2"><img src="../img/lupa.png"></button>
-                    <input type="text" placeholder="Realiza una búsqueda...">
-                </div>
-                <a href="/usuario/misProductos">
-                    <div id="misProductosTop" class="float-left pt-1 col-2 opcionMenu p-0">
-                        <img src="../img/misProductos.png" alt="Icono de Mis productos" class="float-left pt-0">
-                        <p class="float-left">Mis Productos</p>
-                    </div>
-                </a>
-                <a href="/usuario/favoritos">
-                    <div id="favoritosTop" class="float-left ml-5 pt-1 col-2 opcionMenu p-0">
-                        <img src="../img/favoritos.png" alt="Icono sección favoritos" class="float-left">
-                        <p class="float-left">Mis favoritos</p>
-                    </div>
-                </a>
-
-                <a th:href="@{/usuario/miPerfil}">
-                    <div id="usuarioTop" th:object="${usuario}" class="float-left col-2 opcionMenu border-left">
-
-                        <p class="float-left pt-1 pb-0 mb-0 ml-4" th:text="${usuario.username}">UserExample</p>
-
-                        <img src="../img/usuario.png" alt="Icono de un usuario" class="float-left">
-                    </div>
-                </a>
-            </div>
-
-            <div id="contenedor-cambios" class="w-100 float-left pl-5">
-                <div id="cabeceraMisProductos" class="col-10 float-left mt-3 mb-0">
-                    <img src="../img/misCambios.png" class="float-left col-1">
-                    <h3 class="float-left">Mis cambios</h3>
-                </div>
-
-                <div id="misSolicitudes" class="col-12 float-left border p-0 mt-5">
-                    <div id="solicitudesEnviadasLetrero" class="float-left col-4 border border-bottom-0">
-                        <p class="m-0 w-100 text-center">Solicitudes enviadas</p>
-                    </div>
-                    <div id="solicitudesRecibidasLetrero"
-                        class="float-left col-4 border border-bottom-0 text-white bg-secondary">
-                        <p class="m-0 w-100 text-center">Solicitudes recibidas</p>
-                    </div>
-                    <div id="cambiosProcesoLetrero"
-                        class="float-left col-4 border border-bottom-0 text-white bg-secondary">
-                        <p class="m-0 w-100 text-center">Cambios en proceso</p>
-                    </div>
-                    <div id="contenedor-cambios" class="w-100 float-left pl-5 pb-5">
-                        <div th:each="solicitud : ${misSolicitudesEnviadas}"
-                            class="solicitudEnviada border mt-5 p-0 pb-1 pt-1 float-left mr-5 ml-4">
-                            <div class="productoCambiado col-5 float-left ml-3 mr-1 pr-0">
-                                <p th:text="${solicitud.productoManda.nombre}">Animal Crossing: new Horizons (Switch)
-                                </p>
-                                <p class="blockquote-footer" th:text="${solicitud.usuarioSolicita.nombre}">De
-                                    alejandromoreno12</p>
-                                <div class="valorAprox col-10 border pl-3">
-                                    <p class="m-0">Valor aproximado: <span
-                                            th:text="${solicitud.productoManda.precioCompra}">60</span></p>
-                                </div>
-                            </div>
-                            <img src="../img/cambio.png" class="float-left col-1 p-0 mr-1">
-                            <div class="productoCambiado col-5 float-left ml-5 pr-0">
-                                <p th:text="${solicitud.productoRecibe.nombre}">Animal Crossing: new Horizons (Switch)
-                                </p>
-                                <p class="blockquote-footer" th:text="${solicitud.usuarioRecibe.nombre}">De
-                                    alejandromoreno12</p>
-                                <div class="valorAprox col-10 border pl-3">
-                                    <p class="m-0">Valor aproximado: <span
-                                            th:text="${solicitud.productoManda.precioCompra}">60</span></p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div th:each="solicitud : ${misSolicitudes}" 
-                            class="solicitudRecibida border mt-5 p-0 pb-1 pt-1 float-left mr-5 ml-4 d-none">
-                            <div class="productoCambiado col-5 float-left ml-3 mr-1 pr-0">
-                                <p th:text="${solicitud.productoManda.nombre}">Animal Crossing: new Horizons (Switch)
-                                </p>
-                                <p class="blockquote-footer" th:text="${solicitud.usuarioSolicita.nombre}">De
-                                    alejandromoreno12</p>
-                                <div class="valorAprox col-10 border pl-3">
-                                    <p class="m-0">Valor aproximado: <span
-                                            th:text="${solicitud.productoManda.precioCompra}">60</span></p>
-                                </div>
-                            </div>
-                            <img src="../img/cambio.png" class="float-left col-1 p-0 mr-1">
-                            <div class="productoCambiado col-5 float-left ml-5 pr-0">
-                                <p th:text="${solicitud.productoRecibe.nombre}">Animal Crossing: new Horizons (Switch)
-                                </p>
-                                <p class="blockquote-footer" th:text="${solicitud.usuarioRecibe.nombre}">De
-                                    alejandromoreno12</p>
-                                <div class="valorAprox col-10 border pl-3">
-                                    <p class="m-0">Valor aproximado: <span
-                                            th:text="${solicitud.productoManda.precioCompra}">60</span></p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </div>
-
-    <footer class="float-left container-fluid">
-        <p class="float-left d-block">© 2016 Cambio Master SL todos los derechos reservados.</p>
-        <p class="float-left d-block"><a href="/politicaDeDatos">Política de datos</a></p>
-        <p class="float-left d-block"><a href="/avisoLegal">Aviso legal</a></p>
-        <div id="redes" class="text-center">
-            <a href="#"><img src="../img/twitter.png" class=""></a>
-            <a href="#"><img src="../img/facebook.png"></a>
-            <a href="#"><img src="../img/instagram.png"></a>
-        </div>
-    </footer>
-
-    <script>
-
-        $(function () {
-
-            $("#solicitudesEnviadasLetrero").on("click", function () {
-
-                $("#solicitudesEnviadasLetrero").addClass("bg-white");
-
-                $("#solicitudesEnviadasLetrero").removeClass("text-white");
-
-                $("#solicitudesEnviadasLetrero").removeClass("bg-secondary");
-
-                $("#solicitudesRecibidasLetrero").removeClass("bg-white");
-
-                $("#solicitudesRecibidasLetrero").addClass("bg-secondary");
-
-                $("#solicitudesRecibidasLetrero").addClass("text-white");
-
-                $("#cambiosProcesoLetrero").removeClass("bg-white");
-
-                $("#cambiosProcesoLetrero").addClass("bg-secondary");
-
-                $("#cambiosProcesoLetrero").addClass("text-white");
-
-                $(".solicitudRecibida").addClass("d-none");
-
-                $(".solicitudEnviadas").removeClass("d-none");
-
-                $(".cambioEnProceso").addClass("d-none");
-
-            });
-
-            $("#solicitudesRecibidasLetrero").on("click", function () {
-
-                $("#solicitudesEnviadasLetrero").removeClass("bg-white");
-
-                $("#solicitudesEnviadasLetrero").addClass("bg-secondary");
-
-                $("#solicitudesEnviadasLetrero").addClass("text-white");
-
-                $("#solicitudesRecibidasLetrero").addClass("bg-white");
-
-                $("#solicitudesRecibidasLetrero").removeClass("bg-secondary");
-
-                $("#solicitudesRecibidasLetrero").removeClass("text-white");
-
-                $("#cambiosProcesoLetrero").removeClass("bg-white");
-
-                $("#cambiosProcesoLetrero").addClass("bg-secondary");
-
-                $("#cambiosProcesoLetrero").addClass("text-white");
-
-                $(".solicitudRecibida").removeClass("d-none");
-
-                $(".solicitudEnviadas").addClass("d-none");
-
-                $(".cambioEnProceso").addClass("d-none");
-
-            });
-
-            $("#cambiosEnProceso").on("click", function () {
-
-                $("#solicitudesEnviadasLetrero").removeClass("bg-white");
-
-                $("#solicitudesEnviadasLetrero").addClass("bg-secondary");
-
-                $("#solicitudesEnviadasLetrero").addClass("text-white");
-
-                $("#solicitudesRecibidasLetrero").removeClass("bg-white");
-
-                $("#solicitudesRecibidasLetrero").addClass("bg-secondary");
-
-                $("#solicitudesRecibidasLetrero").addClass("text-white");
-
-                $("#solicitudesRecibidasLetrero").addClass("bg-white");
-
-                $("#solicitudesRecibidasLetrero").removeClass("bg-secondary");
-
-                $("#solicitudesRecibidasLetrero").removeClass("text-white");
-
-                $(".solicitudRecibida").addClass("d-none");
-
-                $(".solicitudEnviadas").addClass("d-none");
-
-                $(".cambioEnProceso").removeClass("d-none");
-
-            });
-
-        });
-
-    </script>
+	<div id="cambioMaster-wrapper"
+		class="container-fluid col-12 border p-0 float-left">
+		<nav id="menu" class="float-left col-2 p-0 sticky-top d-block m-0">
+			<a href="/usuario/principal">
+				<div id="cambioMasterPrincipal"
+					class="float-left border border-left-0 border-top-0 w-100">
+					<img src="../img/cambioMasterWeb.png" alt="Icono de cambioMaster"
+						class="w-100">
+				</div>
+			</a>
+			<div id="seccionMis"
+				class="float-left w-100 border border-top-0 d-block border-bottom-0">
+				<ul id="seccionMis-container" class="p-0 pl-3 w-100">
+					<a href="/usuario/misProductos">
+						<li>
+							<div id="misProductos"
+								class="pt-2 float-left w-100 opcionMenu p-0">
+								<img src="../img/misProductos.png"
+									alt="Icono de un Mis productos" class="float-left">
+								<p class="float-left p-0">Mis productos</p>
+							</div>
+					</li>
+					</a>
+					<a href="/usuario/misCambios">
+						<li>
+							<div id="misCambios" class="pb-2 float-left w-100 opcionMenu p-0">
+								<img src="../img/misCambios.png" alt="Icono de un mis cambios"
+									class="float-left">
+								<p class="float-left categoriaActiva">Mis cambios</p>
+							</div>
+					</li>
+					</a>
+				</ul>
+			</div>
+			<div id="categoria" class="float-left w-100 d-block border">
+				<p class="font-weight-bold text-center">CATEGORÍAS</p>
+				<ul id="categoria-container" class="p-0 pl-3 w-100">
+					<a href="/usuario/electronica">
+						<li>
+							<div id="electronica"
+								class="pt-0 float-left w-100 opcionMenu p-0">
+								<img src="../img/electronica.png" alt="Icono de electrónica"
+									class="float-left">
+								<p class="float-left p-0">Electrónica</p>
+							</div>
+					</li>
+
+					</a>
+					<a href="/usuario/alimentacion">
+						<li>
+							<div id="alimentacion"
+								class="pb-0 float-left w-100 opcionMenu p-0">
+								<img src="../img/comida.png" alt="Icono de comida"
+									class="float-left">
+								<p class="float-left">Alimentación</p>
+							</div>
+					</li>
+
+					</a>
+					<a href="/usuario/musica">
+						<li>
+							<div id="musica" class="pb-0 float-left w-100 opcionMenu p-0">
+								<img src="../img/musica.png" alt="Icono de música"
+									class="float-left">
+								<p class="float-left">Música</p>
+							</div>
+					</li>
+
+					</a>
+					<a href="/usuario/libros">
+						<li>
+							<div id="libros" class="pb-0 float-left w-100 opcionMenu p-0">
+								<img src="../img/libro.png" alt="Icono de libros"
+									class="float-left">
+								<p class="float-left">Libros</p>
+							</div>
+					</li>
+
+					</a>
+					<a href="/usuario/calzado">
+						<li>
+							<div id="calzado" class="pb-0 float-left w-100 opcionMenu p-0">
+								<img src="../img/calzado.png" alt="Icono calzado"
+									class="float-left">
+								<p class="float-left">Calzado</p>
+							</div>
+					</li>
+
+					</a>
+					<a href="/usuario/moda">
+						<li>
+							<div id="moda" class="pt-0 pb-2 float-left w-100 opcionMenu p-0">
+								<img src="../img/ropa.png" alt="Icono ropa" class="float-left">
+								<p class="float-left">Moda</p>
+							</div>
+					</li>
+
+					</a>
+				</ul>
+			</div>
+			<div id="menuOtros" class="float-left w-100 border border-top-0">
+				<ul id="menuOtros-container" class="p-0 pl-3 w-100">
+					<a href="/usuario/ultimosCambios">
+						<li>
+							<div id="ultimosCambios"
+								class="pt-2 float-left w-100 opcionMenu p-0">
+								<img src="../img/ultimosCambios.png"
+									alt="Icono de últimos cambios" class="float-left">
+								<p class="float-left p-0">Últimos cambios</p>
+							</div>
+					</li>
+					</a>
+					<a href="/usuario/configuracion">
+						<li>
+							<div id="ajustes" class="pb-2 float-left w-100 opcionMenu p-0">
+								<img src="../img/ajustes.png" alt="Icono de ajustes"
+									class="float-left">
+								<p class="float-left">Configuración</p>
+							</div>
+					</li>
+					</a>
+				</ul>
+			</div>
+
+		</nav>
+		<section id="cambioMaster-container" class="float-left col-10">
+			<div id="menuArriba" class="float-left p-0 m-0 w-100 border">
+				<div id="buscador" class="col-4 float-left border">
+					<button class="col-2">
+						<img src="../img/lupa.png">
+					</button>
+					<input type="text" placeholder="Realiza una búsqueda...">
+				</div>
+				<a href="/usuario/misProductos">
+					<div id="misProductosTop"
+						class="float-left pt-1 col-2 opcionMenu p-0">
+						<img src="../img/misProductos.png" alt="Icono de Mis productos"
+							class="float-left pt-0">
+						<p class="float-left">Mis Productos</p>
+					</div>
+				</a> <a href="/usuario/favoritos">
+					<div id="favoritosTop"
+						class="float-left ml-5 pt-1 col-2 opcionMenu p-0">
+						<img src="../img/favoritos.png" alt="Icono sección favoritos"
+							class="float-left">
+						<p class="float-left">Mis favoritos</p>
+					</div>
+				</a> <a th:href="@{/usuario/miPerfil}">
+					<div id="usuarioTop" th:object="${usuario}"
+						class="float-left col-2 opcionMenu border-left">
+
+						<p class="float-left pt-1 pb-0 mb-0 ml-4"
+							th:text="${usuario.username}">UserExample</p>
+
+						<img src="../img/usuario.png" alt="Icono de un usuario"
+							class="float-left">
+					</div>
+				</a>
+			</div>
+
+			<div id="contenedor-cambios" class="w-100 float-left pl-5">
+				<div id="cabeceraMisProductos" class="col-10 float-left mt-3 mb-0">
+					<img src="../img/misCambios.png" class="float-left col-1">
+					<h3 class="float-left">Mis cambios</h3>
+				</div>
+
+				<div id="misSolicitudes" class="col-12 float-left border p-0 mt-5">
+					<div id="solicitudesEnviadasLetrero"
+						class="float-left col-4 border border-bottom-0">
+						<p class="m-0 w-100 text-center">Solicitudes enviadas</p>
+					</div>
+					<div id="solicitudesRecibidasLetrero"
+						class="float-left col-4 border border-bottom-0 text-white bg-secondary">
+						<p class="m-0 w-100 text-center">Solicitudes recibidas</p>
+					</div>
+					<div id="cambiosProcesoLetrero"
+						class="float-left col-4 border border-bottom-0 text-white bg-secondary">
+						<p class="m-0 w-100 text-center">Cambios en proceso</p>
+					</div>
+					<div id="contenedor-cambios" class="w-100 float-left pl-5 pb-5">
+						<div th:each="solicitud : ${misSolicitudesEnviadas}"
+							class="solicitudEnviada border mt-5 p-0 pb-1 pt-1 float-left mr-5 ml-4">
+							<div class="productoCambiado col-5 float-left ml-3 mr-1 pr-0">
+								<p th:text="${solicitud.productoManda.nombre}">Animal
+									Crossing: new Horizons (Switch)</p>
+								<p class="blockquote-footer"
+									th:text="${solicitud.usuarioSolicita.nombre}">De
+									alejandromoreno12</p>
+								<div class="valorAprox col-10 border pl-3">
+									<p class="m-0">
+										Valor aproximado: <span
+											th:text="${solicitud.productoManda.precioCompra}">60</span>
+									</p>
+								</div>
+							</div>
+							<img src="../img/cambio.png" class="float-left col-1 p-0 mr-1">
+							<div class="productoCambiado col-5 float-left ml-5 pr-0">
+								<p th:text="${solicitud.productoRecibe.nombre}">Animal
+									Crossing: new Horizons (Switch)</p>
+								<p class="blockquote-footer"
+									th:text="${solicitud.usuarioRecibe.nombre}">De
+									alejandromoreno12</p>
+								<div class="valorAprox col-10 border pl-3">
+									<p class="m-0">
+										Valor aproximado: <span
+											th:text="${solicitud.productoManda.precioCompra}">60</span>
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<div th:each="solicitud : ${misSolicitudes}"
+							class="solicitudRecibida border mt-5 p-0 pb-1 pt-1 float-left mr-5 ml-4 d-none">
+							<div class="productoCambiado col-5 float-left ml-3 mr-1 pr-0">
+								<p th:text="${solicitud.productoManda.nombre}">Animal
+									Crossing: new Horizons (Switch)</p>
+								<p class="blockquote-footer"
+									th:text="${solicitud.usuarioSolicita.nombre}">De
+									alejandromoreno12</p>
+								<div class="valorAprox col-10 border pl-3">
+									<p class="m-0">
+										Valor aproximado: <span
+											th:text="${solicitud.productoManda.precioCompra}">60</span>
+									</p>
+								</div>
+							</div>
+							<img src="../img/cambio.png" class="float-left col-1 p-0 mr-1">
+							<div class="productoCambiado col-5 float-left ml-5 pr-0">
+								<p th:text="${solicitud.productoRecibe.nombre}">Animal
+									Crossing: new Horizons (Switch)</p>
+								<p class="blockquote-footer"
+									th:text="${solicitud.usuarioRecibe.nombre}">De
+									alejandromoreno12</p>
+								<div class="valorAprox col-10 border pl-3">
+									<p class="m-0">
+										Valor aproximado: <span
+											th:text="${solicitud.productoManda.precioCompra}">60</span>
+									</p>
+								</div>
+							</div>
+							<div name="botonEliminarBotones"
+								class="botonEliminarBotones col-8 mt-2 float-right text-right">
+								<a
+									th:href="@{/usuario/verificarCambio/{id}(id = ${solicitud.idSolicitud})}"><button
+										type="submit" class="border-0 botonAzul text-white col-3 float-right">
+										Aceptar
+									</button></a> <a
+									th:href="@{/usuario/cancelarCambio/{id}(id = ${solicitud.idSolicitud})}"><button
+										type="submit" class="border-0 text-white botonRojo col-3 float-right">
+										Cancelar
+									</button></a>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</section>
+
+	</div>
+
+	<footer class="float-left container-fluid">
+		<p class="float-left d-block">© 2016 Cambio Master SL todos los
+			derechos reservados.</p>
+		<p class="float-left d-block">
+			<a href="/politicaDeDatos">Política de datos</a>
+		</p>
+		<p class="float-left d-block">
+			<a href="/avisoLegal">Aviso legal</a>
+		</p>
+		<div id="redes" class="text-center">
+			<a href="#"><img src="../img/twitter.png" class=""></a> <a
+				href="#"><img src="../img/facebook.png"></a> <a href="#"><img
+				src="../img/instagram.png"></a>
+		</div>
+	</footer>
+
+	<script>
+		$(function() {
+
+			$("#solicitudesEnviadasLetrero").on("click", function() {
+
+				$("#solicitudesEnviadasLetrero").addClass("bg-white");
+
+				$("#solicitudesEnviadasLetrero").removeClass("text-white");
+
+				$("#solicitudesEnviadasLetrero").removeClass("bg-secondary");
+
+				$("#solicitudesRecibidasLetrero").removeClass("bg-white");
+
+				$("#solicitudesRecibidasLetrero").addClass("bg-secondary");
+
+				$("#solicitudesRecibidasLetrero").addClass("text-white");
+
+				$("#cambiosProcesoLetrero").removeClass("bg-white");
+
+				$("#cambiosProcesoLetrero").addClass("bg-secondary");
+
+				$("#cambiosProcesoLetrero").addClass("text-white");
+
+				$(".solicitudRecibida").addClass("d-none");
+
+				$(".solicitudEnviada").removeClass("d-none");
+
+				$(".cambioEnProceso").addClass("d-none");
+
+			});
+
+			$("#solicitudesRecibidasLetrero").on("click", function() {
+
+				$("#solicitudesEnviadasLetrero").removeClass("bg-white");
+
+				$("#solicitudesEnviadasLetrero").addClass("bg-secondary");
+
+				$("#solicitudesEnviadasLetrero").addClass("text-white");
+
+				$("#solicitudesRecibidasLetrero").addClass("bg-white");
+
+				$("#solicitudesRecibidasLetrero").removeClass("bg-secondary");
+
+				$("#solicitudesRecibidasLetrero").removeClass("text-white");
+
+				$("#cambiosProcesoLetrero").removeClass("bg-white");
+
+				$("#cambiosProcesoLetrero").addClass("bg-secondary");
+
+				$("#cambiosProcesoLetrero").addClass("text-white");
+
+				$(".solicitudRecibida").removeClass("d-none");
+
+				$(".solicitudEnviada").addClass("d-none");
+
+				$(".cambioEnProceso").addClass("d-none");
+
+			});
+
+			$("#cambiosEnProceso").on("click", function() {
+
+				$("#solicitudesEnviadasLetrero").removeClass("bg-white");
+
+				$("#solicitudesEnviadasLetrero").addClass("bg-secondary");
+
+				$("#solicitudesEnviadasLetrero").addClass("text-white");
+
+				$("#solicitudesRecibidasLetrero").removeClass("bg-white");
+
+				$("#solicitudesRecibidasLetrero").addClass("bg-secondary");
+
+				$("#solicitudesRecibidasLetrero").addClass("text-white");
+
+				$("#solicitudesRecibidasLetrero").addClass("bg-white");
+
+				$("#solicitudesRecibidasLetrero").removeClass("bg-secondary");
+
+				$("#solicitudesRecibidasLetrero").removeClass("text-white");
+
+				$(".solicitudRecibida").addClass("d-none");
+
+				$(".solicitudEnviada").addClass("d-none");
+
+				$(".cambioEnProceso").removeClass("d-none");
+
+			});
+
+		});
+	</script>
 </body>
 
 </html>

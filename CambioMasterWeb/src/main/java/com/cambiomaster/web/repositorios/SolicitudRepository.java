@@ -12,11 +12,14 @@ public interface SolicitudRepository extends JpaRepository<Solicitud, Long> {
 	@Query(value="SELECT * FROM (SELECT * FROM SOLICITUD WHERE PRODUCTO_MANDA IS NULL ORDER BY ID_SOLICITUD) WHERE ROWNUM < 2", nativeQuery=true)
 	Solicitud encontrarSolicitudPendiente();
 	
-	@Query(value="SELECT * FROM SOLICITUD WHERE USUARIO_RECIBE = ?1 && PRODUCTO_MANDA IS NOT NULL", nativeQuery=true)
+	@Query(value="SELECT * FROM SOLICITUD WHERE USUARIO_RECIBE = ?1 AND PRODUCTO_MANDA IS NOT NULL", nativeQuery=true)
 	List<Solicitud> encontrarSolicitudesEnviaUsuario(long id);
 	
-	@Query(value="SELECT * FROM SOLICITUD WHERE USUARIO_SOLICITA = ?1 && PRODUCTO_MANDA IS NOT NULL", nativeQuery=true)
+	@Query(value="SELECT * FROM SOLICITUD WHERE USUARIO_SOLICITA = ?1 AND PRODUCTO_MANDA IS NOT NULL", nativeQuery=true)
 	List<Solicitud> encontrarSolicitudesMandaUsuario(long id);
+	
+	@Query(value="SELECT * FROM SOLICITUD WHERE PRODUCTO_MANDA = ?1 OR PRODUCTO_RECIBE = ?1", nativeQuery=true)
+	List<Solicitud> encontrarSolicitudesObjetoPendiente(long id);
 	
 
 }

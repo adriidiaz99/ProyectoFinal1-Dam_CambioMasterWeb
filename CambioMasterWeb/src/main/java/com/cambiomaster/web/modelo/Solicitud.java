@@ -36,8 +36,8 @@ public class Solicitud {
 	@JoinColumn(name = "Usuario_Recibe", updatable = false, nullable = true)
 	private Usuario usuarioRecibe;
 
-
-	public Solicitud(Producto productoManda, Producto productoRecibe, Usuario usuarioSolicita, Usuario usuarioRecibe) {
+	public Solicitud(Producto productoManda, Producto productoRecibe, Usuario usuarioSolicita,
+			Usuario usuarioRecibe) {
 		super();
 		this.productoManda = productoManda;
 		this.productoRecibe = productoRecibe;
