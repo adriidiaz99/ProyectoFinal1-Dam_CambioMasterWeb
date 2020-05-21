@@ -526,6 +526,7 @@ public class UsuarioController {
 		usuario = (UsuarioGeneral) this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("usuario", usuario);
+		model.addAttribute("listaCambios", servicioCambio.findAll());
 		return "ultimosCambios";
 	}
 
