@@ -14,14 +14,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cambiomaster.web.modelo.Alimentacion;
 import com.cambiomaster.web.modelo.Calzado;
+import com.cambiomaster.web.modelo.Cambio;
 import com.cambiomaster.web.modelo.Electronica;
 import com.cambiomaster.web.modelo.Empresa;
 import com.cambiomaster.web.modelo.Libro;
 import com.cambiomaster.web.modelo.Moda;
 import com.cambiomaster.web.modelo.Musica;
 import com.cambiomaster.web.modelo.Producto;
+import com.cambiomaster.web.modelo.Solicitud;
 import com.cambiomaster.web.modelo.Usuario;
 import com.cambiomaster.web.modelo.UsuarioGeneral;
+import com.cambiomaster.web.servicio.CambioService;
 import com.cambiomaster.web.servicio.ProductoService;
 import com.cambiomaster.web.servicio.UsuarioService;
 
@@ -33,6 +36,8 @@ public class AdminController {
 	private UsuarioService servicioUsuario;
 	@Autowired
 	private ProductoService servicioProducto;
+	@Autowired
+	private CambioService servicioCambio;
 
 	@GetMapping("/principal")
 	public String principalAdmin(Model model) {
@@ -54,11 +59,6 @@ public class AdminController {
 	@GetMapping("/configuracion")
 	public String configuracionAdmin() {
 		return "/admin/configuracionAdministrador";
-	}
-
-	@GetMapping("/ultimosCambios")
-	public String ultimosCambios() {
-		return "/admin/ultimosCambiosAdministrador";
 	}
 
 	@GetMapping("/gestionEmpresa/registroEmpresa")
@@ -99,7 +99,10 @@ public class AdminController {
 	}
 
 	@GetMapping("/historialCambios")
-	public String historialCambios() {
+	public String historialCambios(Model model) {
+		
+		model.addAttribute("cambios", servicioCambio.findAll());
+		
 		return "/admin/historialCambios";
 	}
 
@@ -354,6 +357,39 @@ public class AdminController {
 		System.out.println(servicioProducto.findAll());
 		return "redirect:/admin/gestionProductos";
 
+	}
+	
+	@GetMapping("/ultimosCambios")
+	public String ultimosCambios(Model model) {
+	
+		model.addAttribute("cambios", servicioCambio.findAll());
+		return "/admin/ultimosCambiosAdministrador";
+	}
+	
+	@GetMapping("/deshacerCambio/{id}")
+	public String deshacerCambio(@PathVariable long id) {
+		
+		Cambio c1 = servicioCambio.findById(id);
+		
+		c1.getUsuarioRecibe().addCambioRecibe(c1);
+		
+		c1.getUsuarioManda().addCambioManda(c1);
+		
+		c1.getUsuarioRecibe().removeProducto(c1.getProducto2());
+		
+		c1.getUsuarioManda().removeProducto(c1.getProducto1());
+		
+		c1.getUsuarioRecibe().addProducto(c1.getProducto1());
+		
+		c1.getUsuarioManda().addProducto(c1.getProducto2());
+		
+		servicioUsuario.edit(c1.getUsuarioRecibe());
+		
+		servicioUsuario.edit(c1.getUsuarioManda());
+		
+		servicioCambio.delete(servicioCambio.findById(c1.getIdCompra()));
+		
+		return "redirect:/admin/historialCambios";
 	}
 
 }

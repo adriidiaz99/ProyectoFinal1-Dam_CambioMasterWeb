@@ -119,40 +119,23 @@
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Usuario1</th>
-                            <th scope="col">Nº Productos u1</th>
+                            <th scope="col">ID Producto u1</th>
                             <th scope="col">Usuario2</th>
-                            <th scope="col">Nº Productos u2</th>
+                            <th scope="col">ID Producto u2</th>
                             <th scope="col">Fecha de cambio</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>UserExample1</td>
-                            <td>3</td>
-                            <td>UserExample2</td>
-                            <td>1</td>
-                            <td>12/02/2020</td>
-                            <td><button id class="editar float-left mr-1 ">Detalles</button></td>
+                        <tr th:each="cambio : ${cambios}">
+                            <th scope="row" th:text="${cambios.indexOf(cambio) + 1}">1</th>
+                            <td th:text="${cambio.usuarioManda.username}">UserExample1</td>
+                            <td th:text="${cambio.producto1.id}">3</td>
+                            <td th:text="${cambio.usuarioRecibe.username}">UserExample2</td>
+                            <td th:text="${cambio.producto2.id}">1</td>
+                            <td th:text="${cambio.fechaCambio}">12/02/2020</td>
+                            <td ><a th:href="@{/admin/deshacerCambio/{id}(id = ${cambio.idCompra})}"><button id class="deshacer float-left mr-1 ">Deshacer</button></td></a>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>UserExample1</td>
-                            <td>3</td>
-                            <td>UserExample2</td>
-                            <td>1</td>
-                            <td>12/02/2020</td>
-                            <td><button id class="editar float-left mr-1 ">Detalles</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>UserExample1</td>
-                            <td>3</td>
-                            <td>UserExample2</td>
-                            <td>1</td>
-                            <td>12/02/2020</td>
-                            <td><button id class="editar float-left mr-1 ">Detalles</button></td>
-                        </tr>
+                        
                     </tbody>
                 </table>
                 <div id="botonesMisProductos" class="float-right mt-5 mb-2 pt-3 text-right">
@@ -165,16 +148,7 @@
 
     </div>
 
-    <footer class="float-left container-fluid">
-        <p class="float-left d-block">© 2016 Cambio Master SL todos los derechos reservados.</p>
-        <p class="float-left d-block"><a href="/politicaDeDatos">Política de datos</a></p>
-        <p class="float-left d-block"><a href="/avisoLegal">Aviso legal</a></p>
-        <div id="redes" class="text-center">
-            <a href="#"><img src="../img/twitter.png" class=""></a>
-            <a href="#"><img src="../img/facebook.png"></a>
-            <a href="#"><img src="../img/instagram.png"></a>
-        </div>
-    </footer>
+    <footer th:replace="~{fragmentos/piePagina::piePagina}"></footer>
 
 </body>
 

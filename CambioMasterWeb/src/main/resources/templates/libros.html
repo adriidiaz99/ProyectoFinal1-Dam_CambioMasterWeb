@@ -124,8 +124,8 @@
         <section id="cambioMaster-container" class="float-left col-10">
             <div id="menuArriba" class="float-left p-0 m-0 w-100 border">
                 <div id="buscador" class="col-4 float-left border">
-                    <button class="col-2"><img src="../img/lupa.png"></button>
-                    <input type="text" placeholder="Realiza una búsqueda...">
+                    <button id="botonLupa" class="col-2"><img src="../img/lupa.png"></button>
+                    <input id="inputLupa" type="text" placeholder="Realiza una búsqueda...">
                 </div>
                 <a href="/usuario/misProductos">
                     <div id="misProductosTop" class="float-left pt-1 col-2 opcionMenu p-0">
@@ -181,7 +181,7 @@
                     <a th:href="@{/usuario/producto/{id}(id = ${producto.id})}">
                         <img src="../img/ejemploImagenProducto.png" class="text-center col-12">
                     </a>
-                    <p th:text="${producto.nombre}" class="text-center mt-3">Animal Crossing: new Horizons
+                    <p th:text="${producto.nombre}" class="nombre text-center mt-3">Animal Crossing: new Horizons
                         (Switch)</p>
                     <p class="blockquote-footer">Fecha de compra: <span
                             th:text="${producto.fechaCompra}">20/03/2012</span></p>
@@ -293,6 +293,24 @@
                         break;
                         ;
                 }
+
+            });
+
+            $("#botonLupa").on("click", function () {
+
+
+                var lupaIntroducida = $("#inputLupa").val();
+
+                $(".producto").addClass("invisible");
+
+                for (let index = 0; index < $(".producto").length; index++) {
+                    if (String($(".nombre").eq(index).text().toLowerCase()) === String(lupaIntroducida.toLowerCase())) {
+                        $(".producto").eq(index).removeClass("invisible");
+                    }
+
+                }
+
+
 
             });
 

@@ -1,5 +1,7 @@
 package com.cambiomaster.web.modelo;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,6 +39,9 @@ public class Cambio {
 	@OneToOne
     @JoinColumn(name = "Producto_Manda", updatable = false, nullable = false)
 	private Producto producto2;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate fechaCambio = LocalDate.now();
 
 	public Cambio(Usuario usuarioRecibe, Usuario usuarioManda, Producto producto1, Producto producto2) {
 		super();
