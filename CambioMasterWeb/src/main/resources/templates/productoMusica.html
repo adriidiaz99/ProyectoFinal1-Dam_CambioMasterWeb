@@ -183,8 +183,8 @@
                         </div>
                         <div id="botonProductos" class="float-right mt-5 mr-4">
                             <button id="favoritos" class="bg-warning text-white border-0">Añadir a favoritos</button>
-                            <button id="enviarSolicitud" class="bg-secondary text-white border-0">Solicitar
-                                cambio</button>
+                            <a th:href="@{/usuario/seleccionarProducto/{id}(id = ${producto.id})}"><button id="enviarSolicitud" class="bg-secondary text-white border-0">Solicitar
+                                cambio</button></a>
                         </div>
 
 

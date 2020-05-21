@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambio Master Web - Mofidicar producto</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+
+<body>
+    <div id="cambioMaster-wrapper" class="container-fluid col-12 border p-0 float-left">
+        <nav id="menu" class="float-left col-2 p-0 sticky-top d-block m-0">
+            <a href="/admin/principal">
+                <div id="cambioMasterPrincipal" class="float-left border border-left-0 border-top-0 w-100">
+                    <img src="../../img/cambioMasterWeb.png" alt="Icono de cambioMaster" class="w-100">
+                </div>
+            </a>
+            <div id="seccionMis" class="float-left w-100 border border-top-0 d-block">
+                <ul id="seccionMis-container" class="p-0 pl-3 w-100">
+                    <a href="/admin/gestionUsuarios">
+                        <li>
+                            <div id="usuarios" class="pt-2 float-left w-100 opcionMenu p-0">
+                                <img src="../../img/gestionUsuarios.png" alt="Icono de un Mis productos"
+                                    class="float-left">
+                                <p class="float-left p-0">Usuarios</p>
+                            </div>
+                        </li>
+                    </a>
+                    <a href="/admin/historialCambios">
+                        <li>
+                            <div id="historialCambios" class="pb-2 float-left w-100 opcionMenu p-0">
+                                <img src="../../img/historialCambios.png" alt="Icono de un mis cambios"
+                                    class="float-left">
+                                <p class="float-left">Historial de cambios</p>
+                            </div>
+                        </li>
+                    </a>
+                    <a href="/admin/gestionEmpresas">
+                        <li>
+                            <div id="gestionEmpresas" class="pb-2 float-left w-100 opcionMenu p-0">
+                                <img src="../../img/gestionEmpresas.png" alt="Icono de un mis cambios"
+                                    class="float-left">
+                                <p class="float-left">Empresas</p>
+                            </div>
+                        </li>
+                    </a>
+                    <a href="/admin/gestionEnvios">
+                        <li>
+                            <div id="gestionEnvios" class="pb-2 float-left w-100 opcionMenu p-0">
+                                <img src="../../img/gestionEnvios.png" alt="Icono de un mis cambios"
+                                    class="float-left">
+                                <p class="float-left">Gestión de envios</p>
+                            </div>
+                        </li>
+                    </a>
+                    <a href="/admin/gestionProductos">
+                        <li>
+                            <div id="gestionProductos" class="pb-2 float-left w-100 opcionMenu p-0">
+                                <img src="../../img/gestionProductos.png" alt="Icono de un mis cambios"
+                                    class="float-left">
+                                <p class="float-left categoriaActiva">Productos</p>
+                            </div>
+                        </li>
+                    </a>
+                </ul>
+            </div>
+
+            <div id="menuOtros" class="float-left w-100 border border-top-0">
+                <ul id="menuOtros-container" class="p-0 pl-3 w-100">
+                    <a href="/admin/ultimosCambios">
+                        <li>
+                            <div id="ultimosCambios" class="pt-2 float-left w-100 opcionMenu p-0">
+                                <img src="../../img/ultimosCambios.png" alt="Icono de últimos cambios"
+                                    class="float-left">
+                                <p class="float-left p-0">Últimos cambios</p>
+                            </div>
+                        </li>
+                    </a>
+                    <a href="/admin/configuracion">
+                        <li>
+                            <div id="ajustes" class="pb-2 float-left w-100 opcionMenu p-0">
+                                <img src="../../img/ajustes.png" alt="Icono de ajustes" class="float-left">
+                                <p class="float-left">Configuración</p>
+                            </div>
+                        </li>
+                    </a>
+                </ul>
+            </div>
+
+        </nav>
+        <section id="cambioMaster-container" class="float-left col-10">
+            <div id="menuArriba" class="float-left p-0 m-0 w-100 border">
+                <div id="buscador" class="col-4 float-left border">
+                    <button class="col-2"><img src="../../img/lupa.png"></button>
+                    <input type="text" placeholder="Realiza una búsqueda...">
+                </div>
+                <div id="administradorTop" class="float-left pt-1 col-4 mr-5 opcionMenu p-0">
+                    <p class="float-left m-0">Ha iniciado sesión como administrador</p>
+                </div>
+
+                <div id="usuarioTop" class="float-left col-2 opcionMenu border-left">
+                    <p class="float-left pt-1 pb-0 mb-0 ml-4">UserExample</p>
+                    <img src="../../img/usuario.png" alt="Icono de un usuario" class="float-left">
+                </div>
+            </div>
+            <div id="cabeceraConfiguracion" class="col-10 float-left mt-3 mb-0">
+                <img src="../../img/misProductos.png" class="float-left col-1">
+                <h3 class="float-left">Mis Productos</h3>
+            </div>
+            <div id="contenedor-configuracion" class=" float-left col-10 border ml-5 mt-5 pl-5 ">
+
+                <form method="POST" th:action="@{/admin/editarElectronica/submit}" th:object="${producto}">
+
+                    <h4 class="float-left pt-4 w-100" th:text="${producto.id} == 0 ? 'Agregar electrónica' : 'Editar electrónica'">Agregar electrónica</h4>
+
+                    <div id="agregarP" class="w-100 float-left pl-5 pt-5">
+                        <input type="number" class="invisible" th:field="*{id}">
+                        <input type="text" class="invisible" th:field="*{categoria}">
+                        <label for="name"
+                            class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Nombre del
+                            producto</label>
+                        <input name="name" th:field="*{nombre}" id="name" class="float-left col-5 p-0 m-0 float-left" type="text"
+                            placeholder="Introduzca aquí el nombre del proyecto">
+                        </br></br>
+                        <label for="fechaCompra"
+                            class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Fecha de
+                            compra</label>
+                        <input name="fechaCompra" th:field="*{fechaCompra}" id="fechaCompra" class="float-left col-5 p-0 m-0 float-left"
+                            type="date">
+                        </br></br>
+                        <label for="precioCompra"
+                            class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Precio de
+                            compra</label>
+                        <input name="precioCompra" id="precioCompra" th:field="*{precioCompra}" class="float-left col-5 p-0 m-0 float-left"
+                            placeholder="Precio cuando lo compraste" type="number" min="0">
+                        </br></br>
+                        <label for="descripcion"
+                            class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Descripción</label>
+                        <input name="descripcion" th:field="*{descripcion}" placeholder="Con un máximo de 300 letras" id="descripcion"
+                            class="float-left col-5 p-0 m-0 float-left" type="text" maxlength="300">
+                        </br></br>
+                        <label for="productor"
+                            class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Productor</label>
+                        <input name="productor" th:field="*{productor}" placeholder="Quién elaboró el producto" id="productor"
+                            class="float-left col-5 p-0 m-0 float-left" type="text">
+                        </br></br>
+                        
+                        <div id="camposElectronica">
+                            <label for="seguro"
+                                class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Seguro</label>
+                            <select name="seguro" th:field="*{seguro}" id="seguro" class="float-left col-5 p-0 mr-4 m-0 pb-1 float-left">
+
+                                <option th:value="true">Si</option>
+
+                                <option th:value="false">No</option>
+
+                            </select>
+                            </br></br>
+                            <label for="tipo"
+                                class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Tipo</label>
+                            <input name="tipo" th:field="*{tipo}" placeholder="tipo de electrónica" id="tipo"
+                                class="float-left col-5 p-0 m-0 float-left" type="text">
+                            </br></br>
+                        </div>
+
+                        <button class="botonAzul float-right col-3 p-1 mr-4 mb-1">Agregar electronica</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <footer class="float-left container-fluid">
+        <p class="float-left d-block">© 2016 Cambio Master SL todos los derechos reservados.</p>
+        <p class="float-left d-block"><a href="/politicaDeDatos">Política de datos</a></p>
+        <p class="float-left d-block"><a href="/avisoLegal">Aviso legal</a></p>
+        <div id="redes" class="text-center">
+            <a href="#"><img src="../../img/twitter.png" class=""></a>
+            <a href="#"><img src="../../img/facebook.png"></a>
+            <a href="#"><img src="../../img/instagram.png"></a>
+        </div>
+    </footer>
+
+</body>
+
+</html>

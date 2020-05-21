@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.cambiomaster.web.modelo.Buzon;
 import com.cambiomaster.web.modelo.Usuario;
 import com.cambiomaster.web.modelo.UsuarioGeneral;
 import com.cambiomaster.web.servicio.UsuarioService;

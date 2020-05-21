@@ -133,8 +133,8 @@
                             <td th:text="${producto.usuario.username}">UserExample</td>
                             <td th:text="${producto.fechaCompra}">11/06/1999</td>
                             <td th:text="${producto.precioCompra}">60</td>
-                            <td><button id class="editar float-left mr-1 ">Edit</button></td>
-                            <td><button id="Eliminar" class="float-left mr-1 botonRojo">Eliminar</button></td>
+                            <td><a th:href="@{/admin/editarProducto/{id}(id = ${producto.id})}"><button id class="editar float-left mr-1 ">Edit</button></a></td>
+                            <td><a th:href="@{/admin/eliminarProducto/{id}(id = ${producto.id})}"><button id="Eliminar" class="float-left mr-1 botonRojo">Eliminar</button></a></td>
                         </tr>
                     </tbody>
                 </table>

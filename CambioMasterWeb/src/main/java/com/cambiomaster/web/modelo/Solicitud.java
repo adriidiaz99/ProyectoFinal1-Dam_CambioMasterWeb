@@ -21,19 +21,28 @@ public class Solicitud {
 	private long idSolicitud;
 	
 	@OneToOne
-    @JoinColumn(name = "Producto_Manda", updatable = false, nullable = false)
+    @JoinColumn(name = "Producto_Manda", updatable = true, nullable = true)
 	private Producto productoManda;
 	
 	@OneToOne
-    @JoinColumn(name = "Producto_Recibe", updatable = false, nullable = false)
+    @JoinColumn(name = "Producto_Recibe", updatable = false, nullable = true)
 	private Producto productoRecibe;
 	
 	@ManyToOne
-	@JoinColumn(name = "Usuario_Solicita", updatable = false, nullable = false)
+	@JoinColumn(name = "Usuario_Solicita", updatable = false, nullable = true)
 	private Usuario usuarioSolicita;
 	
 	@ManyToOne
-	@JoinColumn(name = "Buzon_Entrega", updatable = false, nullable = false)
-	private Buzon buzonEntrega;
+	@JoinColumn(name = "Usuario_Recibe", updatable = false, nullable = true)
+	private Usuario usuarioRecibe;
+
+
+	public Solicitud(Producto productoManda, Producto productoRecibe, Usuario usuarioSolicita, Usuario usuarioRecibe) {
+		super();
+		this.productoManda = productoManda;
+		this.productoRecibe = productoRecibe;
+		this.usuarioSolicita = usuarioSolicita;
+		this.usuarioRecibe = usuarioRecibe;
+	}
 
 }

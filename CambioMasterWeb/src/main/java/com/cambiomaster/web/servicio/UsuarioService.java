@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cambiomaster.web.modelo.Empresa;
+import com.cambiomaster.web.modelo.Producto;
 import com.cambiomaster.web.modelo.Usuario;
 import com.cambiomaster.web.modelo.UsuarioGeneral;
 import com.cambiomaster.web.repositorios.UsuarioRepository;
@@ -17,8 +18,6 @@ public class UsuarioService extends BaseService<Usuario, Long, UsuarioRepository
 	
 	@Autowired
 	private ProductoService productosDeUsuario;
-	@Autowired
-	private BuzonService buzonDeUsuario;
 
 	public UsuarioService(UsuarioRepository repo) {
 		super(repo);
@@ -41,6 +40,11 @@ public class UsuarioService extends BaseService<Usuario, Long, UsuarioRepository
 	
 	public List<UsuarioGeneral> findAllUsuarios() {
 		return repositorio.findAllUsuarios();
+	}
+	
+	public void enviarSolicitud(Producto productoEnvia, Producto productoRecoge) {
+		
+		
 	}
 
 }

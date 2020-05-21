@@ -1,5 +1,7 @@
 package com.cambiomaster.web.servicio;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.cambiomaster.web.modelo.Solicitud;
@@ -12,6 +14,18 @@ public class SolicitudService extends BaseService<Solicitud, Long, SolicitudRepo
 	public SolicitudService(SolicitudRepository repo) {
 		super(repo);
 		// TODO Auto-generated constructor stub
+	}
+	
+	public Solicitud solicitudPendiente() {
+		return repositorio.encontrarSolicitudPendiente();
+	}
+	
+	public List<Solicitud> encontrarSolicitudRecibidas(long id) {
+		return repositorio.encontrarSolicitudesEnviaUsuario(id);
+	}
+	
+	public List<Solicitud> encontrarSolicitudMandadas(long id) {
+		return repositorio.encontrarSolicitudesMandaUsuario(id);
 	}
 
 }

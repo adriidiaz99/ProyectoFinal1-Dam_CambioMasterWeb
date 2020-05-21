@@ -25,8 +25,7 @@
                     <a href="/usuario/misProductos">
                         <li>
                             <div id="misProductos" class="pt-2 float-left w-100 opcionMenu p-0">
-                                <img src="../img/misProductos.png" alt="Icono de un Mis productos"
-                                    class="float-left">
+                                <img src="../img/misProductos.png" alt="Icono de un Mis productos" class="float-left">
                                 <p class="float-left p-0">Mis productos</p>
                             </div>
                         </li>
@@ -34,8 +33,7 @@
                     <a href="/usuario/misCambios">
                         <li>
                             <div id="misCambios" class="pb-2 float-left w-100 opcionMenu p-0">
-                                <img src="../img/misCambios.png" alt="Icono de un mis cambios"
-                                    class="float-left">
+                                <img src="../img/misCambios.png" alt="Icono de un mis cambios" class="float-left">
                                 <p class="float-left categoriaActiva">Mis cambios</p>
                             </div>
                         </li>
@@ -48,8 +46,7 @@
                     <a href="/usuario/electronica">
                         <li>
                             <div id="electronica" class="pt-0 float-left w-100 opcionMenu p-0">
-                                <img src="../img/electronica.png" alt="Icono de electrónica"
-                                    class="float-left">
+                                <img src="../img/electronica.png" alt="Icono de electrónica" class="float-left">
                                 <p class="float-left p-0">Electrónica</p>
                             </div>
                         </li>
@@ -107,8 +104,7 @@
                     <a href="/usuario/ultimosCambios">
                         <li>
                             <div id="ultimosCambios" class="pt-2 float-left w-100 opcionMenu p-0">
-                                <img src="../img/ultimosCambios.png" alt="Icono de últimos cambios"
-                                    class="float-left">
+                                <img src="../img/ultimosCambios.png" alt="Icono de últimos cambios" class="float-left">
                                 <p class="float-left p-0">Últimos cambios</p>
                             </div>
                         </li>
@@ -133,8 +129,7 @@
                 </div>
                 <a href="/usuario/misProductos">
                     <div id="misProductosTop" class="float-left pt-1 col-2 opcionMenu p-0">
-                        <img src="../img/misProductos.png" alt="Icono de Mis productos"
-                            class="float-left pt-0">
+                        <img src="../img/misProductos.png" alt="Icono de Mis productos" class="float-left pt-0">
                         <p class="float-left">Mis Productos</p>
                     </div>
                 </a>
@@ -154,7 +149,7 @@
                     </div>
                 </a>
             </div>
-                
+
             <div id="contenedor-cambios" class="w-100 float-left pl-5">
                 <div id="cabeceraMisProductos" class="col-10 float-left mt-3 mb-0">
                     <img src="../img/misCambios.png" class="float-left col-1">
@@ -174,96 +169,53 @@
                         <p class="m-0 w-100 text-center">Cambios en proceso</p>
                     </div>
                     <div id="contenedor-cambios" class="w-100 float-left pl-5 pb-5">
-                        <div class="solicitudEnviada border mt-5 p-0 pb-1 pt-1 float-left mr-5 ml-4">
+                        <div th:each="solicitud : ${misSolicitudesEnviadas}"
+                            class="solicitudEnviada border mt-5 p-0 pb-1 pt-1 float-left mr-5 ml-4">
                             <div class="productoCambiado col-5 float-left ml-3 mr-1 pr-0">
-                                <p>Animal Crossing: new Horizons (Switch)</p>
-                                <p class="blockquote-footer">De alejandromoreno12</p>
+                                <p th:text="${solicitud.productoManda.nombre}">Animal Crossing: new Horizons (Switch)
+                                </p>
+                                <p class="blockquote-footer" th:text="${solicitud.usuarioSolicita.nombre}">De
+                                    alejandromoreno12</p>
                                 <div class="valorAprox col-10 border pl-3">
-                                    <p class="m-0">Valor aproximado: 60</p>
+                                    <p class="m-0">Valor aproximado: <span
+                                            th:text="${solicitud.productoManda.precioCompra}">60</span></p>
                                 </div>
                             </div>
                             <img src="../img/cambio.png" class="float-left col-1 p-0 mr-1">
                             <div class="productoCambiado col-5 float-left ml-5 pr-0">
-                                <p>Animal Crossing: new Horizons (Switch)</p>
-                                <p class="blockquote-footer">De alejandromoreno12</p>
+                                <p th:text="${solicitud.productoRecibe.nombre}">Animal Crossing: new Horizons (Switch)
+                                </p>
+                                <p class="blockquote-footer" th:text="${solicitud.usuarioRecibe.nombre}">De
+                                    alejandromoreno12</p>
                                 <div class="valorAprox col-10 border pl-3">
-                                    <p class="m-0">Valor aproximado: 60</p>
+                                    <p class="m-0">Valor aproximado: <span
+                                            th:text="${solicitud.productoManda.precioCompra}">60</span></p>
                                 </div>
                             </div>
                         </div>
-                        <div class="solicitudEnviada border mt-5 p-0 pb-1 pt-1 float-left mr-5 ml-4">
+
+                        <div th:each="solicitud : ${misSolicitudes}" 
+                            class="solicitudRecibida border mt-5 p-0 pb-1 pt-1 float-left mr-5 ml-4 d-none">
                             <div class="productoCambiado col-5 float-left ml-3 mr-1 pr-0">
-                                <p>Animal Crossing: new Horizons (Switch)</p>
-                                <p class="blockquote-footer">De alejandromoreno12</p>
+                                <p th:text="${solicitud.productoManda.nombre}">Animal Crossing: new Horizons (Switch)
+                                </p>
+                                <p class="blockquote-footer" th:text="${solicitud.usuarioSolicita.nombre}">De
+                                    alejandromoreno12</p>
                                 <div class="valorAprox col-10 border pl-3">
-                                    <p class="m-0">Valor aproximado: 60</p>
+                                    <p class="m-0">Valor aproximado: <span
+                                            th:text="${solicitud.productoManda.precioCompra}">60</span></p>
                                 </div>
                             </div>
                             <img src="../img/cambio.png" class="float-left col-1 p-0 mr-1">
                             <div class="productoCambiado col-5 float-left ml-5 pr-0">
-                                <p>Animal Crossing: new Horizons (Switch)</p>
-                                <p class="blockquote-footer">De alejandromoreno12</p>
+                                <p th:text="${solicitud.productoRecibe.nombre}">Animal Crossing: new Horizons (Switch)
+                                </p>
+                                <p class="blockquote-footer" th:text="${solicitud.usuarioRecibe.nombre}">De
+                                    alejandromoreno12</p>
                                 <div class="valorAprox col-10 border pl-3">
-                                    <p class="m-0">Valor aproximado: 60</p>
+                                    <p class="m-0">Valor aproximado: <span
+                                            th:text="${solicitud.productoManda.precioCompra}">60</span></p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="solicitudEnviada border mt-5 p-0 pb-1 pt-1 float-left mr-5 ml-4">
-                            <div class="productoCambiado col-5 float-left ml-3 mr-1 pr-0">
-                                <p>Animal Crossing: new Horizons (Switch)</p>
-                                <p class="blockquote-footer">De alejandromoreno12</p>
-                                <div class="valorAprox col-10 border pl-3">
-                                    <p class="m-0">Valor aproximado: 60</p>
-                                </div>
-                            </div>
-                            <img src="../img/cambio.png" class="float-left col-1 p-0 mr-1">
-                            <div class="productoCambiado col-5 float-left ml-5 pr-0">
-                                <p>Animal Crossing: new Horizons (Switch)</p>
-                                <p class="blockquote-footer">De alejandromoreno12</p>
-                                <div class="valorAprox col-10 border pl-3">
-                                    <p class="m-0">Valor aproximado: 60</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="solicitudRecibida border mt-5 p-0 pb-1 pt-1 d-none float-left mr-5 ml-4">
-                            <div class="productoCambiado col-5 float-left ml-3 mr-1 pr-0">
-                                <p>Animal Crossing: new Horizons (Switch)</p>
-                                <p class="blockquote-footer">De alejandromoreno12</p>
-                                <div class="valorAprox col-10 border pl-3">
-                                    <p class="m-0">Valor aproximado: 60</p>
-                                </div>
-                            </div>
-                            <img src="../img/cambio.png" class="float-left col-1 p-0 mr-1">
-                            <div class="productoCambiado col-5 float-left ml-5 pr-0">
-                                <p>Animal Crossing: new Horizons (Switch)</p>
-                                <p class="blockquote-footer">De alejandromoreno12</p>
-                                <div class="valorAprox col-10 border pl-3">
-                                    <p class="m-0">Valor aproximado: 60</p>
-                                </div>
-                            </div>
-                            <div id="botonesMisProductos" class="float-right mt-1 mr-2 pt-3 text-right">
-                                <button id="Cancelar" class="float-left mr-1 botonRojo">Cancelar</button>
-                                <button id="Aceptar" class="float-left botonAzul">Aceptar</button>
-                            </div>
-                        </div>
-                        <div class="enProceso border mt-5 p-0 pb-1 pt-1 float-left d-none mr-5 ml-4">
-                            <div class="productoCambiado col-5 float-left ml-3 mr-1 pr-0">
-                                <p>Animal Crossing: new Horizons (Switch)</p>
-                                <p class="blockquote-footer">De alejandromoreno12</p>
-                                <div class="valorAprox col-10 border pl-3">
-                                    <p class="m-0">Valor aproximado: 60</p>
-                                </div>
-                            </div>
-                            <img src="../img/cambio.png" class="float-left col-1 p-0 mr-1">
-                            <div class="productoCambiado col-5 float-left ml-5 pr-0">
-                                <p>Animal Crossing: new Horizons (Switch)</p>
-                                <p class="blockquote-footer">De alejandromoreno12</p>
-                                <div class="valorAprox col-10 border pl-3">
-                                    <p class="m-0">Valor aproximado: 60</p>
-                                </div>
-                            </div>
-                            <div id="botonesMisProductos" class="float-right mt-1 mr-2 pt-3 text-right">
-                                <button id="Recibido" class="float-left botonAzul">Recibido</button>
                             </div>
                         </div>
 
@@ -287,6 +239,98 @@
             <a href="#"><img src="../img/instagram.png"></a>
         </div>
     </footer>
+
+    <script>
+
+        $(function () {
+
+            $("#solicitudesEnviadasLetrero").on("click", function () {
+
+                $("#solicitudesEnviadasLetrero").addClass("bg-white");
+
+                $("#solicitudesEnviadasLetrero").removeClass("text-white");
+
+                $("#solicitudesEnviadasLetrero").removeClass("bg-secondary");
+
+                $("#solicitudesRecibidasLetrero").removeClass("bg-white");
+
+                $("#solicitudesRecibidasLetrero").addClass("bg-secondary");
+
+                $("#solicitudesRecibidasLetrero").addClass("text-white");
+
+                $("#cambiosProcesoLetrero").removeClass("bg-white");
+
+                $("#cambiosProcesoLetrero").addClass("bg-secondary");
+
+                $("#cambiosProcesoLetrero").addClass("text-white");
+
+                $(".solicitudRecibida").addClass("d-none");
+
+                $(".solicitudEnviadas").removeClass("d-none");
+
+                $(".cambioEnProceso").addClass("d-none");
+
+            });
+
+            $("#solicitudesRecibidasLetrero").on("click", function () {
+
+                $("#solicitudesEnviadasLetrero").removeClass("bg-white");
+
+                $("#solicitudesEnviadasLetrero").addClass("bg-secondary");
+
+                $("#solicitudesEnviadasLetrero").addClass("text-white");
+
+                $("#solicitudesRecibidasLetrero").addClass("bg-white");
+
+                $("#solicitudesRecibidasLetrero").removeClass("bg-secondary");
+
+                $("#solicitudesRecibidasLetrero").removeClass("text-white");
+
+                $("#cambiosProcesoLetrero").removeClass("bg-white");
+
+                $("#cambiosProcesoLetrero").addClass("bg-secondary");
+
+                $("#cambiosProcesoLetrero").addClass("text-white");
+
+                $(".solicitudRecibida").removeClass("d-none");
+
+                $(".solicitudEnviadas").addClass("d-none");
+
+                $(".cambioEnProceso").addClass("d-none");
+
+            });
+
+            $("#cambiosEnProceso").on("click", function () {
+
+                $("#solicitudesEnviadasLetrero").removeClass("bg-white");
+
+                $("#solicitudesEnviadasLetrero").addClass("bg-secondary");
+
+                $("#solicitudesEnviadasLetrero").addClass("text-white");
+
+                $("#solicitudesRecibidasLetrero").removeClass("bg-white");
+
+                $("#solicitudesRecibidasLetrero").addClass("bg-secondary");
+
+                $("#solicitudesRecibidasLetrero").addClass("text-white");
+
+                $("#solicitudesRecibidasLetrero").addClass("bg-white");
+
+                $("#solicitudesRecibidasLetrero").removeClass("bg-secondary");
+
+                $("#solicitudesRecibidasLetrero").removeClass("text-white");
+
+                $(".solicitudRecibida").addClass("d-none");
+
+                $(".solicitudEnviadas").addClass("d-none");
+
+                $(".cambioEnProceso").removeClass("d-none");
+
+            });
+
+        });
+
+    </script>
 </body>
 
 </html>

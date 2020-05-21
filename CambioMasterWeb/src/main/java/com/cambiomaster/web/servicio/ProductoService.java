@@ -14,6 +14,7 @@ import com.cambiomaster.web.modelo.Libro;
 import com.cambiomaster.web.modelo.Moda;
 import com.cambiomaster.web.modelo.Musica;
 import com.cambiomaster.web.modelo.Producto;
+import com.cambiomaster.web.modelo.Usuario;
 import com.cambiomaster.web.repositorios.ProductoRepository;
 import com.cambiomaster.web.servicio.base.BaseService;
 
@@ -35,107 +36,38 @@ public class ProductoService extends BaseService<Producto, Long, ProductoReposit
 		}
 	}
 
-	public List<Producto> filtrarElectronica(List<Producto> listaUsuario) {
-		List<Producto> electronica = new ArrayList<Producto>();
-
-		for (Producto p : repositorio.findAll()) {
-			if (p instanceof Electronica)
-				if (listaUsuario.isEmpty()) {
-					electronica.add(p);
-				} else {
-					for (Producto p1 : listaUsuario) {
-						if (!p1.equals(p))
-							electronica.add(p);
-					}
-				}
-		}
-		return electronica;
+	/*public List<Producto> filtrarElectronica(long id) {
+		return repositorio.filtrarElectronica(id);
+	}*/
+	
+	public List<Electronica> filtrarElectronica(long id){
+		return repositorio.filtrarAllElectronica(id);
 	}
-
-	public List<Producto> filtrarModa(List<Producto> listaUsuario) {
-		List<Producto> moda = new ArrayList<Producto>();
-
-		for (Producto p : repositorio.findAll()) {
-			if (p instanceof Moda)
-				if (listaUsuario.isEmpty()) {
-					moda.add(p);
-				} else {
-					for (Producto p1 : listaUsuario) {
-						if (!p1.equals(p))
-							moda.add(p);
-					}
-				}
-		}
-		return moda;
+	
+	public List<Moda> filtrarModa(long id){
+		return repositorio.filtrarAllModa(id);
 	}
-
-	public List<Producto> filtrarLibros(List<Producto> listaUsuario) {
-		List<Producto> libros = new ArrayList<Producto>();
-
-		for (Producto p : repositorio.findAll()) {
-			if (p instanceof Libro)
-				if (listaUsuario.isEmpty()) {
-					libros.add(p);
-				} else {
-					for (Producto p1 : listaUsuario) {
-						if (!p1.equals(p))
-							libros.add(p);
-					}
-				}
-
-		}
-		return libros;
+	
+	public List<Musica> filtrarMusica(long id){
+		return repositorio.filtrarAllMusica(id);
 	}
-
-	public List<Producto> filtrarMusica(List<Producto> listaUsuario) {
-		List<Producto> musica = new ArrayList<Producto>();
-
-		for (Producto p : repositorio.findAll()) {
-			if (p instanceof Musica)
-				if (listaUsuario.isEmpty()) {
-					musica.add(p);
-				} else {
-					for (Producto p1 : listaUsuario) {
-						if (!p1.equals(p))
-							musica.add(p);
-					}
-				}
-		}
-		return musica;
+	
+	public List<Calzado> filtrarCalzado(long id){
+		return repositorio.filtrarAllCalzado(id);
 	}
-
-	public List<Producto> filtrarAlimentacion(List<Producto> listaUsuario) {
-		List<Producto> alimentacion = new ArrayList<Producto>();
-
-		for (Producto p : repositorio.findAll()) {
-			if (p instanceof Alimentacion)
-				if (listaUsuario.isEmpty()) {
-					alimentacion.add(p);
-				} else {
-					for (Producto p1 : listaUsuario) {
-						if (!p1.equals(p))
-							alimentacion.add(p);
-					}
-				}
-		}
-		return alimentacion;
+	
+	public List<Alimentacion> filtrarAlimentacion(long id){
+		return repositorio.filtrarAllAlimentacion(id);
 	}
-
-	public List<Producto> filtrarCalzado(List<Producto> listaUsuario) {
-		List<Producto> calzados = new ArrayList<Producto>();
-
-		for (Producto p : repositorio.findAll()) {
-			if (p instanceof Calzado)
-				if (listaUsuario.isEmpty()) {
-					calzados.add(p);
-				} else {
-					for (Producto p1 : listaUsuario) {
-						if (!p1.equals(p))
-							calzados.add(p);
-					}
-				}
-		}
-		return calzados;
+	
+	public List<Libro> filtrarLibros(long id){
+		return repositorio.filtrarAllLibro(id);
 	}
+	
+	
+	public List<Producto> filtrarMisProductos(Usuario usuario){
+		return repositorio.findByUsuario(usuario);
+	}
+	
 
 }

@@ -159,7 +159,7 @@
 
 
                 <div id="agregarP" class="w-100 float-left pl-5 pt-5">
-                    <form method="POST" th:action=" @{/usuario/misProductos/agregarMusica/submit} : @{/usuario/misProductos/editarMusica/submit}" th:object="${producto}">
+                    <form method="POST" th:action="${usuario.id} == 0 ? @{/usuario/misProductos/agregarMusica/submit} : @{/usuario/misProductos/editarMusica/submit}" th:object="${producto}">
 
                         <h4 class="float-left pt-4 w-100" th:text="${producto.id} == 0 ? 'Agregar música' : 'Editar música'">Agregar producto</h4>
                         <input type="number" class="invisible" th:field="*{id}">

@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div id="cambioMaster-wrapper" class="container-fluid col-12 border p-0 float-left">
+    <div th:object="${usuario}" id="cambioMaster-wrapper" class="container-fluid col-12 border p-0 float-left">
         <nav id="menu" class="float-left col-2 p-0 sticky-top d-block m-0">
             <a href="/usuario/principal">
                 <div id="cambioMasterPrincipal" class="float-left border border-left-0 border-top-0 w-100">
@@ -141,7 +141,7 @@
                 </a>
 
                 <a th:href="@{/usuario/miPerfil}">
-                    <div id="usuarioTop" th:object="${usuario}" class="float-left col-2 opcionMenu border-left">
+                    <div id="usuarioTop" class="float-left col-2 opcionMenu border-left">
 
                         <p class="float-left pt-1 pb-0 mb-0 ml-4" th:text="${usuario.username}">UserExample</p>
 
@@ -156,7 +156,7 @@
                     <h3 class="float-left">Mis productos</h3>
                 </div>
                 <div id="cabeceraMisProductos" class="col-5 p-0 pt-4 float-left">
-                    <p class="float-left pr-2">100000</p>
+                    <p th:text="${usuario.listaProductos.size()}" class="float-left pr-2">100000</p>
                     <p class="float-left text-right">Resultados</p>
                 </div>
                 <div id="botonesMisProductos" class="float-left mt-5 col-12 ml-2 pt-3 text-right">

@@ -54,18 +54,13 @@ public abstract class Usuario implements UserDetails{
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	@OneToMany(mappedBy = "usuario")
-	private List<Producto> listaProductos = new ArrayList<Producto>();
+	private List<Producto> listaProductos = new ArrayList<>();
 
 	@OneToMany(mappedBy = "usuarioRecibe")
-	private List<Cambio> listaCambiosRecibe = new ArrayList<Cambio>();
+	private List<Cambio> listaCambiosRecibe = new ArrayList<>();
 
 	@OneToMany(mappedBy = "usuarioManda")
-	private List<Cambio> listaCambiosManda = new ArrayList<Cambio>();
-
-	@OneToOne
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
-	private Buzon buzon;
+	private List<Cambio> listaCambiosManda = new ArrayList<>();
 	
 	public Usuario(String username, @NotEmpty String nombre, String telefono, String email, @NotEmpty String direccion,
 			@NotEmpty String password, String valoracion) {
@@ -100,24 +95,6 @@ public abstract class Usuario implements UserDetails{
 	public void removeCambioRecibe(Cambio c) {
 		this.listaCambiosRecibe.remove(c);
 		c.setUsuarioRecibe(null);
-	}
-
-	public void addCambioManda(Cambio c) {
-		this.listaCambiosManda.add(c);
-		c.setUsuarioManda(this);
-	}
-
-	public void removeCambioManda(Cambio c) {
-		this.listaCambiosManda.remove(c);
-		c.setUsuarioManda(null);
-	}
-
-	public void addBuzon(Buzon b) {
-		this.setBuzon(b);
-	}
-
-	public void removeBuzon(Buzon b) {
-		this.setBuzon(null);
 	}
 
 	@Override
