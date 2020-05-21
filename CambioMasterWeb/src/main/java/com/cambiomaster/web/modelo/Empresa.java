@@ -28,7 +28,7 @@ public class Empresa extends Usuario {
 	private LocalDate fechaFundada;
 
 	public Empresa(String username, @NotEmpty String nombre, String telefono, String email, @NotEmpty String direccion,
-			@NotEmpty String password, String valoracion, @NotEmpty LocalDate fechaFundada) {
+			@NotEmpty String password, double valoracion, @NotEmpty LocalDate fechaFundada) {
 		super(username, nombre, telefono, email, direccion, password, valoracion);
 		this.fechaFundada = fechaFundada;
 	}

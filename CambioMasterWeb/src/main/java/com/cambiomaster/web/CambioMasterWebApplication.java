@@ -31,9 +31,9 @@ public class CambioMasterWebApplication {
 			public void run(String... args) throws Exception {
 				BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-				Usuario ug1 = new UsuarioGeneral("admin", "Admin", "123456789", "admin@admin.com", "Sevilla", encoder.encode("admin"), "a", LocalDate.parse("2019-11-01"),
+				Usuario ug1 = new UsuarioGeneral("admin", "Admin", "123456789", "admin@admin.com", "Sevilla", encoder.encode("admin"), 0.0 , LocalDate.parse("2019-11-01"),
 						"a", "a", true);
-				Usuario ug2 = new UsuarioGeneral("Usuario", "b", "a", "a", "a", encoder.encode("1234"),"a", LocalDate.parse("2019-11-01"),
+				Usuario ug2 = new UsuarioGeneral("Usuario", "b", "a", "a", "a", encoder.encode("1234"),0.0 , LocalDate.parse("2019-11-01"),
 						"a", "a", false);
 				
 				Producto e1 = new Electronica("b", 4.2, LocalDate.now(), "Hola", "lolo", "Electrónica", false, 0.0, "Camión");

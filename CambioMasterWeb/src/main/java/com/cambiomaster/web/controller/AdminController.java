@@ -121,7 +121,7 @@ public class AdminController {
 
 		System.out.println(empresa);
 
-		empresa.setValoracion("0.0");
+		empresa.setValoracion(0.0);
 
 		servicioUsuario.register(empresa);
 		return "redirect:/admin/gestionEmpresas";
@@ -129,7 +129,7 @@ public class AdminController {
 
 	@PostMapping("/editarEmpresa/submit")
 	public String editandoEmpresa(@ModelAttribute("empresa") Empresa empresa) {
-		if (empresa.getPassword() == null) {
+		if (empresa.getPassword() == "") {
 			empresa.setPassword(servicioUsuario.findById(empresa.getId()).getPassword());
 			servicioUsuario.edit(empresa);
 		} else {
@@ -139,11 +139,8 @@ public class AdminController {
 	}
 
 	@PostMapping("/editarUsuario/submit")
-	public String editandoEmpresa(@ModelAttribute("usuario") UsuarioGeneral usuario) {
-
-		Usuario u2 = servicioUsuario.findById(usuario.getId());
-
-		if (usuario.getPassword() == null) {
+	public String editandoUsuario(@ModelAttribute("usuario") UsuarioGeneral usuario) {
+		if (usuario.getPassword().equals("")) {
 			usuario.setPassword(servicioUsuario.findById(usuario.getId()).getPassword());
 			servicioUsuario.edit(usuario);
 		} else {
@@ -164,7 +161,7 @@ public class AdminController {
 
 		System.out.println(usuario);
 
-		usuario.setValoracion("0.0");
+		usuario.setValoracion(0.0);
 
 		servicioUsuario.register(usuario);
 		return "redirect:/admin/principal";
@@ -182,6 +179,20 @@ public class AdminController {
 
 		return "redirect:/admin/principal";
 	}
+	
+	@GetMapping("/eliminarEmpresa/{id}")
+	public String eliminarEmpresa(@PathVariable long id) {
+		Usuario u1 = servicioUsuario.findById(id);
+
+		for (Producto producto : u1.getListaProductos()) {
+			servicioProducto.delete(producto);
+		}
+
+		servicioUsuario.deleteById(id);
+
+		return "redirect:/admin/gestionEmpresas";
+	}
+
 
 	@GetMapping("/eliminarProducto/{id}")
 	public String eliminarProducto(@PathVariable long id) {

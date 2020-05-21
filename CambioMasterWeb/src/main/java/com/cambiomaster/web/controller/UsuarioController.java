@@ -396,15 +396,7 @@ public class UsuarioController {
 
 		model.addAttribute("usuario", usuario);
 
-		for (Producto p1 : usuario.getListaProductos()) {
-			for (Producto p : servicioProducto.findAll()) {
-				if (!p.equals(p1)) {
-					listaPrincipal.add(p);
-				}
-			}
-
-		}
-		model.addAttribute("productos", listaPrincipal);
+		model.addAttribute("productos", servicioProducto.filtrarAllPrincipal(usuario));
 		return "principal";
 	}
 
@@ -517,6 +509,30 @@ public class UsuarioController {
 		model.addAttribute("usuario", usuario);
 
 		return "miPerfil";
+	}
+	
+	@GetMapping("/editarPerfil")
+	public String editarUsuario(Model model) {
+		
+		Usuario usuario;
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetail = (UserDetails) auth.getPrincipal();
+		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
+		
+		model.addAttribute("usuario", usuario);
+		return "registro";
+	}
+	
+	@PostMapping("/editarPerfil/submit")
+	public String editandoUsuario(@ModelAttribute("usuario") UsuarioGeneral usuario) {
+		if (usuario.getPassword().equals("")) {
+			usuario.setPassword(servicioUsuario.findById(usuario.getId()).getPassword());
+			servicioUsuario.edit(usuario);
+		} else {
+			servicioUsuario.register(usuario);
+		}
+
+		return "redirect:/usuario/principal";
 	}
 
 	@GetMapping("/ultimosCambios")

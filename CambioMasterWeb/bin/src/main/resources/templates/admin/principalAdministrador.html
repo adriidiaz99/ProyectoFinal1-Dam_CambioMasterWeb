@@ -128,44 +128,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>UserExample</td>
-                            <td>User</td>
-                            <td>apellido</td>
-                            <td>ejemplo</td>
-                            <td>11/06/1999</td>
-                            <td>+34666666666</td>
-                            <td>ejemplo@ejemplo.com</td>
-                            <td><button id class="editar float-left mr-1 ">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>UserExample</td>
-                            <td>User</td>
-                            <td>apellido</td>
-                            <td>ejemplo</td>
-                            <td>11/06/1999</td>
-                            <td>+34666666666</td>
-                            <td>ejemplo@ejemplo.com</td>
-                            <td><button id class="editar float-left mr-1 ">Edit</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>UserExample</td>
-                            <td>Jose Manuel</td>
-                            <td>Del caro</td>
-                            <td>y del moral</td>
-                            <td>11/06/1999</td>
-                            <td>+34666666666</td>
-                            <td>ejemplodelejemplo1@ejemplo.com</td>
-                            <td><button id class="editar float-left mr-1 ">Edit</button></td>
+                        <tr th:each="usuario : ${listaUsuarios}">
+                            <th scope="row" th:text="${listaUsuarios.indexOf(usuario) + 1}">1</th>
+                            <td th:text="${usuario.username}">UserExample</td>
+                            <td th:text="${usuario.nombre}">User</td>
+                            <td th:text="${usuario.apellido1}">apellido</td>
+                            <td th:text="${usuario.apellido2}">ejemplo</td>
+                            <td th:text="${usuario.fechaNacimiento}">11/06/1999</td>
+                            <td th:text="${usuario.telefono}">+34666666666</td>
+                            <td th:text="${usuario.email}">ejemplo@ejemplo.com</td>
+                            <td><a th:href="@{/admin/editarUsuario/{id}(id = ${usuario.id})}"><button id class="editar float-left mr-1 ">Edit</button></a></td>
+                            <td><a th:href="@{/admin/eliminarUsuario/{id}(id = ${usuario.id})}"><button id="Eliminar" class="float-left mr-1 botonRojo">Eliminar</button></a></td>
                         </tr>
                     </tbody>
                 </table>
                 <div id="botonesMisProductos" class="float-right mt-5 mb-2 pt-3 text-right">
-                    <button id="Eliminar" class="float-left mr-1 botonRojo">Eliminar</button>
-                    <button id="Agregar" class="float-left botonAzul">Agregar</button>
+                    <a th:href="@{/admin/gestionUsuario/registroUsuario}"><button id="Agregar" class="float-left botonAzul">Agregar</button></a>
                 </div>
 
             </div>

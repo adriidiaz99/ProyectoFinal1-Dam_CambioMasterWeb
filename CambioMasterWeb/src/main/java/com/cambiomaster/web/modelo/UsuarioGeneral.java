@@ -33,7 +33,7 @@ public class UsuarioGeneral extends Usuario {
 	private boolean admin;
 
 	public UsuarioGeneral(String username, @NotEmpty String nombre, String telefono, String email,
-			@NotEmpty String direccion, @NotEmpty String password, String valoracion, LocalDate fechaNacimiento,
+			@NotEmpty String direccion, @NotEmpty String password, double valoracion, LocalDate fechaNacimiento,
 			@NotEmpty String apellido1, String apellido2, boolean admin) {
 		super(username, nombre, telefono, email, direccion, password, valoracion);
 		this.fechaNacimiento = fechaNacimiento;

@@ -154,18 +154,19 @@
                 <img src="../img/fondoAlimentacion.jpg" class="float-left col-5 p-0 m-0">
                 <div id="formFiltrar" class="float-left pl-3 col-5">
                     <h2>Filtra tus alimentos:</h2>
-                    <form name="formFiltrarPoductos">
+                    <form name="formFiltrarPoductos" onsubmit="return false">
                         <div id="divValorEstimado" class="float-left w-100 mt-2">
                             <input type="radio" name="eleccionFiltro" value="valorEstimado"> Valor estimado <span
-                                class="invisible">de <input type="text"> a <input type="text"></span>
+                                class="invisible">de <input id="min" min="0" type="number"> a <input id="max" min="0"
+                                    type="number"></span>
                         </div>
                         <div id="divLocalidad" class="float-left w-100 mt-2">
                             <input type="radio" name="eleccionFiltro" value="localidad"> Localidad <input type="text"
-                                class="invisible">
+                                id="inputLocalidad" class="invisible">
                         </div>
                         <div id="divValoracion" class="float-left w-100 mt-2">
                             <input type="radio" name="eleccionFiltro" value="valoracion"> Valoración <input
-                                type="number" max="5" min="0" class="invisible">
+                                type="number" id="inputValoracion" max="5" min="0" class="invisible">
                         </div>
                         <button id="botonFiltrar"
                             class="bg-secondary border-0 text-white col-3 rounded">Filtrar</button>
@@ -184,8 +185,15 @@
                         (Switch)</p>
                     <p class="blockquote-footer">Fecha de compra: <span
                             th:text="${producto.fechaCompra}">20/03/2012</span></p>
+                    <p class="blockquote-footer">Propietario: <span
+                            th:text="${producto.usuario.username}">20/03/2012</span></p>
+                    <p class="blockquote-footer">Valoracion de usuario: <span th:text="${producto.usuario.valoracion}"
+                            class="valoracion">20/03/2012</span> / 5</p>
+                    <p class="blockquote-footer">Localidad: <span class="localidad"
+                            th:text="${producto.usuario.direccion}">sevilla</span></p>
                     <div class="valorAprox w-100 border pl-3">
-                        <p class="m-0">Valor aproximado: <span th:text="${producto.precioCompra}">60</span></p>
+                        <p class="m-0">Valor aproximado: <span class="valor" th:value="${producto.precioCompra}"
+                                th:text="${producto.precioCompra}">60</span></p>
                     </div>
                 </div>
             </div>
@@ -194,16 +202,7 @@
 
     </div>
 
-    <footer class="float-left container-fluid">
-        <p class="float-left d-block">© 2016 Cambio Master SL todos los derechos reservados.</p>
-        <p class="float-left d-block"><a href="/politicaDeDatos">Política de datos</a></p>
-        <p class="float-left d-block"><a href="/avisoLegal">Aviso legal</a></p>
-        <div id="redes" class="text-center">
-            <a href="#"><img src="../img/twitter.png" class=""></a>
-            <a href="#"><img src="../img/facebook.png"></a>
-            <a href="#"><img src="../img/instagram.png"></a>
-        </div>
-    </footer>
+    <footer th:replace="~{fragmentos/piePagina::piePagina}"></footer>
 
     <script>
         $(function () {
@@ -235,6 +234,64 @@
 
                 }
 
+
+            });
+
+            $("#botonFiltrar").on("click", function () {
+
+                switch ($("input[name='eleccionFiltro']:checked").val()) {
+
+                    case "valorEstimado":
+                        var min = parseFloat($("#min").val());
+                        var max = parseFloat($("#max").val());
+                        var producto;
+
+                        $(".producto").addClass("invisible");
+
+                        for (let index = 0; index < $(".producto").length; index++) {
+                            producto = parseFloat($(".producto").eq(index).children(".valorAprox").children("#valor").val())
+                            if (parseFloat($(".valor").eq(index).text()) > min && parseFloat($(".valor").eq(index).text()) < max) {
+                                $(".producto").eq(index).removeClass("invisible");
+                            }
+
+                        }
+
+
+                        break;
+                        ;
+
+                    case "localidad":
+
+                        var localidadIntroducida = $("#inputLocalidad").val();
+
+                        $(".producto").addClass("invisible");
+
+                        for (let index = 0; index < $(".producto").length; index++) {
+                            if (String($(".localidad").eq(index).text().toLowerCase()) === String(localidadIntroducida.toLowerCase())) {
+                                $(".producto").eq(index).removeClass("invisible");
+                            }
+
+                        }
+                        break;
+                        ;
+
+                    case "valoracion":
+                        var valoracion = parseFloat($("#inputValoracion").val());
+                        var producto;
+
+                        $(".producto").addClass("invisible");
+
+                        for (let index = 0; index < $(".producto").length; index++) {
+
+                            if (parseFloat($(".valoracion").eq(index).text()) == valoracion) {
+                                $(".producto").eq(index).removeClass("invisible");
+                            }
+
+                        }
+
+                        break;
+                        ;
+                }
 
             });
 

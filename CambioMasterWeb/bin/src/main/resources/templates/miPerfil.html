@@ -13,11 +13,11 @@
 </head>
 
 <body>
-    <div id="cambioMaster-wrapper" class="container-fluid col-12 border p-0 float-left">
+    <div id="cambiomaster-wrapper" class="container-fluid col-12 border p-0 float-left">
         <nav id="menu" class="float-left col-2 p-0 sticky-top d-block m-0">
             <a href="/usuario/principal">
-                <div id="cambioMasterPrincipal" class="float-left border border-left-0 border-top-0 w-100">
-                    <img src="../img/cambioMasterWeb.png" alt="Icono de cambioMaster" class="w-100">
+                <div id="cambiomasterPrincipal" class="float-left border border-left-0 border-top-0 w-100">
+                    <img src="../img/cambiomasterWeb.png" alt="Icono de cambiomaster" class="w-100">
                 </div>
             </a>
             <div id="seccionMis" class="float-left w-100 border border-top-0 d-block border-bottom-0">
@@ -125,7 +125,7 @@
             </div>
 
         </nav>
-        <section id="cambioMaster-container" class="float-left col-10">
+        <section id="cambiomaster-container" class="float-left col-10">
             <div id="menuArriba" class="float-left p-0 m-0 w-100 border">
                 <div id="buscador" class="col-4 float-left border">
                     <button class="col-2"><img src="../img/lupa.png"></button>
@@ -145,19 +145,23 @@
                     </div>
                 </a>
 
-                <div id="usuarioTop" class="float-left col-2 opcionMenu border-left">
-                    <p class="float-left pt-1 pb-0 mb-0 ml-4">UserExample</p>
-                    <img src="../img/usuario.png" alt="Icono de un usuario" class="float-left">
-                </div>
+                <a th:href="@{/usuario/miPerfil}">
+                    <div id="usuarioTop" th:object="${usuario}" class="float-left col-2 opcionMenu border-left">
+
+                        <p class="float-left pt-1 pb-0 mb-0 ml-4" th:text="${usuario.username}">UserExample</p>
+
+                        <img src="../img/usuario.png" alt="Icono de un usuario" class="float-left">
+                    </div>
+                </a>
             </div>
            
-            <div id="wrapper-miPerfil" class="w-100 float-left pl-5">
+            <div id="wrapper-miPerfil" th:object="${usuario}" class="w-100 float-left pl-5">
                 <div id="cabeceraMiPerfil" class="col-10 float-left mt-3 mb-0">
                     <img src="../img/usuario.png" class="float-left col-1">
-                    <h3 class="float-left">UserExample</h3>
+                    <h3 th:text="${usuario.username}" class="float-left">UserExample</h3>
                 </div>
 
-                <div id="miPerfil" th:object="${usuario}" class="col-10 float-left ml-5 pl-3 border p-0 mt-5">
+                <div id="miPerfil" class="col-10 float-left ml-5 pl-3 border p-0 mt-5">
 
                     <div id="contenedor-miPerfil" class="w-100 float-left pl-2 pb-5">
                         <div id="fotoPerfil" class="border col-3 mt-5 p-0 pb-1 pt-1 float-left ml-4">
@@ -168,14 +172,15 @@
                         <div id="informacionBasica" th:object="${usuario}" class="border col-8 mt-5 pl-5 p-0 pb-1 pt-1 float-left ml-4">
                             <p id="perfilNick" th:text="${usuario.username}">UserExample</p>
                             <p id="perfilName" th:text="${usuario.nombre}">Nombre de ejemplo</p>
-                            <p id="perfilApellido" th:text="${usuario.apellido1} + ${usuario.apellido2}">Apellido de ejemplo</p>
-                            <p id="perfilFechaNacimiento">Nació el <span th:text="${usuario.fechaNacimiento}">12/02/1999</span></p>
+                            <p id="perfilApellido" th:if=" ${usuario instanceof T(com.cambiomaster.web.modelo.UsuarioGeneral)}" th:text="${usuario.apellido1} + ${usuario.apellido2}">Apellido de ejemplo</p>
+                            <p id="perfilFechaNacimiento" th:if=" ${usuario instanceof T(com.cambiomaster.web.modelo.UsuarioGeneral)}"><span >Nació</span> el <span th:text="${usuario.fechaNacimiento}">12/02/1999</span></p>
+                            <p id="perfilFechaNacimiento" th:if=" ${usuario instanceof T(com.cambiomaster.web.modelo.Empresa)}"><span>Fundación</span> el <span th:text="${usuario.fechaFundada}">12/02/1999</span></p>
                             <p id="perfilLocalidad">Reside en <span th:text="${usuario.direccion}">Salteras, Sevilla</span></p>
                             <p id="perfilEmail">Email: <span th:text="${usuario.email}">example@example.com</span></p>
                             <p id="perfilTelefono">Teléfono de contacto: <span th:text="${usuario.telefono}">+34611111111</span></p>
                         </div>
                         <div id="botonEditarPerfil" class="float-right mt-5 mr-4">
-                            <button id="editarPerfil" class="bg-secondary text-white border-0">Editar perfil</button>
+                            <a th:if=" ${usuario instanceof T(com.cambiomaster.web.modelo.UsuarioGeneral)}" th:href="@{/usuario/editarPerfil/{id}(id = ${usuario.id})}"><button id="editarPerfil" class="bg-secondary text-white border-0">Editar perfil</button></a>
                         </div>
 
 

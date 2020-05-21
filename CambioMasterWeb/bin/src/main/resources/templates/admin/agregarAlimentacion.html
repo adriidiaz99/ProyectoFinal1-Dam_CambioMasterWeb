@@ -126,7 +126,7 @@
         <section id="cambioMaster-container" class="float-left col-10">
             <div id="menuArriba" class="float-left p-0 m-0 w-100 border">
                 <div id="buscador" class="col-4 float-left border">
-                    <button class="col-2"><img src="./resources/img/lupa.png"></button>
+                    <button class="col-2"><img src="../../img/lupa.png"></button>
                     <input type="text" placeholder="Realiza una búsqueda...">
                 </div>
                 <a href="/usuario/misProductos">
@@ -142,10 +142,14 @@
                     </div>
                 </a>
 
-                <div id="usuarioTop" class="float-left col-2 opcionMenu border-left">
-                    <p class="float-left pt-1 pb-0 mb-0 ml-4">UserExample</p>
-                    <img src="../../img/usuario.png" alt="Icono de un usuario" class="float-left">
-                </div>
+                <a th:href="@{/usuario/miPerfil}">
+                    <div id="usuarioTop" th:object="${usuario}" class="float-left col-2 opcionMenu border-left">
+
+                        <p class="float-left pt-1 pb-0 mb-0 ml-4" th:text="${usuario.username}">UserExample</p>
+
+                        <img src="../../img/usuario.png" alt="Icono de un usuario" class="float-left">
+                    </div>
+                </a>
             </div>
             <div id="cabeceraConfiguracion" class="col-10 float-left mt-3 mb-0">
                 <img src="../../img/misProductos.png" class="float-left col-1">
@@ -153,13 +157,59 @@
             </div>
             <div id="contenedor-configuracion" class=" float-left col-10 border ml-5 mt-5 pl-5 ">
 
-                <h4 class="float-left pt-4 w-100">Agregar producto</h4>
+                <form method="POST" th:object="${producto}" th:action="@{/admin/editarAlimentacion/submit}">
 
-                <form name="categoria" th:action="" method="get">
-                    <button type="submit">Producto</button>
+                    <h4 class="float-left pt-4 w-100" th:text="${producto.id} == 0 ? 'Agregar alimentación' : 'Editar alimentación'">Agregar alimentación</h4>
+
+                    <div id="agregarP" class="w-100 float-left pl-5 pt-5">
+                        <input type="number" class="invisible" th:field="*{id}">
+                        <input type="text" class="invisible" th:field="*{categoria}">
+                        <label for="name"
+                            class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Nombre del
+                            producto</label>
+                        <input name="name" th:field="*{nombre}" id="name" class="float-left col-5 p-0 m-0 float-left" type="text"
+                            placeholder="Introduzca aquí el nombre del proyecto">
+                        </br></br>
+                        <label for="fechaCompra"
+                            class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Fecha de
+                            compra</label>
+                        <input name="fechaCompra" th:field="*{fechaCompra}" id="fechaCompra" class="float-left col-5 p-0 m-0 float-left"
+                            type="date">
+                        </br></br>
+                        <label for="precioCompra"
+                            class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Precio de
+                            compra</label>
+                        <input name="precioCompra" id="precioCompra" th:field="*{precioCompra}" class="float-left col-5 p-0 m-0 float-left"
+                            placeholder="Precio cuando lo compraste" type="number" min="0">
+                        </br></br>
+                        <label for="descripcion"
+                            class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Descripción</label>
+                        <input name="descripcion" th:field="*{descripcion}" placeholder="Con un máximo de 300 letras" id="descripcion"
+                            class="float-left col-5 p-0 m-0 float-left" type="text" maxlength="300">
+                        </br></br>
+                        <label for="productor"
+                            class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Productor</label>
+                        <input name="productor" th:field="*{productor}" placeholder="Quién elaboró el producto" id="productor"
+                            class="float-left col-5 p-0 m-0 float-left" type="text">
+                        </br></br>
+                        <div id="camposAlimentos">
+                            <label for="fechaCaducidad"
+                                class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Fecha
+                                de Caducidad</label>
+                            <input name="fechaCaducidad" th:field="*{fechaCaducidad}" placeholder="Quién elaboró el producto" id="camposAlimentos"
+                                class="float-left col-5 p-0 m-0 float-left" type="date">
+                            </br></br>
+                            <label for="peso"
+                                class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Peso</label>
+                            <input name="peso" th:field="*{peso}" placeholder="Peso del alimento" id="peso"
+                                class="float-left col-5 p-0 m-0 float-left" type="number" minlength="0">
+                            </br></br>
+                        </div>
+
+                        <button class="botonAzul float-right col-3 p-1 mr-4 mb-1">Agregar alimentación</button>
+                    </div>
+
                 </form>
-
-                
 
             </div>
 

@@ -145,38 +145,41 @@
                     </div>
                 </a>
 
-                <div id="usuarioTop" class="float-left col-2 opcionMenu border-left">
-                    <p class="float-left pt-1 pb-0 mb-0 ml-4">UserExample</p>
-                    <img src="../../img/usuario.png" alt="Icono de un usuario" class="float-left">
-                </div>
+                <a th:href="@{/usuario/miPerfil}">
+                    <div id="usuarioTop" th:object="${usuario}" class="float-left col-2 opcionMenu border-left">
+
+                        <p class="float-left pt-1 pb-0 mb-0 ml-4" th:text="${usuario.username}">UserExample</p>
+
+                        <img src="../img/usuario.png" alt="Icono de un usuario" class="float-left">
+                    </div>
+                </a>
             </div>
 
             <div id="cabeceraConfirmarCambios" class="col-10 float-left mt-3 mb-0">
                 <img src="../../img/misCambios.png" class="float-left col-1">
                 <h3 class="float-left">Mis cambios</h3>
             </div>
-            <div id="contenedor-cambios" class="w-100 float-left pl-5 pt-5 ">
+            <div id="contenedor-cambios" class="w-100 float-left pl-5 pt-5" th:object="${solicitud}">
                 <h3>Va a cambiar</h3>
                 <div class="cambiosProducto border mt-5 p-0 pb-1 pt-1 float-left mr-5 ml-4 mb-5">
                     <div class="productoCambiado col-5 float-left ml-3 mr-1 pr-0">
-                        <p>Animal Crossing: new Horizons (Switch)</p>
-                        <p class="blockquote-footer">De alejandromoreno12</p>
+                        <p th:text="${solicitud.productoManda.nombre}">Animal Crossing: new Horizons (Switch)</p>
+                        <p th:text="${solicitud.usuarioSolicita.nombre}" class="blockquote-footer">De alejandromoreno12</p>
                         <div class="valorAprox col-10 border pl-3">
-                            <p class="m-0">Valor aproximado: 60</p>
+                            <p class="m-0">Valor aproximado: <span th:text="${solicitud.productoManda.precioCompra}">60</span></p>
                         </div>
                     </div>
                     <img src="../../img/cambio.png" class="float-left col-1 p-0 mr-1">
                     <div class="productoCambiado col-5 float-left ml-5 pr-0">
-                        <p>Animal Crossing: new Horizons (Switch)</p>
-                        <p class="blockquote-footer">De alejandromoreno12</p>
+                        <p th:text="${solicitud.productoRecibe.nombre}">Animal Crossing: new Horizons (Switch)</p>
+                        <p class="blockquote-footer" th:text="${solicitud.usuarioRecibe.nombre}">De alejandromoreno12</p>
                         <div class="valorAprox col-10 border pl-3">
-                            <p class="m-0">Valor aproximado: 60</p>
+                            <p class="m-0">Valor aproximado: <span th:text="${solicitud.productoRecibe.precioCompra}">60</span></p>
                         </div>
                     </div>
                 </div>
                 <div id="formFiltrar" class="float-left pl-3 w-100">
                     <h3>Opción de intercambio</h3>
-                    <form name="formFiltrarPoductos">
                         <div id="divValorEstimado" class="float-left w-100 mt-2">
                             <input type="radio" name="eleccionFiltro" value="valorEstimado"> Sin envio
                         </div>
@@ -185,11 +188,9 @@
                         </div>
                         
                         <div id="botonesConfirmarCambios" class="float-right mt-5 pt-3 mr-5 text-right">
-                            <button id="cancelar" class="float-left mr-1 botonRojo">Cancelar</button>
-                            <button id="aceptar" class="float-left botonAzul">Aceptar</button>
+                            <a th:href="@{/usuario/cancelarCambio/{id}(id = ${solicitud.idSolicitud})}"><button id="cancelar" class="float-left mr-1 botonRojo">Cancelar</button></a>
+                            <a th:href="@{/usuario/cambiar/{id}(id = ${solicitud.idSolicitud})}"><button id="aceptar" class="float-left botonAzul">Aceptar</button></a>
                         </div>
-
-                    </form>
                 </div>
 
             </div>

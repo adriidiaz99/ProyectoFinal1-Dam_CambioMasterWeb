@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div id="cambioMaster-wrapper" class="container-fluid col-12 border p-0 float-left">
+    <div th:object="${usuario}" id="cambioMaster-wrapper" class="container-fluid col-12 border p-0 float-left">
         <nav id="menu" class="float-left col-2 p-0 sticky-top d-block m-0">
             <a href="/usuario/principal">
                 <div id="cambioMasterPrincipal" class="float-left border border-left-0 border-top-0 w-100">
@@ -140,10 +140,14 @@
                     </div>
                 </a>
 
-                <div id="usuarioTop" class="float-left col-2 opcionMenu border-left">
-                    <p class="float-left pt-1 pb-0 mb-0 ml-4">UserExample</p>
-                    <img src="../img/usuario.png" alt="Icono de un usuario" class="float-left">
-                </div>
+                <a th:href="@{/usuario/miPerfil}">
+                    <div id="usuarioTop" class="float-left col-2 opcionMenu border-left">
+
+                        <p class="float-left pt-1 pb-0 mb-0 ml-4" th:text="${usuario.username}">UserExample</p>
+
+                        <img src="../img/usuario.png" alt="Icono de un usuario" class="float-left">
+                    </div>
+                </a>
             </div>
 
             <div id="contenedor-cambios" class="w-100 float-left pl-5">
@@ -152,14 +156,10 @@
                     <h3 class="float-left">Mis productos</h3>
                 </div>
                 <div id="cabeceraMisProductos" class="col-5 p-0 pt-4 float-left">
-                    <p class="float-left pr-2">100000</p>
+                    <p th:text="${usuario.listaProductos.size()}" class="float-left pr-2">100000</p>
                     <p class="float-left text-right">Resultados</p>
                 </div>
                 <div id="botonesMisProductos" class="float-left mt-5 col-12 ml-2 pt-3 text-right">
-                    <form name="productosForm" method="GET" th:action="@{/usuario/misProductos/agregarProductos}">
-                    </form>
-                    <button id="Eliminar" type="submit" class="float-left mr-1 botonRojo">Eliminar</button>
-                    </form>
                     <form name="productosForm" method="GET" th:action="@{/usuario/misProductos/seleccionarCategoria}">
                         <button id="Agregar" type="submit" class="float-left botonAzul">Agregar</button>
                     </form>
@@ -179,6 +179,11 @@
                         <div class="valorAprox w-100 border pl-3">
                             <p class="m-0">Valor aproximado: <span th:text="${producto.precioCompra}">60</span></p>
                         </div>
+                        <div name="botonEliminarBotones" class="botonEliminarBotones col-12 mt-2 text-right">
+                            <a th:href="@{/usuario/editarProducto/{id}(id = ${producto.id})}"><button type="submit" class="border-0 bg-white col-6 float-right"><img class="col-12" src="../img/dibujar.png"></button></a>
+                            <a th:href="@{/usuario/misProductos/eliminar/{id}(id = ${producto.id})}"><button type="submit" class="border-0 bg-white col-6 float-right"><img class="col-12" src="../img/senales.png"></button></a>
+                        </div>
+
                     </div>
                 </div>
 
@@ -204,6 +209,10 @@
             $("form[name='productosForm']").children("button").eq(1).on("click", function () {
                 $("form[name='productosForm']").attr("th:action", "@{/usuario/misProductos/agregarProductos}");
             })
+
+            $("#Eliminar").on("click", function(){
+                $("#misProductos").children().children("div[name='botonEliminarBotones']").toggleClass("d-none");
+            });
         });
     </script>
 

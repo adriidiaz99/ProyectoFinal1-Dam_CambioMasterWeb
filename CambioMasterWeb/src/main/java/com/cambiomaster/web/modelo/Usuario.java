@@ -49,7 +49,7 @@ public abstract class Usuario implements UserDetails{
 	@NotEmpty
 	private String password;
 	
-	private String valoracion;
+	private double valoracion;
 
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
@@ -63,7 +63,7 @@ public abstract class Usuario implements UserDetails{
 	private List<Cambio> listaCambiosManda = new ArrayList<>();
 	
 	public Usuario(String username, @NotEmpty String nombre, String telefono, String email, @NotEmpty String direccion,
-			@NotEmpty String password, String valoracion) {
+			@NotEmpty String password, double valoracion) {
 		super();
 		this.username = username;
 		this.nombre = nombre;

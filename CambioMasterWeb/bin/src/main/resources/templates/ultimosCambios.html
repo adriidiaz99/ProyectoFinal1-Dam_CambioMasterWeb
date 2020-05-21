@@ -145,10 +145,14 @@
                     </div>
                 </a>
 
-                <div id="usuarioTop" class="float-left col-2 opcionMenu border-left">
-                    <p class="float-left pt-1 pb-0 mb-0 ml-4">UserExample</p>
-                    <img src="../img/usuario.png" alt="Icono de un usuario" class="float-left">
-                </div>
+                <a th:href="@{/usuario/miPerfil}">
+                    <div id="usuarioTop" th:object="${usuario}" class="float-left col-2 opcionMenu border-left">
+
+                        <p class="float-left pt-1 pb-0 mb-0 ml-4" th:text="${usuario.username}">UserExample</p>
+
+                        <img src="../img/usuario.png" alt="Icono de un usuario" class="float-left">
+                    </div>
+                </a>
             </div>
 
             <div id="ultimosCambiosCabecera" class="float-left w-100 border p-0">
@@ -162,55 +166,21 @@
                     </p>
                 </div>
             </div>
-            <div id="contenedor-cambios" class="w-100 float-left pl-5">
+            <div id="contenedor-cambios" th:each="cambio : ${cambios}" class="w-100 float-left pl-5">
                 <div class="cambiosProducto border mt-5 p-0 pb-1 pt-1 float-left mr-5 ml-4">
                     <div class="productoCambiado col-5 float-left ml-3 mr-1 pr-0">
-                        <p>Animal Crossing: new Horizons (Switch)</p>
-                        <p class="blockquote-footer">De alejandromoreno12</p>
+                        <p th:text="${cambio.producto1.nombre}">Animal Crossing: new Horizons (Switch)</p>
+                        <p th:text="${cambio.usuarioRecibe.nombre}" class="blockquote-footer">De alejandromoreno12</p>
                         <div class="valorAprox col-10 border pl-3">
-                            <p class="m-0">Valor aproximado: 60</p>
+                            <p class="m-0">Valor aproximado: <span th:text="${cambio.producto1.precioCompra}">60</span></p>
                         </div>
                     </div>
                     <img src="../img/cambio.png" class="float-left col-1 p-0 mr-1">
                     <div class="productoCambiado col-5 float-left ml-5 pr-0">
-                        <p>Animal Crossing: new Horizons (Switch)</p>
-                        <p class="blockquote-footer">De alejandromoreno12</p>
+                        <p th:text="${cambio.producto2.nombre}">Animal Crossing: new Horizons (Switch)</p>
+                        <p th:text="${cambio.usuarioManda.nombre}" class="blockquote-footer">De alejandromoreno12</p>
                         <div class="valorAprox col-10 border pl-3">
-                            <p class="m-0">Valor aproximado: 60</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="cambiosProducto border mt-5 p-0 pb-1 pt-1 float-left mr-5 ml-4">
-                    <div class="productoCambiado col-5 float-left ml-3 mr-1 pr-0">
-                        <p>Animal Crossing: new Horizons (Switch)</p>
-                        <p class="blockquote-footer">De alejandromoreno12</p>
-                        <div class="valorAprox col-10 border pl-3">
-                            <p class="m-0">Valor aproximado: 60</p>
-                        </div>
-                    </div>
-                    <img src="../img/cambio.png" class="float-left col-1 p-0 mr-1">
-                    <div class="productoCambiado col-5 float-left ml-5 pr-0">
-                        <p>Animal Crossing: new Horizons (Switch)</p>
-                        <p class="blockquote-footer">De alejandromoreno12</p>
-                        <div class="valorAprox col-10 border pl-3">
-                            <p class="m-0">Valor aproximado: 60</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="cambiosProducto border mt-5 p-0 pb-1 pt-1 float-left mr-5 ml-4">
-                    <div class="productoCambiado col-5 float-left ml-3 mr-1 pr-0">
-                        <p>Animal Crossing: new Horizons (Switch)</p>
-                        <p class="blockquote-footer">De alejandromoreno12</p>
-                        <div class="valorAprox col-10 border pl-3">
-                            <p class="m-0">Valor aproximado: 60</p>
-                        </div>
-                    </div>
-                    <img src="../img/cambio.png" class="float-left col-1 p-0 mr-1">
-                    <div class="productoCambiado col-5 float-left ml-5 pr-0">
-                        <p>Animal Crossing: new Horizons (Switch)</p>
-                        <p class="blockquote-footer">De alejandromoreno12</p>
-                        <div class="valorAprox col-10 border pl-3">
-                            <p class="m-0">Valor aproximado: 60</p>
+                            <p class="m-0">Valor aproximado: <span th:text="${cambio.producto2.precioCompra}">60</span></p>
                         </div>
                     </div>
                 </div>

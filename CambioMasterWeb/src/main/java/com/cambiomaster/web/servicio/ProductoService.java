@@ -64,9 +64,28 @@ public class ProductoService extends BaseService<Producto, Long, ProductoReposit
 		return repositorio.filtrarAllLibro(id);
 	}
 	
-	
 	public List<Producto> filtrarMisProductos(Usuario usuario){
 		return repositorio.findByUsuario(usuario);
+	}
+	
+	public List<Producto> filtrarAllPrincipal(Usuario usuario){
+		
+		List<Producto> lista = new ArrayList<>();
+		boolean b1 = false;
+		
+		for(Producto p1 : repositorio.findAll()) {
+			b1 = false;
+			for(Producto p2 : repositorio.findByUsuario(usuario)) {
+				if(p1.equals(p2)) {
+					b1 = true;
+				}
+			}
+			
+			if(!b1)
+				lista.add(p1);
+	}
+		
+		return lista;
 	}
 	
 
