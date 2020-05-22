@@ -27,6 +27,9 @@ public class Producto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	
+	private String imagen;
+	
 	@NotEmpty
 	private String nombre;
 	private double precioCompra;
@@ -51,5 +54,6 @@ public class Producto {
 		this.productor = productor;
 		this.categoria = categoria;
 	}
+	
 
 }

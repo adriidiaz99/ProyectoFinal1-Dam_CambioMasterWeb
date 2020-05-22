@@ -328,3 +328,13 @@ footer a:hover img{
   #contenedor-configuracionCategorias a button{
       margin-left: 22%;
   }
+
+.producto a img{
+    width: 100%;
+    max-height: 200px;
+}
+
+.producto div[name="botonEliminarBotones"] a button img{
+    max-width: 60px;
+    max-height: 60px;
+}

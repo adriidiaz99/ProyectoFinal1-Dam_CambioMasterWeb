@@ -15,6 +15,7 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,6 +31,8 @@ public abstract class Usuario implements UserDetails{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	
+	private String imagen;
 
 	@Column(unique = true)
 	private String username;
@@ -73,8 +76,19 @@ public abstract class Usuario implements UserDetails{
 		this.password = password;
 		this.valoracion = valoracion;
 	}	
-
 	
+	public Usuario(String imagen, String username, @NotEmpty String nombre, String telefono, String email,
+			@NotEmpty String direccion, @NotEmpty String password, double valoracion) {
+		super();
+		this.imagen = imagen;
+		this.username = username;
+		this.nombre = nombre;
+		this.telefono = telefono;
+		this.email = email;
+		this.direccion = direccion;
+		this.password = password;
+		this.valoracion = valoracion;
+	}
 
 	// Métodos helper
 	public void addProducto(Producto p) {

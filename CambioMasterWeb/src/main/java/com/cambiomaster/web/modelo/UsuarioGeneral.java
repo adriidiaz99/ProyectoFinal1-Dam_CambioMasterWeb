@@ -41,6 +41,16 @@ public class UsuarioGeneral extends Usuario {
 		this.apellido2 = apellido2;
 		this.admin = admin;
 	}
+	
+	public UsuarioGeneral(String username, @NotEmpty String nombre, String telefono, String email,
+			@NotEmpty String direccion, @NotEmpty String password, double valoracion, LocalDate fechaNacimiento,
+			String imagen, @NotEmpty String apellido1, String apellido2, boolean admin) {
+		super(username, nombre, telefono, email, imagen, direccion, password, valoracion);
+		this.fechaNacimiento = fechaNacimiento;
+		this.apellido1 = apellido1;
+		this.apellido2 = apellido2;
+		this.admin = admin;
+	}
 
 	@Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

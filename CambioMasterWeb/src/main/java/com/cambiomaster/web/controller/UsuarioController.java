@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cambiomaster.web.modelo.Alimentacion;
 import com.cambiomaster.web.modelo.Calzado;
@@ -43,6 +45,24 @@ public class UsuarioController {
 	private SolicitudService servicioSolicitud;
 	@Autowired
 	private CambioService servicioCambio;
+
+	private final String BASE_IMAGE_PATH;
+
+	public UsuarioController(UsuarioService servicioUsuario, ProductoService servicioProducto,
+			SolicitudService servicioSolicitud, CambioService servicioCambio,
+			@Value("${image.base-path:/files}") String path) {
+		super();
+		this.servicioUsuario = servicioUsuario;
+		this.servicioProducto = servicioProducto;
+		this.servicioSolicitud = servicioSolicitud;
+		this.servicioCambio = servicioCambio;
+		BASE_IMAGE_PATH = path;
+	}
+
+	@ModelAttribute("base_image_path")
+	public String getBASE_IMAGE_PATH() {
+		return BASE_IMAGE_PATH;
+	}
 
 	@GetMapping("/alimentacion")
 	public String alimentacion(Model model) {
@@ -247,14 +267,19 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/misProductos/agregarProducto/submit")
-	public String registroProductos(@ModelAttribute("producto") Producto producto) {
+	public String registroProductos(@ModelAttribute Producto producto, MultipartFile file) {
 		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		producto.setCategoria("Otros..");
+
+		if (!file.isEmpty())
+			producto = servicioProducto.save(producto, file);
+
 		usuario.addProducto(producto);
+
 		servicioUsuario.edit(usuario);
 
 		servicioProducto.edit(producto);
@@ -263,16 +288,22 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/misProductos/agregarElectronica/submit")
-	public String registroElectronica(@ModelAttribute("producto") Electronica producto) {
+	public String registroElectronica(@ModelAttribute Electronica producto, MultipartFile file) {
 		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
-		servicioProducto.generarPrima(producto);
+		producto.setCategoria("Otros..");
 
-		producto.setCategoria("Electrónica");
+		if (producto.isSeguro())
+			servicioProducto.generarPrima(producto);
+
+		if (!file.isEmpty())
+			producto = (Electronica) servicioProducto.save(producto, file);
+
 		usuario.addProducto(producto);
+
 		servicioUsuario.edit(usuario);
 
 		servicioProducto.edit(producto);
@@ -281,14 +312,19 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/misProductos/agregarModa/submit")
-	public String registroModa(@ModelAttribute("producto") Moda producto) {
+	public String registroModa(@ModelAttribute Moda producto, MultipartFile file) {
 		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
-		producto.setCategoria("Moda");
+		producto.setCategoria("Otros..");
+
+		if (!file.isEmpty())
+			producto = (Moda) servicioProducto.save(producto, file);
+
 		usuario.addProducto(producto);
+
 		servicioUsuario.edit(usuario);
 
 		servicioProducto.edit(producto);
@@ -297,14 +333,19 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/misProductos/agregarCalzado/submit")
-	public String registroCalzado(@ModelAttribute("producto") Calzado producto) {
+	public String registroCalzado(@ModelAttribute Calzado producto, MultipartFile file) {
 		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
-		producto.setCategoria("Calzado");
+		producto.setCategoria("Otros..");
+
+		if (!file.isEmpty())
+			producto = (Calzado) servicioProducto.save(producto, file);
+
 		usuario.addProducto(producto);
+
 		servicioUsuario.edit(usuario);
 
 		servicioProducto.edit(producto);
@@ -313,14 +354,19 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/misProductos/agregarMusica/submit")
-	public String registroMusica(@ModelAttribute("producto") Musica producto) {
+	public String registroMusica(@ModelAttribute Musica producto, MultipartFile file) {
 		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
-		producto.setCategoria("Música");
+		producto.setCategoria("Otros..");
+
+		if (!file.isEmpty())
+			producto = (Musica) servicioProducto.save(producto, file);
+
 		usuario.addProducto(producto);
+
 		servicioUsuario.edit(usuario);
 
 		servicioProducto.edit(producto);
@@ -329,30 +375,45 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/misProductos/agregarAlimentacion/submit")
-	public String registroAlimentacion(@ModelAttribute("producto") Alimentacion producto) {
+	public String registroAlimentacion(@ModelAttribute Alimentacion producto, MultipartFile file) {
 		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
-		producto.setCategoria("Alimentación");
+		producto.setCategoria("Otros..");
+
+		if (!file.isEmpty())
+			producto = (Alimentacion) servicioProducto.save(producto, file);
+
 		usuario.addProducto(producto);
+
 		servicioUsuario.edit(usuario);
 
 		servicioProducto.edit(producto);
 
 		return "redirect:/usuario/misProductos";
 	}
+	
+	@GetMapping("/logout")
+	public String cerrarSesion() {
+		return "redirect:/logout";
+	}
 
 	@PostMapping("/misProductos/agregarLibro/submit")
-	public String registroLibros(@ModelAttribute("producto") Libro producto) {
+	public String registroLibros(@ModelAttribute Libro producto, MultipartFile file) {
 		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
-		producto.setCategoria("Libros");
+		producto.setCategoria("Otros..");
+
+		if (!file.isEmpty())
+			producto = (Libro) servicioProducto.save(producto, file);
+
 		usuario.addProducto(producto);
+
 		servicioUsuario.edit(usuario);
 
 		servicioProducto.edit(producto);
@@ -388,7 +449,6 @@ public class UsuarioController {
 
 	@GetMapping("/principal")
 	public String principal(Model model) {
-		List<Producto> listaPrincipal = new ArrayList<Producto>();
 		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
@@ -459,7 +519,6 @@ public class UsuarioController {
 		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
 		model.addAttribute("usuario", usuario);
-		usuario.removeProducto(p);
 
 		if (p instanceof Electronica) {
 			model.addAttribute("producto", p);
@@ -510,28 +569,38 @@ public class UsuarioController {
 
 		return "miPerfil";
 	}
-	
+
 	@GetMapping("/editarPerfil")
 	public String editarUsuario(Model model) {
-		
+
 		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
-		
+
 		model.addAttribute("usuario", usuario);
 		return "registro";
 	}
-	
+
 	@PostMapping("/editarPerfil/submit")
-	public String editandoUsuario(@ModelAttribute("usuario") UsuarioGeneral usuario) {
+	public String editandoUsuario(@ModelAttribute UsuarioGeneral usuario, MultipartFile file) {
 		if (usuario.getPassword().equals("")) {
 			usuario.setPassword(servicioUsuario.findById(usuario.getId()).getPassword());
-			servicioUsuario.edit(usuario);
+			if (file.isEmpty()) {
+				usuario.setImagen(servicioUsuario.findById(usuario.getId()).getImagen());
+				servicioUsuario.edit(usuario);
+			} else {
+				servicioUsuario.edit(usuario, file);
+			}
 		} else {
-			servicioUsuario.register(usuario);
-		}
+			if (file.isEmpty()) {
+				usuario.setImagen(servicioUsuario.findById(usuario.getId()).getImagen());
+				servicioUsuario.register(usuario);
+			} else {
+				servicioUsuario.registerConImagen(usuario, file);
+			}
 
+		}
 		return "redirect:/usuario/principal";
 	}
 
@@ -563,113 +632,195 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/misProductos/editarElectronica/submit")
-	public String editarElectronica(@ModelAttribute("producto") Electronica producto) {
+	public String editarElectronica(@ModelAttribute Electronica producto, MultipartFile file) {
 		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
-
-		System.out.println(servicioProducto.findAll());
-
-		usuario.addProducto(producto);
-		servicioProducto.edit(producto);
-		System.out.println(servicioProducto.findAll());
+		
+		Producto p1 = servicioProducto.findById(producto.getId());
+		p1.getUsuario().removeProducto(p1);
+		
+		producto.setCategoria("Electrónica");
+		
+		if (file.isEmpty()) {
+			producto.setImagen(servicioProducto.findById(producto.getId()).getImagen());
+			usuario.addProducto(producto);
+			servicioProducto.edit(producto);
+		} else {
+			producto = (Electronica) servicioProducto.edit(producto, file);
+			usuario.addProducto(producto);
+			servicioProducto.edit(producto);
+		}
+		
 		return "redirect:/usuario/misProductos";
 
 	}
 
 	@PostMapping("/misProductos/editarModa/submit")
-	public String editarModa(@ModelAttribute("producto") Moda producto) {
+	public String editarModa(@ModelAttribute Moda producto, MultipartFile file) {
 		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
-
+		
+		Producto p1 = servicioProducto.findById(producto.getId());
+		p1.getUsuario().removeProducto(p1);
+		
 		System.out.println(servicioProducto.findAll());
-
-		usuario.addProducto(producto);
-		servicioProducto.edit(producto);
-		System.out.println(servicioProducto.findAll());
+		
+		producto.setCategoria("Electrónica");
+		
+		if (file.isEmpty()) {
+			producto.setImagen(servicioProducto.findById(producto.getId()).getImagen());
+			usuario.addProducto(producto);
+			servicioProducto.edit(producto);
+		} else {
+			producto = (Moda) servicioProducto.edit(producto, file);
+			usuario.addProducto(producto);
+			servicioProducto.edit(producto);
+		}
+		
 		return "redirect:/usuario/misProductos";
 
 	}
 
 	@PostMapping("/misProductos/editarCalzado/submit")
-	public String editarCalzado(@ModelAttribute("producto") Calzado producto) {
+	public String editarCalzado(@ModelAttribute Calzado producto, MultipartFile file) {
 		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
-
+		
+		Producto p1 = servicioProducto.findById(producto.getId());
+		p1.getUsuario().removeProducto(p1);
+		
 		System.out.println(servicioProducto.findAll());
-
-		usuario.addProducto(producto);
-		servicioProducto.edit(producto);
-		System.out.println(servicioProducto.findAll());
+		
+		producto.setCategoria("Electrónica");
+		
+		if (file.isEmpty()) {
+			producto.setImagen(servicioProducto.findById(producto.getId()).getImagen());
+			usuario.addProducto(producto);
+			servicioProducto.edit(producto);
+		} else {
+			producto = (Calzado) servicioProducto.edit(producto, file);
+			usuario.addProducto(producto);
+			servicioProducto.edit(producto);
+		}
+		
 		return "redirect:/usuario/misProductos";
 
 	}
 
 	@PostMapping("/misProductos/editarMusica/submit")
-	public String editarMusica(@ModelAttribute("producto") Musica producto) {
+	public String editarMusica(@ModelAttribute Musica producto, MultipartFile file) {
 		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
-
+		
+		Producto p1 = servicioProducto.findById(producto.getId());
+		p1.getUsuario().removeProducto(p1);
+		
 		System.out.println(servicioProducto.findAll());
-
-		usuario.addProducto(producto);
-		servicioProducto.edit(producto);
-		System.out.println(servicioProducto.findAll());
+		
+		producto.setCategoria("Electrónica");
+		
+		if (file.isEmpty()) {
+			producto.setImagen(servicioProducto.findById(producto.getId()).getImagen());
+			usuario.addProducto(producto);
+			servicioProducto.edit(producto);
+		} else {
+			producto = (Musica) servicioProducto.edit(producto, file);
+			usuario.addProducto(producto);
+			servicioProducto.edit(producto);
+		}
+		
 		return "redirect:/usuario/misProductos";
 
 	}
 
 	@PostMapping("/misProductos/editarProducto/submit")
-	public String editarProducto(@ModelAttribute("producto") Producto producto) {
+	public String editarProducto(@ModelAttribute Producto producto, MultipartFile file) {
 		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
-
+		
+		Producto p1 = servicioProducto.findById(producto.getId());
+		p1.getUsuario().removeProducto(p1);
+		
 		System.out.println(servicioProducto.findAll());
-
-		usuario.addProducto(producto);
-		servicioProducto.edit(producto);
-		System.out.println(servicioProducto.findAll());
+		
+		producto.setCategoria("Electrónica");
+		
+		if (file.isEmpty()) {
+			producto.setImagen(servicioProducto.findById(producto.getId()).getImagen());
+			usuario.addProducto(producto);
+			servicioProducto.edit(producto);
+		} else {
+			producto = servicioProducto.edit(producto, file);
+			usuario.addProducto(producto);
+			servicioProducto.edit(producto);
+		}
+		
 		return "redirect:/usuario/misProductos";
 
 	}
 
 	@PostMapping("/misProductos/editarLibro/submit")
-	public String editarLibro(@ModelAttribute("producto") Libro producto) {
+	public String editarLibro(@ModelAttribute Libro producto, MultipartFile file) {
 		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
-
+		
+		Producto p1 = servicioProducto.findById(producto.getId());
+		p1.getUsuario().removeProducto(p1);
+		
 		System.out.println(servicioProducto.findAll());
-
-		usuario.addProducto(producto);
-		servicioProducto.edit(producto);
-		System.out.println(servicioProducto.findAll());
+		
+		producto.setCategoria("Electrónica");
+		
+		if (file.isEmpty()) {
+			producto.setImagen(servicioProducto.findById(producto.getId()).getImagen());
+			usuario.addProducto(producto);
+			servicioProducto.edit(producto);
+		} else {
+			producto = (Libro) servicioProducto.edit(producto, file);
+			usuario.addProducto(producto);
+			servicioProducto.edit(producto);
+		}
+		
 		return "redirect:/usuario/misProductos";
 
 	}
 
 	@PostMapping("/misProductos/editarAlimentacion/submit")
-	public String editarAlimentacion(@ModelAttribute("producto") Alimentacion producto) {
+	public String editarAlimentacion(@ModelAttribute Alimentacion producto, MultipartFile file) {
 		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
-
+		
+		Producto p1 = servicioProducto.findById(producto.getId());
+		p1.getUsuario().removeProducto(p1);
+		
 		System.out.println(servicioProducto.findAll());
-
-		usuario.addProducto(producto);
-		servicioProducto.edit(producto);
-		System.out.println(servicioProducto.findAll());
+		
+		producto.setCategoria("Electrónica");
+		
+		if (file.isEmpty()) {
+			producto.setImagen(servicioProducto.findById(producto.getId()).getImagen());
+			usuario.addProducto(producto);
+			servicioProducto.edit(producto);
+		} else {
+			producto = (Alimentacion) servicioProducto.edit(producto, file);
+			usuario.addProducto(producto);
+			servicioProducto.edit(producto);
+		}
+		
 		return "redirect:/usuario/misProductos";
 
 	}
@@ -706,7 +857,7 @@ public class UsuarioController {
 		solicitud.setProductoManda(p);
 
 		servicioSolicitud.edit(solicitud);
-		
+
 		System.out.println(servicioSolicitud.findAll());
 
 		if (servicioSolicitud.findById(solicitud.getIdSolicitud()).getProductoManda() == null)
@@ -741,77 +892,77 @@ public class UsuarioController {
 		return "misCambios";
 
 	}
-	
+
 	@GetMapping("/cancelarCambio/{id}")
 	public String cancelarMisCambios(@PathVariable long id) {
-		
+
 		servicioSolicitud.deleteById(id);
-		
-		return "redirect:/usuario/misCambios";	
+
+		return "redirect:/usuario/misCambios";
 	}
-	
+
 	@GetMapping("/verificarCambio/{id}")
-	public String verificarCambio(@PathVariable long id, Model model){
-		
+	public String verificarCambio(@PathVariable long id, Model model) {
+
 		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
-		
+
 		model.addAttribute("solicitud", servicioSolicitud.findById(id));
 		model.addAttribute("usuario", usuario);
-		
+
 		return "confirmarCambios";
-		
+
 	}
-	
+
 	@GetMapping("/cambiar/{id}")
 	public String cambiarProductos(@PathVariable long id, Model model) {
-		
+
 		Usuario usuario;
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
-		
+
 		model.addAttribute("usuario", usuario);
-		
+
 		Solicitud s1 = servicioSolicitud.findById(id);
-		
-		Cambio c1 = new Cambio(s1.getUsuarioRecibe(), s1.getUsuarioSolicita(), s1.getProductoRecibe(), s1.getProductoManda());
-		
+
+		Cambio c1 = new Cambio(s1.getUsuarioRecibe(), s1.getUsuarioSolicita(), s1.getProductoRecibe(),
+				s1.getProductoManda());
+
 		c1.getUsuarioRecibe().addCambioRecibe(c1);
-		
+
 		c1.getUsuarioManda().addCambioManda(c1);
-		
+
 		c1.getUsuarioRecibe().removeProducto(s1.getProductoRecibe());
-		
+
 		c1.getUsuarioManda().removeProducto(s1.getProductoManda());
-		
+
 		c1.getUsuarioRecibe().addProducto(s1.getProductoManda());
-		
+
 		c1.getUsuarioManda().addProducto(s1.getProductoRecibe());
-		
+
 		servicioUsuario.edit(c1.getUsuarioRecibe());
-		
+
 		servicioUsuario.edit(c1.getUsuarioManda());
-		
+
 		servicioCambio.edit(c1);
-		
+
 		for (Solicitud s2 : servicioSolicitud.encontrarSolicitudesRestantes(c1.getProducto1().getId())) {
-			
+
 			servicioSolicitud.delete(servicioSolicitud.findById(s2.getIdSolicitud()));
-			
+
 		}
-		
+
 		for (Solicitud s2 : servicioSolicitud.encontrarSolicitudesRestantes(c1.getProducto2().getId())) {
-			
+
 			servicioSolicitud.delete(servicioSolicitud.findById(s2.getIdSolicitud()));
-			
+
 		}
-		
+
 		return "redirect:/usuario/principal";
-		
+
 	}
-	
 
 }

@@ -109,14 +109,7 @@
                             </div>
                         </li>
                     </a>
-                    <a href="/usuario/configuracion">
-                        <li>
-                            <div id="ajustes" class="pb-2 float-left w-100 opcionMenu p-0">
-                                <img src="../img/ajustes.png" alt="Icono de ajustes" class="float-left">
-                                <p class="float-left">Configuración</p>
-                            </div>
-                        </li>
-                    </a>
+                    
                 </ul>
             </div>
 
@@ -133,19 +126,20 @@
                         <p class="float-left categoriaActiva">Mis Productos</p>
                     </div>
                 </a>
-                <a href="/usuario/favoritos">
-                    <div id="favoritosTop" class="float-left ml-5 pt-1 col-2 opcionMenu p-0">
-                        <img src="../img/favoritos.png" alt="Icono sección favoritos" class="float-left">
-                        <p class="float-left">Mis favoritos</p>
+                <a th:href="@{/usuario/logout}">
+                    <div id="logout" class="float-left ml-5 pt-1 col-2 opcionMenu p-0">
+                        <img src="../../img/cerrarSesion.png" alt="Icono cerrar sesión" class="float-left">
+                        <p class="float-left">Cerrar sesión</p>
                     </div>
                 </a>
 
                 <a th:href="@{/usuario/miPerfil}">
-                    <div id="usuarioTop" class="float-left col-2 opcionMenu border-left">
+                    <div id="usuarioTop" th:object="${usuario}" class="float-left col-2 opcionMenu border-left">
 
                         <p class="float-left pt-1 pb-0 mb-0 ml-4" th:text="${usuario.username}">UserExample</p>
 
-                        <img src="../img/usuario.png" alt="Icono de un usuario" class="float-left">
+                        <img th:if="${usuario.imagen != null}" th:src="@{../files/{id}(id=${usuario.imagen})}" alt="Icono de un usuario" class="float-left">
+                        <img th:if="${usuario.imagen == null}" src="../img/usuario.png" alt="Icono de un usuario" class="float-left">
                     </div>
                 </a>
             </div>
@@ -169,9 +163,12 @@
 
                     <div th:each="producto : ${productos}"
                         class="producto col-3 border mt-5 pt-3 pb-3 float-left mr-5 ml-4">
-                        <a th:href="@{/usuario/producto/{id}(id = ${producto.id})}">
-                            <img src="../img/ejemploImagenProducto.png" class="text-center col-12">
-                        </a>
+                        <div class="float-left col-12 h-25">
+                            <a th:href="@{/usuario/producto/{id}(id = ${producto.id})}">
+                                <img th:if="${producto.imagen != null}" th:src="@{../files/{id}(id=${producto.imagen})}" class="text-center">
+                                <img th:if="${producto.imagen == null}" src="../img/ejemploImagenProducto.png" class="text-center">
+                            </a>
+                        </div>
                         <p th:text="${producto.nombre}" class="text-center mt-3">Animal Crossing: new Horizons
                             (Switch)</p>
                         <p class="blockquote-footer">Fecha de compra: <span
@@ -179,7 +176,7 @@
                         <div class="valorAprox w-100 border pl-3">
                             <p class="m-0">Valor aproximado: <span th:text="${producto.precioCompra}">60</span></p>
                         </div>
-                        <div name="botonEliminarBotones" class="botonEliminarBotones col-12 mt-2 text-right">
+                        <div name="botonEliminarBotones" class="botonEliminarBotones col-12 mt-2 float-right">
                             <a th:href="@{/usuario/editarProducto/{id}(id = ${producto.id})}"><button type="submit" class="border-0 bg-white col-6 float-right"><img class="col-12" src="../img/dibujar.png"></button></a>
                             <a th:href="@{/usuario/misProductos/eliminar/{id}(id = ${producto.id})}"><button type="submit" class="border-0 bg-white col-6 float-right"><img class="col-12" src="../img/senales.png"></button></a>
                         </div>

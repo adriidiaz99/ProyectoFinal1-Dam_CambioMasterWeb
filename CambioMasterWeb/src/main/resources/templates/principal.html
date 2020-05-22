@@ -112,14 +112,7 @@
                             </div>
                         </li>
                     </a>
-                    <a href="/usuario/configuracion">
-                        <li>
-                            <div id="ajustes" class="pb-2 float-left w-100 opcionMenu p-0">
-                                <img src="../img/ajustes.png" alt="Icono de ajustes" class="float-left">
-                                <p class="float-left">Configuración</p>
-                            </div>
-                        </li>
-                    </a>
+                    
                 </ul>
             </div>
 
@@ -136,10 +129,10 @@
                         <p class="float-left">Mis Productos</p>
                     </div>
                 </a>
-                <a href="/usuario/favoritos">
-                    <div id="favoritosTop" class="float-left ml-5 pt-1 col-2 opcionMenu p-0">
-                        <img src="../img/favoritos.png" alt="Icono sección favoritos" class="float-left">
-                        <p class="float-left">Mis favoritos</p>
+                <a th:href="@{/usuario/logout}">
+                    <div id="logout" class="float-left ml-5 pt-1 col-2 opcionMenu p-0">
+                        <img src="../../img/cerrarSesion.png" alt="Icono cerrar sesión" class="float-left">
+                        <p class="float-left">Cerrar sesión</p>
                     </div>
                 </a>
 
@@ -148,7 +141,8 @@
 
                         <p class="float-left pt-1 pb-0 mb-0 ml-4" th:text="${usuario.username}">UserExample</p>
 
-                        <img src="../img/usuario.png" alt="Icono de un usuario" class="float-left">
+                        <img th:if="${usuario.imagen != null}" th:src="@{../files/{id}(id=${usuario.imagen})}" alt="Icono de un usuario" class="float-left">
+                        <img th:if="${usuario.imagen == null}" src="../img/usuario.png" alt="Icono de un usuario" class="float-left">
                     </div>
                 </a>
             </div>
@@ -186,7 +180,8 @@
                 <div th:each="producto : ${productos}"
                     class="producto col-3 border mt-5 pt-3 pb-3 float-left mr-5 ml-4">
                     <a th:href="@{/usuario/producto/{id}(id = ${producto.id})}">
-                        <img src="../img/ejemploImagenProducto.png" class="text-center col-12">
+                        <img th:if="${producto.imagen != null}" th:src="@{../files/{id}(id=${producto.imagen})}" class="text-center">
+                        <img th:if="${producto.imagen == null}" src="../img/ejemploImagenProducto.png" class="text-center">
                     </a>
                     <p th:text="${producto.nombre}" class="nombre text-center mt-3">Animal Crossing: new Horizons
                         (Switch)</p>

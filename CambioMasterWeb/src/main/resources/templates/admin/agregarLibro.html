@@ -52,8 +52,7 @@
                     <a href="/admin/gestionEnvios">
                         <li>
                             <div id="gestionEnvios" class="pb-2 float-left w-100 opcionMenu p-0">
-                                <img src="../../img/gestionEnvios.png" alt="Icono de un mis cambios"
-                                    class="float-left">
+                                <img src="../../img/gestionEnvios.png" alt="Icono de un mis cambios" class="float-left">
                                 <p class="float-left">Gestión de envios</p>
                             </div>
                         </li>
@@ -81,14 +80,7 @@
                             </div>
                         </li>
                     </a>
-                    <a href="/admin/configuracion">
-                        <li>
-                            <div id="ajustes" class="pb-2 float-left w-100 opcionMenu p-0">
-                                <img src="../../img/ajustes.png" alt="Icono de ajustes" class="float-left">
-                                <p class="float-left">Configuración</p>
-                            </div>
-                        </li>
-                    </a>
+                    
                 </ul>
             </div>
 
@@ -99,14 +91,18 @@
                     <button class="col-2"><img src="../../img/lupa.png"></button>
                     <input type="text" placeholder="Realiza una búsqueda...">
                 </div>
-                <div id="administradorTop" class="float-left pt-1 col-4 mr-5 opcionMenu p-0">
-                    <p class="float-left m-0">Ha iniciado sesión como administrador</p>
+                
+                <div id="usuarioTop" class="float-right col-2 opcionMenu border-left">
+                    <p class="float-left pt-1 pb-0 mb-0 ml-4">Admin</p>
+                    <img src="../img/usuario.png" alt="Icono de un usuario" class="float-left">
                 </div>
 
-                <div id="usuarioTop" class="float-left col-2 opcionMenu border-left">
-                    <p class="float-left pt-1 pb-0 mb-0 ml-4">UserExample</p>
-                    <img src="../../img/usuario.png" alt="Icono de un usuario" class="float-left">
-                </div>
+                <a th:href="@{/admin/logout}">
+                    <div id="logout" class="float-right pt-1 col-2 opcionMenu p-0">
+                        <img src="../../img/cerrarSesion.png" alt="Icono cerrar sesión" class="float-left">
+                        <p class="float-left">Cerrar sesión</p>
+                    </div>
+                </a>
             </div>
             <div id="cabeceraConfiguracion" class="col-10 float-left mt-3 mb-0">
                 <img src="../../img/misProductos.png" class="float-left col-1">
@@ -116,38 +112,45 @@
 
                 <form method="POST" th:object="${producto}" th:action="@{/admin/editarLibro/submit}">
 
-                    <h4 class="float-left pt-4 w-100" th:text="${producto.id} == 0 ? 'Agregar libro' : 'Editar libro'">Agregar libro</h4>
-                    
+                    <h4 class="float-left pt-4 w-100" enctype="multipart/form-data" th:text="${producto.id} == 0 ? 'Agregar libro' : 'Editar libro'">
+                        Agregar libro</h4>
+
                     <div id="agregarP" class="w-100 float-left pl-5 pt-5">
                         <input type="number" class="invisible" th:field="*{id}">
+                        <label for="imagen"
+                            class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Imagen de
+                            usuario</label>
+                        <input type="file" id="fileButton" name="file" class="float-left">
+                        </br></br>
                         <input type="text" class="invisible" th:field="*{categoria}">
                         <label for="name"
                             class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Nombre del
                             producto</label>
-                        <input name="name" th:field="*{nombre}" id="name" class="float-left col-5 p-0 m-0 float-left" type="text"
-                            placeholder="Introduzca aquí el nombre del proyecto">
+                        <input name="name" th:field="*{nombre}" id="name" class="float-left col-5 p-0 m-0 float-left"
+                            type="text" placeholder="Introduzca aquí el nombre del proyecto">
                         </br></br>
                         <label for="fechaCompra"
                             class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Fecha de
                             compra</label>
-                        <input name="fechaCompra" th:field="*{fechaCompra}" id="fechaCompra" class="float-left col-5 p-0 m-0 float-left"
-                            type="date">
+                        <input name="fechaCompra" th:field="*{fechaCompra}" id="fechaCompra"
+                            class="float-left col-5 p-0 m-0 float-left" type="date">
                         </br></br>
                         <label for="precioCompra"
                             class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Precio de
                             compra</label>
-                        <input name="precioCompra" id="precioCompra" th:field="*{precioCompra}" class="float-left col-5 p-0 m-0 float-left"
-                            placeholder="Precio cuando lo compraste" type="number" min="0">
+                        <input name="precioCompra" id="precioCompra" th:field="*{precioCompra}"
+                            class="float-left col-5 p-0 m-0 float-left" placeholder="Precio cuando lo compraste"
+                            type="number" min="0">
                         </br></br>
                         <label for="descripcion"
                             class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Descripción</label>
-                        <input name="descripcion" th:field="*{descripcion}" placeholder="Con un máximo de 300 letras" id="descripcion"
-                            class="float-left col-5 p-0 m-0 float-left" type="text" maxlength="300">
+                        <input name="descripcion" th:field="*{descripcion}" placeholder="Con un máximo de 300 letras"
+                            id="descripcion" class="float-left col-5 p-0 m-0 float-left" type="text" maxlength="300">
                         </br></br>
                         <label for="productor"
                             class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Productor</label>
-                        <input name="productor" th:field="*{productor}" placeholder="Quién elaboró el producto" id="productor"
-                            class="float-left col-5 p-0 m-0 float-left" type="text">
+                        <input name="productor" th:field="*{productor}" placeholder="Quién elaboró el producto"
+                            id="productor" class="float-left col-5 p-0 m-0 float-left" type="text">
                         </br></br>
                         <div id="camposLibro">
                             <label for="autor"
@@ -157,8 +160,8 @@
                             </br></br>
                             <label for="generoLibro"
                                 class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Género</label>
-                            <input name="generoLibro" th:field="*{genero}" placeholder="Género del libro" id="generoLibro"
-                                class="float-left col-5 p-0 m-0 float-left" type="text">
+                            <input name="generoLibro" th:field="*{genero}" placeholder="Género del libro"
+                                id="generoLibro" class="float-left col-5 p-0 m-0 float-left" type="text">
                             </br></br>
                         </div>
 

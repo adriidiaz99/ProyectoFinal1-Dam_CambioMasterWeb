@@ -99,9 +99,13 @@
                     <button class="col-2"><img src="../img/lupa.png"></button>
                     <input type="text" placeholder="Realiza una búsqueda...">
                 </div>
-                <div id="administradorTop" class="float-left pt-1 col-4 mr-5 opcionMenu p-0">
-                    <p class="float-left m-0">Ha iniciado sesión como administrador</p>
-                </div>
+
+                <a th:href="@{/admin/logout}">
+                    <div id="logout" class="float-left pt-1 col-2 opcionMenu p-0">
+                        <img src="../../img/cerrarSesion.png" alt="Icono cerrar sesión" class="float-left">
+                        <p class="float-left">Cerrar sesión</p>
+                    </div>
+                </a>
 
                 <div id="usuarioTop" class="float-left col-2 opcionMenu border-left">
                     <p class="float-left pt-1 pb-0 mb-0 ml-4">UserExample</p>

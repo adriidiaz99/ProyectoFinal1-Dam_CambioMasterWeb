@@ -113,14 +113,6 @@
                             </div>
                         </li>
                     </a>
-                    <a href="/usuario/configuracion">
-                        <li>
-                            <div id="ajustes" class="pb-2 float-left w-100 opcionMenu p-0">
-                                <img src="../../img/ajustes.png" alt="Icono de ajustes" class="float-left">
-                                <p class="float-left">Configuración</p>
-                            </div>
-                        </li>
-                    </a>
                 </ul>
             </div>
 
@@ -138,10 +130,10 @@
                         <p class="float-left">Mis Productos</p>
                     </div>
                 </a>
-                <a href="/usuario/favoritos">
-                    <div id="favoritosTop" class="float-left ml-5 pt-1 col-2 opcionMenu p-0">
-                        <img src="../../img/favoritos.png" alt="Icono sección favoritos" class="float-left">
-                        <p class="float-left">Mis favoritos</p>
+                <a th:href="@{/usuario/logout}">
+                    <div id="logout" class="float-left ml-5 pt-1 col-2 opcionMenu p-0">
+                        <img src="../../img/cerrarSesion.png" alt="Icono cerrar sesión" class="float-left">
+                        <p class="float-left">Cerrar sesión</p>
                     </div>
                 </a>
 
@@ -165,7 +157,8 @@
 
                     <div id="contenedor-miPerfil" class="w-100 float-left pl-2 pb-5">
                         <div id="fotoPerfil" th:object="${producto}" class=" col-5 mt-5 p-0 pb-1 pt-1 float-left ml-4">
-                            <img src="../../img/ejemploImagenProducto.png" class="w-100 float-left mb-2">
+                            <img th:if="${producto.imagen != null}" th:src="@{../../files/{id}(id=${producto.imagen})}" class="w-100 float-left mb-2">
+                            <img th:if="${producto.imagen == null}" src="../../img/ejemploImagenProducto.png" class="w-100 float-left mb-2">
 
                         </div>
                         <div id="informacionBasica" class="border col-5 mt-5 pl-2 p-0 pb-1 pt-1 float-left ml-4">
