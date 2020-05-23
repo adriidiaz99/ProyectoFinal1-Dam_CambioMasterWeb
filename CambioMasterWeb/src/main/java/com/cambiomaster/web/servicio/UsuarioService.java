@@ -29,6 +29,10 @@ public class UsuarioService extends BaseService<Usuario, Long, UsuarioRepository
 		this.productosDeUsuario = productosDeUsuario;
 		this.dbStorageService = dbStorageService;
 	}
+	
+	public Usuario buscarPorEmail(String email) {
+		return repositorio.findByEmail(email);
+	}
 
 	public Usuario buscarPorUserName(String usuario) {
 		return repositorio.findFirstByUsername(usuario);

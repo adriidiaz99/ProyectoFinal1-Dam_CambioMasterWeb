@@ -14,6 +14,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	
 	Usuario findFirstByUsername(String email);
 	
+	Usuario findByEmail(String email);
+	
 	@Query(value = "SELECT * FROM EMPRESA JOIN USUARIO USING (ID)", nativeQuery= true)
 	List<Empresa> findAllEmpresas();
 	

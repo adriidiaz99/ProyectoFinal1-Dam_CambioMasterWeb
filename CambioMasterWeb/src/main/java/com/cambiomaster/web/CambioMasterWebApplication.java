@@ -12,7 +12,7 @@ import com.cambiomaster.web.modelo.Electronica;
 import com.cambiomaster.web.modelo.Producto;
 import com.cambiomaster.web.modelo.Usuario;
 import com.cambiomaster.web.modelo.UsuarioGeneral;
-import com.cambiomaster.web.repositorios.ProductoRepository;
+import com.cambiomaster.web.servicio.ProductoService;
 import com.cambiomaster.web.servicio.UsuarioService;
 
 @SpringBootApplication
@@ -23,7 +23,7 @@ public class CambioMasterWebApplication {
 	}
 
 	@Bean
-	CommandLineRunner initData(UsuarioService usuarioService, ProductoRepository listaProductos) {
+	CommandLineRunner initData(UsuarioService usuarioService, ProductoService listaProductos) {
 
 		return new CommandLineRunner() {
 
@@ -36,23 +36,16 @@ public class CambioMasterWebApplication {
 				Usuario ug2 = new UsuarioGeneral("Usuario", "b", "a", "a", "a", encoder.encode("1234"),0.0 , LocalDate.parse("2019-11-01"),
 						"a", "a", false);
 				
-				Producto e1 = new Electronica("b", 4.2, LocalDate.now(), "Hola", "lolo", "Electrónica", false, 0.0, "Camión");
 				Producto e2 = new Electronica("e", 4.2, LocalDate.now(), "o", "o", "Electrónica", false, 0.0, "o");
 				
 				usuarioService.edit(ug2);
 				
-				ug1.addProducto(e1);
 				ug2.addProducto(e2);
 				
 				usuarioService.edit(ug1);
 				usuarioService.edit(ug2);
 				
-				listaProductos.save(e1);
 				listaProductos.save(e2);
-				
-				for(Producto p: ug2.getListaProductos()) {
-					System.out.println(p);
-				}
 				
 			}
 

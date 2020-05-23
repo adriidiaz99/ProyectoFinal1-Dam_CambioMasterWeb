@@ -3,12 +3,18 @@ var letras = ['T', 'R', 'W', 'A',
 
 function clickBoton() {
     var result = false;
-    if(comprobarCorreo && comprobarContrasena && comprobarEdad){
+    if(comprobarCorreo() && comprobarContrasena() && comprobarEdad()){
         result = true;
+    } else {
+    	alert("Hay un error en el registro. Por favor, vuelva a intentarlo.")
     }
 
     return result;
 
+}
+
+function nextVersion() {
+	alert("Esta función no está disponible en este momento.")
 }
 
 window.onload = function () {
@@ -46,6 +52,8 @@ function comprobarCorreo() {
 
         }
     }
+    
+    console.log(comprob);
 
     return comprob;
 
@@ -104,7 +112,6 @@ function comprobarContrasena() {
                     document.getElementById("passw").style.borderStyle = "inset";
                     document.getElementById("passw").style.borderColor = "initial";
                     document.getElementById("passFailed").classList.add("d-none");
-                    document.getElementById()
                 }
             }
         }
@@ -122,6 +129,9 @@ function comprobarContrasena() {
             document.getElementById("passNotValue").classList.remove("d-none");
         }
     }
+    
+    console.log(result);
+    
     return result;
 }
 
@@ -143,6 +153,8 @@ function comprobarEdad() {
         document.getElementById("fechaNacimiento").style.borderColor = "red";
         document.getElementById("errorFecha").classList.remove("d-none");
     }
+    
+    console.log(comprob);
 
     return comprob;
 }

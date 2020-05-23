@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cambio Master Web - Últimos cambios</title>
 
+    <meta name="description" content="Modifica tu mundo en la amplia web de trueques, solo en la página CambioMaster">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -143,8 +145,8 @@
 
                         <p class="float-left pt-1 pb-0 mb-0 ml-4" th:text="${usuario.username}">UserExample</p>
 
-                        <img th:if="${usuario.imagen != null}" th:src="@{../files/{id}(id=${usuario.imagen})}" alt="Icono de un usuario" class="float-left">
-                        <img th:if="${usuario.imagen == null}" src="../img/usuario.png" alt="Icono de un usuario" class="float-left">
+                        <img th:if="${usuario.imagen != null}" th:src="@{../../files/{id}(id=${usuario.imagen})}" alt="Icono de un usuario" class="float-left">
+                        <img th:if="${usuario.imagen == null}" src="../../img/usuario.png" alt="Icono de un usuario" class="float-left">
                     </div>
                 </a>
             </div>

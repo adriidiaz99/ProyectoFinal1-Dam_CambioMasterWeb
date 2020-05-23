@@ -17,7 +17,7 @@ import com.cambiomaster.web.servicio.UsuarioService;
 @Controller
 @RequestMapping("/")
 public class MainController {
-	
+
 	@Autowired
 	private UsuarioService servicioUsuario;
 	private final String BASE_IMAGE_PATH;
@@ -27,7 +27,7 @@ public class MainController {
 		this.servicioUsuario = servicioUsuario;
 		BASE_IMAGE_PATH = path;
 	}
-	
+
 	@ModelAttribute("base_image_path")
 	public String getBASE_IMAGE_PATH() {
 		return BASE_IMAGE_PATH;
@@ -37,22 +37,21 @@ public class MainController {
 	public String index() {
 		return "index";
 	}
-	
+
 	@GetMapping("/logout")
 	public String logout() {
 		return "redirect:/login";
 	}
-	
+
 	@GetMapping("/avisoLegal")
 	public String avisoLegal() {
 		return "avisoLegal";
 	}
-	
+
 	@GetMapping("/politicaDeDatos")
 	public String politicaDeDatos() {
 		return "politicaDeDatos";
 	}
-	
 
 	@GetMapping("/registro")
 	public String registroManda(Model model) {
@@ -60,17 +59,28 @@ public class MainController {
 		model.addAttribute("usuario", c1);
 		return "registro";
 	}
-	
+
 	@PostMapping("/registro/submit")
-	public String registerUser(@ModelAttribute UsuarioGeneral usuario, MultipartFile file) {
+	public String registerUser(@ModelAttribute UsuarioGeneral usuario, Model model, MultipartFile file) {
+		Boolean alert;
 		
-		if (!file.isEmpty())
-			servicioUsuario.registerConImagen(usuario, file);
-		else 
-			servicioUsuario.register(usuario);
-		
-		
-		return "redirect:/login";
+		if (servicioUsuario.buscarPorEmail(usuario.getEmail()) == null) {
+			if (!file.isEmpty())
+				servicioUsuario.registerConImagen(usuario, file);
+			else
+				servicioUsuario.register(usuario);
+			
+			alert = false;
+			
+			model.addAttribute("alert", alert);
+
+			return "redirect:/login";
+		} else {
+			alert = true;
+			model.addAttribute("alert", alert);
+			return "redirect:/registro";
+		}
+
 	}
-	
+
 }

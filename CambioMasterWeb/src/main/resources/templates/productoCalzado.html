@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cambio Master Web - Producto</title>
 
-    <description>Visualiza el calzado en la página CambioMaster</description>
+    <meta name="description" content="Comienza a calzar en la amplia web de trueques, solo en la página CambioMaster">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javaScript" src="/js/script.js"></script>
     <link rel="stylesheet" href="../../css/styles.css">
 </head>
 
@@ -120,7 +121,7 @@
             </div>
 
         </nav>
-        <section id="cambioMaster-container" class="float-left col-10">
+        <section id="cambioMaster-container" th:object="${usuario}" class="float-left col-10">
             <div id="menuArriba" class="float-left p-0 m-0 w-100 border">
                 <div id="buscador" class="col-4 float-left border">
                     <button class="col-2"><img src="../../img/lupa.png"></button>
@@ -141,7 +142,7 @@
                 </a>
 
                 <a th:href="@{/usuario/miPerfil}">
-                    <div id="usuarioTop" th:object="${usuario}" class="float-left col-2 opcionMenu border-left">
+                    <div id="usuarioTop" class="float-left col-2 opcionMenu border-left">
 
                         <p class="float-left pt-1 pb-0 mb-0 ml-4" th:text="${usuario.username}">UserExample</p>
 
@@ -159,8 +160,8 @@
 
                 <div id="producto" class="col-12 float-left ml-1 pl-3 border p-0 mt-5">
 
-                    <div id="contenedor-miPerfil" class="w-100 float-left pl-2 pb-5">
-                        <div id="fotoPerfil" th:object="${producto}" class=" col-5 mt-5 p-0 pb-1 pt-1 float-left ml-4">
+                    <div id="contenedor-miPerfil" th:object="${producto}" class="w-100 float-left pl-2 pb-5">
+                        <div id="fotoPerfil" class=" col-5 mt-5 p-0 pb-1 pt-1 float-left ml-4">
                             <img th:if="${producto.imagen != null}" th:src="@{../../files/{id}(id=${producto.imagen})}" class="w-100 float-left mb-2">
                             <img th:if="${producto.imagen == null}" src="../../img/ejemploImagenProducto.png" class="w-100 float-left mb-2">
 
@@ -178,8 +179,8 @@
 
                             <button id="editarProducto" class=" float-right mr-2 border d-none">Editar</button>
                         </div>
-                        <div id="botonProductos" class="float-right mt-5 mr-4">
-                            <button id="favoritos" class="bg-warning text-white border-0">Añadir a favoritos</button>
+                        <div id="botonProductos" th:if="${producto.usuario.id != usuario.id}" class="float-right mt-5 mr-4">
+                            <button id="favoritos" class="bg-warning text-white border-0" onclick="nextVersion()">Añadir a favoritos</button>
                             <a th:href="@{/usuario/seleccionarProducto/{id}(id = ${producto.id})}"><button id="seleccionarProducto" class="bg-secondary text-white border-0">Solicitar
                                 cambio</button></a>
                         </div>

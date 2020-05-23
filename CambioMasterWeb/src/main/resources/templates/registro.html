@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cambio Master Web - Registro</title>
 
-    <description>Regístrate en la página CambioMaster</description>
+    <meta name="description" content="Comienza tu mundo en la amplia web de registro, solo en la página CambioMaster">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/styles.css">
     <script type="text/javaScript" src="/js/script.js"></script>
-    <script src="https://cdn.datedropper.com/get/{{LICENSE}}"></script>
+    <!-- Script Date Dropper que al final no ha sido utilizado: <script> src="https://cdn.datedropper.com/get/{{LICENSE}}"></script>  -->
 </head>
 
 <body>
@@ -105,7 +105,7 @@
                         </br></br>
                         <div id="passFailed" class="pl-1 float-left pr-2 border-left border-danger d-none">
                             <small class="text-danger float-left">Contraseña no válida. Debe de estar entre 8 y 20 carácteres,
-                                incluir un número y una letra</small>
+                                incluir un número, una letra y una en mayúscula como mínimo</small>
                         </div>
                         </br></br>
                         <label for="passw1"
@@ -133,10 +133,6 @@
     </div>
 
     <footer th:replace="~{fragmentos/piePagina::piePagina}"></footer>
-
-    <script>
-        $("#email").dateDropper();
-    </script>
 
 </body>
 

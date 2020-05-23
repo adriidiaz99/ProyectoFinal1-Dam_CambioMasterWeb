@@ -407,7 +407,7 @@ public class UsuarioController {
 		UserDetails userDetail = (UserDetails) auth.getPrincipal();
 		usuario = this.servicioUsuario.buscarPorUserName(userDetail.getUsername());
 
-		producto.setCategoria("Otros..");
+		producto.setCategoria("Libros");
 
 		if (!file.isEmpty())
 			producto = (Libro) servicioProducto.save(producto, file);
@@ -495,15 +495,15 @@ public class UsuarioController {
 			model.addAttribute("producto", p);
 			return "productoMusica";
 		}
+		
+		if (p instanceof Libro) {
+			model.addAttribute("producto", p);
+			return "productoLibro";
+		}
 
 		if (p instanceof Producto) {
 			model.addAttribute("producto", p);
 			return "producto";
-		}
-
-		if (p instanceof Libro) {
-			model.addAttribute("producto", p);
-			return "productoLibro";
 		}
 
 		return "redirect:/usuario/principal";
@@ -667,8 +667,6 @@ public class UsuarioController {
 		Producto p1 = servicioProducto.findById(producto.getId());
 		p1.getUsuario().removeProducto(p1);
 		
-		System.out.println(servicioProducto.findAll());
-		
 		producto.setCategoria("Electrónica");
 		
 		if (file.isEmpty()) {
@@ -695,8 +693,6 @@ public class UsuarioController {
 		Producto p1 = servicioProducto.findById(producto.getId());
 		p1.getUsuario().removeProducto(p1);
 		
-		System.out.println(servicioProducto.findAll());
-		
 		producto.setCategoria("Electrónica");
 		
 		if (file.isEmpty()) {
@@ -722,9 +718,7 @@ public class UsuarioController {
 		
 		Producto p1 = servicioProducto.findById(producto.getId());
 		p1.getUsuario().removeProducto(p1);
-		
-		System.out.println(servicioProducto.findAll());
-		
+	
 		producto.setCategoria("Electrónica");
 		
 		if (file.isEmpty()) {
@@ -750,9 +744,7 @@ public class UsuarioController {
 		
 		Producto p1 = servicioProducto.findById(producto.getId());
 		p1.getUsuario().removeProducto(p1);
-		
-		System.out.println(servicioProducto.findAll());
-		
+	
 		producto.setCategoria("Electrónica");
 		
 		if (file.isEmpty()) {
@@ -778,9 +770,7 @@ public class UsuarioController {
 		
 		Producto p1 = servicioProducto.findById(producto.getId());
 		p1.getUsuario().removeProducto(p1);
-		
-		System.out.println(servicioProducto.findAll());
-		
+	
 		producto.setCategoria("Electrónica");
 		
 		if (file.isEmpty()) {
@@ -806,9 +796,7 @@ public class UsuarioController {
 		
 		Producto p1 = servicioProducto.findById(producto.getId());
 		p1.getUsuario().removeProducto(p1);
-		
-		System.out.println(servicioProducto.findAll());
-		
+	
 		producto.setCategoria("Electrónica");
 		
 		if (file.isEmpty()) {
@@ -857,8 +845,6 @@ public class UsuarioController {
 		solicitud.setProductoManda(p);
 
 		servicioSolicitud.edit(solicitud);
-
-		System.out.println(servicioSolicitud.findAll());
 
 		if (servicioSolicitud.findById(solicitud.getIdSolicitud()).getProductoManda() == null)
 			servicioSolicitud.delete(servicioSolicitud.solicitudPendiente());
