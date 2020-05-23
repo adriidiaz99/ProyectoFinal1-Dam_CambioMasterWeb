@@ -26,7 +26,7 @@
                     <h3 class="mb-5">Registrarme en Cambio Master</h3>
                     <form name="formulario-registro" enctype="multipart/form-data"
                         th:action="${usuario.id} == 0 ? @{/admin/registroUsuario/submit} : @{/admin/editarUsuario/submit}"
-                        th:object="${usuario}" method="POST">
+                        th:object="${usuario}" onsubmit="return clickBoton()" method="POST">
                         <label for="imagen"
                             class="float-left col-3 pb-1 m-0 float-left bg-secondary text-white text-center">Imagen de
                             usuario</label>

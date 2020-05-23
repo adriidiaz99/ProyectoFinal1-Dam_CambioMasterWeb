@@ -21,7 +21,7 @@
                 <img src="../../img/cambioMasterWeb.png">
                 <div id="formulario-registro" class="col-8 text-center pb-4">
                     <h3 class="mb-5">Registra una empresa en Cambio Master</h3>
-                    <form name="formulario-registro" enctype="multipart/form-data" method="POST"
+                    <form name="formulario-registro" onsubmit="return clickBoton()" enctype="multipart/form-data" method="POST"
                         th:action="${empresa.id} == 0 ? @{/admin/registroEmpresa/submit} : @{/admin/editarEmpresa/submit}"
                         th:object="${empresa}">
                         <input type="number" th:field="*{id}" class="invisible">
